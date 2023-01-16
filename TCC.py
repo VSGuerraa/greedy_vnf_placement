@@ -401,6 +401,7 @@ def wrong_Run(lista_Nodos):
             lista_Fpga.append([clb,bram,dsp])
 
     print(lista_Fpga)
+    print("Esta quase pronto")
 
 
 
@@ -418,7 +419,7 @@ def check_Path(node_D,nodos,req):
                     valid_Path=1
                     
     return [valid_Path,node_D,new_Thro]
-#checa se o caminho do nodo inicial até o final é válido em relação a latência e vazão
+#checa se o caminho do nodo inicial atï¿½ o final ï¿½ vï¿½lido em relaï¿½ï¿½o a latï¿½ncia e vazï¿½o
 
 
 

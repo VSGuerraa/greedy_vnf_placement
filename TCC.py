@@ -250,16 +250,16 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
         topologia_rede.append({"Nodo"+str(a): {"FPGA": lista_Fpga, "Links": lista_Links}})
      
     with open ("requisicoes.json","w") as outfile:
-        json.dump(requisicoes, outfile)
+        json.dump(requisicoes, outfile, indent=4)
 
     with open ("funcoes.json","w") as outfile:
-        json.dump(funcao, outfile)
+        json.dump(funcao, outfile, indent=4)
 
     with open ("implementacoes.json","w") as outfile:
-        json.dump(implementacoes, outfile)
+        json.dump(implementacoes, outfile, indent=4)
 
     with open ("topologia.json","w") as outfile:
-        json.dump(topologia_rede, outfile)
+        json.dump(topologia_rede, outfile, indent=4)
 
 
 
@@ -305,6 +305,7 @@ class Link:
 
 @dataclass
 class Node:
+    id:str
     fpga:Partition
     link: Link
 
@@ -319,11 +320,10 @@ def ler_Dados():
     
 
     nodos=[]
-    parts=[]
     links=[]
     lista_Caminhos=[]
     caminhos=[]
-    lista_Fpga=[]
+    
     lista_Req=[]
     lista_Nodos=[]
    
@@ -333,10 +333,12 @@ def ler_Dados():
     for i,v in enumerate(topologia):
         
         nodos.append(str(*v.keys()))
+        nodo_id=nodos[i]
         fpgas=(v[nodos[i]]["FPGA"])
         links=(v[nodos[i]]["Links"])
         caminhos=[]
         lista_Links=[]
+        lista_Fpga=[]
 
         for j in links:
             nodo_d=str(*j.keys())   
@@ -347,22 +349,22 @@ def ler_Dados():
             caminhos.append(int(nodo_d))
         lista_Caminhos.append(caminhos)
 
+        
         for fpga in fpgas:
-            
+            lista_Parts=[]
             for part in fpga:
-                lista_Parts=[]
+                
                 nodo=str(*part.keys())
-            
+
                 clb=part[nodo]["CLBs"]
                 bram=part[nodo]["BRAM"]
                 dsp=part[nodo]["DSP"]
                 const_Part=Partition(clb,bram,dsp)
                 lista_Parts.append(const_Part)
-                list(lista_Parts)
             lista_Fpga.append(lista_Parts)
             
-        const_Nodo=Node(lista_Fpga,lista_Links)
-        print(const_Nodo)
+        const_Nodo=Node(nodo_id,lista_Fpga,lista_Links)
+        
         lista_Nodos.append(const_Nodo)
                     
     for a,val in enumerate(requisicoes.values()):
@@ -386,7 +388,7 @@ def ler_Dados():
     return lista_Req,lista_Caminhos,lista_Nodos
 
 
-def wrong_Run(lista_Nodos):
+def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
     print(lista_Nodos)
     lista_Fpga=[]
     for nodo in lista_Nodos:
@@ -394,14 +396,56 @@ def wrong_Run(lista_Nodos):
             clb=0
             bram=0
             dsp=0
+            nodo_id=nodo.id
             for part in fpga:
                 clb+=part.clb
                 bram+=part.bram
                 dsp+=part.dsp
-            lista_Fpga.append([clb,bram,dsp])
+            lista_Fpga.append([nodo_id,clb,bram,dsp])
+            
+    aloc_Req=[]
+    
+    for req in lista_Req:
+        path=list(dfs_caminhos(lista_Paths,req.init_node,req.out_node))
+        path_Ord=sorted(path,key=len)
+        check_Node=False
+        check_Link=1
+        refresh_Links=[]
+        
 
-    print(lista_Fpga)
-    print("Esta quase pronto")
+        if lista_Nodos[req.init_node].fpga!=0:
+            for i,device in enumerate(lista_Fpga):
+                if device[0][4]==req.init_node: #rever o indice/qual FPGA se esta 
+                    if parts.clb>=req.func.clb:
+                        if parts.bram>=req.func.bram:
+                            if parts.dsp>=req.func.dsp:
+                                check_Node=True
+                                break
+
+        for p in path_Ord:
+            for b,c in zip(p,p[1:]):
+                lista_Check=check_Path(c,lista_Nodos[b].link,req)
+                check_Link+=lista_Check[0]
+                aux_Lista=b,lista_Check[1],lista_Check[2]
+                refresh_Links.append(aux_Lista)
+            if check_Link==len(p):
+                check_Link=True
+                break
+            else:
+                check_Link=False
+        
+        if check_Link and check_Node:
+            
+            aloc_Req.append(req)
+            lista_Nodos[req.init_node].part.pop(a)
+            for nodo_I,nodo_F,thro in refresh_Links:
+                for l in (lista_Nodos[nodo_I].link):
+                    if int(l.nodo_d)==nodo_F:
+                        l.min_T=thro
+            #cash+=req.price
+
+    
+    
 
 
 
@@ -419,7 +463,7 @@ def check_Path(node_D,nodos,req):
                     valid_Path=1
                     
     return [valid_Path,node_D,new_Thro]
-#checa se o caminho do nodo inicial at� o final � v�lido em rela��o a lat�ncia e vaz�o
+#checa se o caminho do nodo inicial ate o final eh valido em relacao a latencia e vazio
 
 
 
@@ -505,7 +549,7 @@ if modo == '1':
     gerador_Dados(nodos_G, links_G,req)
     lista_Req,lista_Paths,lista_Nodos=ler_Dados()
     wrong_Run(lista_Nodos)
-    #greedy(lista_Req,lista_Paths,lista_Nodos)
+    greedy(lista_Req,lista_Paths,lista_Nodos)
 
 else:
 

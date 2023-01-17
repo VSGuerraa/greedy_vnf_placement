@@ -1,1 +1,146 @@
-[{"Nodo0": {"FPGA": [], "Links": [{"1": {"Lat": 149, "Throughput": 758}}, {"2": {"Lat": 33, "Throughput": 958}}]}}, {"Nodo1": {"FPGA": [], "Links": [{"0": {"Lat": 160, "Throughput": 936}}, {"2": {"Lat": 72, "Throughput": 630}}]}}, {"Nodo2": {"FPGA": [[{"Part0": {"CLBs": 15200, "BRAM": 480, "DSP": 684}}, {"Part1": {"CLBs": 15200, "BRAM": 480, "DSP": 684}}], [{"Part0": {"CLBs": 15200, "BRAM": 450, "DSP": 270}}, {"Part1": {"CLBs": 15200, "BRAM": 450, "DSP": 270}}, {"Part2": {"CLBs": 15200, "BRAM": 828, "DSP": 270}}, {"Part3": {"CLBs": 15200, "BRAM": 828, "DSP": 270}}]], "Links": [{"0": {"Lat": 61, "Throughput": 508}}, {"1": {"Lat": 18, "Throughput": 483}}]}}]
+[
+    {
+        "Nodo0": {
+            "FPGA": [
+                [
+                    {
+                        "Part0": {
+                            "CLBs": 15200,
+                            "BRAM": 450,
+                            "DSP": 720
+                        }
+                    },
+                    {
+                        "Part1": {
+                            "CLBs": 15200,
+                            "BRAM": 450,
+                            "DSP": 720
+                        }
+                    },
+                    {
+                        "Part2": {
+                            "CLBs": 15200,
+                            "BRAM": 450,
+                            "DSP": 720
+                        }
+                    },
+                    {
+                        "Part3": {
+                            "CLBs": 15200,
+                            "BRAM": 450,
+                            "DSP": 720
+                        }
+                    }
+                ],
+                [
+                    {
+                        "Part0": {
+                            "CLBs": 15200,
+                            "BRAM": 450,
+                            "DSP": 1440
+                        }
+                    },
+                    {
+                        "Part1": {
+                            "CLBs": 15200,
+                            "BRAM": 450,
+                            "DSP": 1440
+                        }
+                    }
+                ],
+                [
+                    {
+                        "Part0": {
+                            "CLBs": 15200,
+                            "BRAM": 480,
+                            "DSP": 342
+                        }
+                    },
+                    {
+                        "Part1": {
+                            "CLBs": 15200,
+                            "BRAM": 480,
+                            "DSP": 342
+                        }
+                    },
+                    {
+                        "Part2": {
+                            "CLBs": 23840,
+                            "BRAM": 480,
+                            "DSP": 342
+                        }
+                    },
+                    {
+                        "Part3": {
+                            "CLBs": 23840,
+                            "BRAM": 480,
+                            "DSP": 342
+                        }
+                    }
+                ]
+            ],
+            "Links": [
+                {
+                    "1": {
+                        "Lat": 170,
+                        "Throughput": 483
+                    }
+                },
+                {
+                    "2": {
+                        "Lat": 21,
+                        "Throughput": 444
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "Nodo1": {
+            "FPGA": [],
+            "Links": [
+                {
+                    "0": {
+                        "Lat": 89,
+                        "Throughput": 621
+                    }
+                },
+                {
+                    "2": {
+                        "Lat": 111,
+                        "Throughput": 236
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "Nodo2": {
+            "FPGA": [
+                [
+                    {
+                        "Part0": {
+                            "CLBs": 15200,
+                            "BRAM": 450,
+                            "DSP": 1080
+                        }
+                    }
+                ]
+            ],
+            "Links": [
+                {
+                    "0": {
+                        "Lat": 33,
+                        "Throughput": 1000
+                    }
+                },
+                {
+                    "1": {
+                        "Lat": 47,
+                        "Throughput": 503
+                    }
+                }
+            ]
+        }
+    }
+]

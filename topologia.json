@@ -7,28 +7,28 @@
                         "Part0": {
                             "CLBs": 15200,
                             "BRAM": 450,
-                            "DSP": 720
+                            "DSP": 270
                         }
                     },
                     {
                         "Part1": {
                             "CLBs": 15200,
                             "BRAM": 450,
-                            "DSP": 720
+                            "DSP": 270
                         }
                     },
                     {
                         "Part2": {
                             "CLBs": 15200,
-                            "BRAM": 450,
-                            "DSP": 720
+                            "BRAM": 828,
+                            "DSP": 270
                         }
                     },
                     {
                         "Part3": {
                             "CLBs": 15200,
-                            "BRAM": 450,
-                            "DSP": 720
+                            "BRAM": 828,
+                            "DSP": 270
                         }
                     }
                 ],
@@ -81,15 +81,15 @@
             ],
             "Links": [
                 {
-                    "1": {
-                        "Lat": 170,
-                        "Throughput": 483
+                    "3": {
+                        "Lat": 146,
+                        "Throughput": 348
                     }
                 },
                 {
-                    "2": {
-                        "Lat": 21,
-                        "Throughput": 444
+                    "4": {
+                        "Lat": 41,
+                        "Throughput": 154
                     }
                 }
             ]
@@ -97,18 +97,67 @@
     },
     {
         "Nodo1": {
-            "FPGA": [],
+            "FPGA": [
+                [
+                    {
+                        "Part0": {
+                            "CLBs": 15200,
+                            "BRAM": 480,
+                            "DSP": 342
+                        }
+                    },
+                    {
+                        "Part1": {
+                            "CLBs": 15200,
+                            "BRAM": 480,
+                            "DSP": 342
+                        }
+                    },
+                    {
+                        "Part2": {
+                            "CLBs": 23840,
+                            "BRAM": 480,
+                            "DSP": 342
+                        }
+                    },
+                    {
+                        "Part3": {
+                            "CLBs": 23840,
+                            "BRAM": 480,
+                            "DSP": 342
+                        }
+                    }
+                ],
+                [
+                    {
+                        "Part0": {
+                            "CLBs": 15200,
+                            "BRAM": 450,
+                            "DSP": 2880
+                        }
+                    }
+                ],
+                [
+                    {
+                        "Part0": {
+                            "CLBs": 15200,
+                            "BRAM": 480,
+                            "DSP": 1368
+                        }
+                    }
+                ]
+            ],
             "Links": [
                 {
-                    "0": {
-                        "Lat": 89,
-                        "Throughput": 621
+                    "3": {
+                        "Lat": 21,
+                        "Throughput": 202
                     }
                 },
                 {
                     "2": {
-                        "Lat": 111,
-                        "Throughput": 236
+                        "Lat": 160,
+                        "Throughput": 240
                     }
                 }
             ]
@@ -116,28 +165,80 @@
     },
     {
         "Nodo2": {
-            "FPGA": [
-                [
-                    {
-                        "Part0": {
-                            "CLBs": 15200,
-                            "BRAM": 450,
-                            "DSP": 1080
-                        }
+            "FPGA": [],
+            "Links": [
+                {
+                    "1": {
+                        "Lat": 88,
+                        "Throughput": 482
                     }
-                ]
-            ],
+                },
+                {
+                    "3": {
+                        "Lat": 30,
+                        "Throughput": 250
+                    }
+                },
+                {
+                    "4": {
+                        "Lat": 64,
+                        "Throughput": 787
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "Nodo3": {
+            "FPGA": [],
             "Links": [
                 {
                     "0": {
-                        "Lat": 33,
-                        "Throughput": 1000
+                        "Lat": 134,
+                        "Throughput": 827
                     }
                 },
                 {
                     "1": {
-                        "Lat": 47,
-                        "Throughput": 503
+                        "Lat": 6,
+                        "Throughput": 864
+                    }
+                },
+                {
+                    "2": {
+                        "Lat": 137,
+                        "Throughput": 455
+                    }
+                },
+                {
+                    "4": {
+                        "Lat": 181,
+                        "Throughput": 369
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "Nodo4": {
+            "FPGA": [],
+            "Links": [
+                {
+                    "0": {
+                        "Lat": 121,
+                        "Throughput": 608
+                    }
+                },
+                {
+                    "2": {
+                        "Lat": 61,
+                        "Throughput": 215
+                    }
+                },
+                {
+                    "3": {
+                        "Lat": 160,
+                        "Throughput": 960
                     }
                 }
             ]

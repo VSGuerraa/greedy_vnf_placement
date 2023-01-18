@@ -164,7 +164,7 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
             "Nodo_D": rand_nodo_D,
             "max_Lat": aux["Lat"],
             "min_T": aux["Throughput"],
-            "funcao": funcao[random.randint(0,rand_fun)],
+            "funcao": funcao[rand_fun],
             "valor": valor
             }
 
@@ -389,7 +389,7 @@ def ler_Dados():
 
 
 def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
-    print(lista_Nodos)
+    
     lista_Fpga=[]
     for nodo in lista_Nodos:
         for fpga in nodo.fpga:
@@ -404,23 +404,26 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
             lista_Fpga.append([nodo_id,clb,bram,dsp])
             
     aloc_Req=[]
-    
+    print(lista_Fpga)
     for req in lista_Req:
         path=list(dfs_caminhos(lista_Paths,req.init_node,req.out_node))
         path_Ord=sorted(path,key=len)
         check_Node=False
         check_Link=1
         refresh_Links=[]
+        device_id=None
         
 
         if lista_Nodos[req.init_node].fpga!=0:
             for i,device in enumerate(lista_Fpga):
-                if device[0][4]==req.init_node: #rever o indice/qual FPGA se esta 
-                    if parts.clb>=req.func.clb:
-                        if parts.bram>=req.func.bram:
-                            if parts.dsp>=req.func.dsp:
+                if int(device[0][4])==req.init_node:
+                    if device[1]>=req.func.clb:
+                        if device[2]>=req.func.bram:
+                            if device[3]>=req.func.dsp:
                                 check_Node=True
-                                break
+                                device_id=i  
+                                break            
+                            #checa se fpga tem recursos para alocar requisicao
 
         for p in path_Ord:
             for b,c in zip(p,p[1:]):
@@ -433,16 +436,29 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
                 break
             else:
                 check_Link=False
+        #checa se caminho tem capacidade de throughput
         
         if check_Link and check_Node:
             
             aloc_Req.append(req)
-            lista_Nodos[req.init_node].part.pop(a)
+            if (lista_Fpga[device_id][1]-req.func.clb)>=0:
+                lista_Fpga[device_id][1]=lista_Fpga[device_id][1]-req.func.clb
+            if (lista_Fpga[device_id][2]-req.func.bram)>=0:
+                lista_Fpga[device_id][2]=lista_Fpga[device_id][2]-req.func.bram
+            if (lista_Fpga[device_id][3]-req.func.dsp)>=0:
+                lista_Fpga[device_id][3]=lista_Fpga[device_id][3]-req.func.dsp
+            
             for nodo_I,nodo_F,thro in refresh_Links:
                 for l in (lista_Nodos[nodo_I].link):
                     if int(l.nodo_d)==nodo_F:
                         l.min_T=thro
+    
+    print(aloc_Req)                    
+    print(lista_Fpga)
+    
             #cash+=req.price
+            
+        #se link e recursos satisfazem os requisitos, req eh alocada e atualiza-se recursos consumidos
 
     
     
@@ -548,8 +564,8 @@ if modo == '1':
     req=int(input("Numero de requisicoes:\n"))
     gerador_Dados(nodos_G, links_G,req)
     lista_Req,lista_Paths,lista_Nodos=ler_Dados()
-    wrong_Run(lista_Nodos)
-    greedy(lista_Req,lista_Paths,lista_Nodos)
+    wrong_Run(lista_Req,lista_Paths,lista_Nodos)
+    #greedy(lista_Req,lista_Paths,lista_Nodos)
 
 else:
 

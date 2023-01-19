@@ -262,8 +262,6 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
         json.dump(topologia_rede, outfile, indent=4)
 
 
-
-
 def dfs_caminhos(grafo, inicio, fim):
     pilha = [(inicio, [inicio])]
     while pilha:
@@ -404,7 +402,7 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
             lista_Fpga.append([nodo_id,clb,bram,dsp])
             
     aloc_Req=[]
-    print(lista_Fpga)
+    
     for req in lista_Req:
         path=list(dfs_caminhos(lista_Paths,req.init_node,req.out_node))
         path_Ord=sorted(path,key=len)
@@ -441,30 +439,21 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
         if check_Link and check_Node:
             
             aloc_Req.append(req)
-            if (lista_Fpga[device_id][1]-req.func.clb)>=0:
-                lista_Fpga[device_id][1]=lista_Fpga[device_id][1]-req.func.clb
-            if (lista_Fpga[device_id][2]-req.func.bram)>=0:
-                lista_Fpga[device_id][2]=lista_Fpga[device_id][2]-req.func.bram
-            if (lista_Fpga[device_id][3]-req.func.dsp)>=0:
-                lista_Fpga[device_id][3]=lista_Fpga[device_id][3]-req.func.dsp
+            lista_Fpga[device_id][1]=lista_Fpga[device_id][1]-req.func.clb
+            lista_Fpga[device_id][2]=lista_Fpga[device_id][2]-req.func.bram
+            lista_Fpga[device_id][3]=lista_Fpga[device_id][3]-req.func.dsp
             
             for nodo_I,nodo_F,thro in refresh_Links:
                 for l in (lista_Nodos[nodo_I].link):
                     if int(l.nodo_d)==nodo_F:
                         l.min_T=thro
-    
-    print(aloc_Req)                    
-    print(lista_Fpga)
-    
-            #cash+=req.price
             
         #se link e recursos satisfazem os requisitos, req eh alocada e atualiza-se recursos consumidos
 
+    ratio=len(aloc_Req)/len(lista_Req)
+    print("Nr requisicoes alocadas:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
     
-    
-
-
-
+    return(len(aloc_Req), aloc_Req)
 
 
 def check_Path(node_D,nodos,req):
@@ -481,9 +470,20 @@ def check_Path(node_D,nodos,req):
     return [valid_Path,node_D,new_Thro]
 #checa se o caminho do nodo inicial ate o final eh valido em relacao a latencia e vazio
 
-
-
-
+def check_Parts(partitions, requisitions):
+    pesos=[]
+    for part in partitions:
+        total_weight=0
+        weight_clb=1
+        weight_bram=50
+        weight_dsp=20
+        total_weight=(part.clb-requisitions.func.clb)*weight_clb
+        total_weight+=(part.bram-requisitions.func.bram)*weight_bram
+        total_weight+=(part.dsp-requisitions.func.dsp)*weight_dsp
+        pesos.append(total_weight)
+    index_min = min(range(len(pesos)), key=pesos.__getitem__)
+    return(index_min) 
+        
 
 def greedy(lista_Req,lista_Paths,lista_Nodos):
     aloc_Req=[]
@@ -496,14 +496,23 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
         refresh_Links=[]
         
 
-        if lista_Nodos[req.init_node].fpga!=0:
-            for a,parts in enumerate(lista_Nodos[req.init_node].part):
-                if parts.clb>=req.func.clb:
-                    if parts.bram>=req.func.bram:
-                        if parts.dsp>=req.func.dsp:
+        if len(lista_Nodos[req.init_node].fpga)!=0:
+            '''
+            print(lista_Nodos[req.init_node].fpga)
+            print(len(lista_Nodos[req.init_node].fpga))
+            print(req.init_node)
+            '''
+            for a,parts in enumerate(lista_Nodos[req.init_node].fpga):
+                if len(parts)==0:
+                    continue
+                best_part=check_Parts(parts,req)
+                if parts[best_part].clb>=req.func.clb:
+                    if parts[best_part].bram>=req.func.bram:
+                        if parts[best_part].dsp>=req.func.dsp:
                             check_Node=True
+                            fpga_num=a
                             break
-
+                
         for p in path_Ord:
             for b,c in zip(p,p[1:]):
                 lista_Check=check_Path(c,lista_Nodos[b].link,req)
@@ -519,7 +528,7 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
         if check_Link and check_Node:
             
             aloc_Req.append(req)
-            lista_Nodos[req.init_node].part.pop(a)
+            lista_Nodos[req.init_node].fpga[fpga_num].pop(best_part)
             for nodo_I,nodo_F,thro in refresh_Links:
                 for l in (lista_Nodos[nodo_I].link):
                     if int(l.nodo_d)==nodo_F:
@@ -539,21 +548,37 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
 
     
 
+def plot(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun):
+    '''
+    test=zip(dataset_1,dataset_2,dataset_3)
+    lista_test=list(sorted(test, key=lambda teste: teste[0]))
+    dataset_1,dataset_2,dataset_3 = zip(*lista_test)
+    '''
+
+    fig = plt.figure() 
+    ax = fig.add_subplot(111) 
+    ax.plot(dataset_index, dataset_req_Aloc,color='tab:green') 
+    ax.errorbar(dataset_index, dataset_req_Aloc, yerr=aloc_Desv, fmt="go")
+    ax2 = ax.twinx() 
+    ax2.plot(dataset_index, dataset_wrongrun, color = 'tab:red') 
+    ax2.errorbar(dataset_index, dataset_wrongrun, yerr=valor_Desv,fmt='ro')
+    plt.title('Numero de funcoes alocadas', fontweight="bold") 
+    ax.grid() 
+    ax.set_xlabel("Numero de Nodos") 
+    ax.set_ylabel(r"Nossa abordagem",color='tab:green') 
+    ax2.set_ylabel(r"Abordagem errada", color='tab:red') 
+    ax2.set_ylim(0, 10000) 
+    ax.set_ylim(0, 100)
+    
+    plt.savefig('Resultado.png')
+    plt.show()
+     
 
                             
 
         
 
 
-
-
-
-lista_Results={}
-dataset_1=[]
-dataset_2=[]
-dataset_3=[]
-aloc_Desv=[]
-valor_Desv=[]
 
 
 modo=input("1- Testar unitario\n2- Teste em escala\n")
@@ -565,10 +590,16 @@ if modo == '1':
     gerador_Dados(nodos_G, links_G,req)
     lista_Req,lista_Paths,lista_Nodos=ler_Dados()
     wrong_Run(lista_Req,lista_Paths,lista_Nodos)
-    #greedy(lista_Req,lista_Paths,lista_Nodos)
+    greedy(lista_Req,lista_Paths,lista_Nodos)
 
-else:
+elif modo=='2':
 
+    lista_Results={}
+    dataset_index=[]
+    dataset_req_Aloc=[]
+    dataset_wrongrun=[]
+    aloc_Desv=[]
+    valor_Desv=[]
 
     for index in range (5,45,5):
         req_Aloc=[]
@@ -580,7 +611,11 @@ else:
             req=random.randint(int(size*1.5),int(size*3))
             gerador_Dados(nodos_G, links_G,req)
             lista_Req,lista_Paths,lista_Nodos=ler_Dados()
+            
+            #print(lista_Nodos)
             results=greedy(lista_Req,lista_Paths,lista_Nodos)
+            #print(lista_Nodos)
+            
             lista_Results.update({
                 "Teste"+str(index):{
                 "Lista Requisicoes": len(lista_Req),
@@ -594,38 +629,18 @@ else:
 
         aloc_Desv.append(stats.pstdev(req_Aloc))
         valor_Desv.append(stats.pstdev(valor_Final))
-        dataset_1.append(index)
-        dataset_2.append(stats.mean(req_Aloc))
-        dataset_3.append(stats.mean(valor_Final))
+        dataset_index.append(index)
+        dataset_req_Aloc.append(stats.mean(req_Aloc))
+        dataset_wrongrun.append(stats.mean(valor_Final))
+        
+    plot(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
 
     with open ("Req Alocadas.json","w") as outfile:
-        json.dump(lista_Results, outfile)
+        json.dump(lista_Results, outfile,indent=4)
 
-    '''
-    test=zip(dataset_1,dataset_2,dataset_3)
-    lista_test=list(sorted(test, key=lambda teste: teste[0]))
-    dataset_1,dataset_2,dataset_3 = zip(*lista_test)
-    '''
-
-    fig = plt.figure() 
-    ax = fig.add_subplot(111) 
-    ax.plot(dataset_1, dataset_2,color='tab:green') 
-    ax.errorbar(dataset_1, dataset_2, yerr=aloc_Desv, fmt="go")
-    ax2 = ax.twinx() 
-    ax2.plot(dataset_1, dataset_3, color = 'tab:red') 
-    ax2.errorbar(dataset_1, dataset_3, yerr=valor_Desv,fmt='ro')
-    plt.title('Numero de funcoes alocadas', fontweight="bold") 
-    ax.grid() 
-    ax.set_xlabel("Numero de Nodos") 
-    ax.set_ylabel(r"Requisicoes alocadas",color='tab:green') 
-    ax2.set_ylabel(r"Valor($)", color='tab:red') 
-    ax2.set_ylim(0, 10000) 
-    ax.set_ylim(0, 100)
     
-    
-    plt.show() 
-
-
+else:
+    print("Modo inválido")
 
 
 

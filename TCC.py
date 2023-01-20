@@ -182,7 +182,7 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
 
     topologia_rede=[]
 
-    fpga=[[54240,480,1368],[210600,1728,1080],[268560,2520,2880]]
+    fpga=[[27120,480,1824],[105300,1728,1080],[134280,2520,2880]]
     
 
     for a in range(0,nro_Nodos):
@@ -214,34 +214,53 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
                 size_BRAM= fpga[sort_Fpga][1]
                 size_DSP= fpga[sort_Fpga][2]
 
+                part_p=[2640,96,192]
+                part_m=[8640,144,576]
+                part_g=[27120,480,1824]
+                part_tipos=[part_p,part_m,part_g]
+                '''
                 max_CLB=15200
                 max_BRAM=450
 
                 nro_parts=random.randint(1,4)
                 if sort_Fpga==0 and nro_fpga ==1:
-                    clb=54240
+                    clb=27120
                     bram=480
                     dsp=1368
                     lista_Part.append({"Part0": {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
                     list(lista_Part)
-                    continue
+                
+                else:
 
-                for part in range(nro_parts):
-                    if size_CLB-max_CLB <= max_CLB:
-                        clb=size_CLB
-                    else:
-                        clb=max_CLB
-                        size_CLB-=max_CLB
+                    for part in range(nro_parts):
+                        if size_CLB-max_CLB <= max_CLB:
+                            clb=size_CLB
+                        else:
+                            clb=max_CLB
+                            size_CLB-=max_CLB
                          
-                    if size_BRAM-max_BRAM<=max_BRAM:
-                        bram=size_BRAM
-                    else:
-                        bram=max_BRAM
-                        size_BRAM-=max_BRAM
+                        if size_BRAM-max_BRAM<=max_BRAM:
+                            bram=size_BRAM
+                        else:
+                            bram=max_BRAM
+                            size_BRAM-=max_BRAM
 
-                    dsp=int(size_DSP/nro_parts)
+                        dsp=int(size_DSP/nro_parts)
+                        lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
+                        list(lista_Part)
+
+                        ''' #modo antigo de particionamento
+
+
+                part=0
+                while size_CLB!=0 and size_BRAM!=0 and size_DSP!=0:
+                    sort_part=random.randint(0,2)
+                    
+
+
                     lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
-                    list(lista_Part)
+                    part+=1
+
                 lista_Fpga.append(lista_Part)
                 
 

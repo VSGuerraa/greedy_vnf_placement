@@ -1,36 +1,36 @@
 {
     "Teste5": {
         "Lista Requisicoes": 8,
-        "Requiscoes alocadas": 6
+        "Requiscoes alocadas": 0
     },
     "Nodos": 40,
-    "Valor": 5414.490083641004,
+    "Valor": 3728.5307622623186,
     "Teste10": {
-        "Lista Requisicoes": 26,
-        "Requiscoes alocadas": 9
+        "Lista Requisicoes": 15,
+        "Requiscoes alocadas": 3
     },
     "Teste15": {
-        "Lista Requisicoes": 35,
-        "Requiscoes alocadas": 11
+        "Lista Requisicoes": 37,
+        "Requiscoes alocadas": 10
     },
     "Teste20": {
-        "Lista Requisicoes": 33,
-        "Requiscoes alocadas": 7
+        "Lista Requisicoes": 55,
+        "Requiscoes alocadas": 18
     },
     "Teste25": {
-        "Lista Requisicoes": 64,
-        "Requiscoes alocadas": 15
+        "Lista Requisicoes": 65,
+        "Requiscoes alocadas": 9
     },
     "Teste30": {
-        "Lista Requisicoes": 55,
-        "Requiscoes alocadas": 21
+        "Lista Requisicoes": 77,
+        "Requiscoes alocadas": 30
     },
     "Teste35": {
-        "Lista Requisicoes": 78,
-        "Requiscoes alocadas": 15
+        "Lista Requisicoes": 85,
+        "Requiscoes alocadas": 28
     },
     "Teste40": {
-        "Lista Requisicoes": 63,
-        "Requiscoes alocadas": 30
+        "Lista Requisicoes": 78,
+        "Requiscoes alocadas": 23
     }
 }

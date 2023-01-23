@@ -44,7 +44,7 @@
         "CLBs": 15206,
         "BRAM": 36,
         "DSPs": 0,
-        "Lat": 2706,
+        "Lat": 1272,
         "Throughput": 14.4
     },
     {
@@ -52,7 +52,7 @@
         "CLBs": 5154,
         "BRAM": 407,
         "DSPs": 0,
-        "Lat": 1105,
+        "Lat": 459,
         "Throughput": 40
     },
     {
@@ -60,7 +60,7 @@
         "CLBs": 713,
         "BRAM": 96,
         "DSPs": 0,
-        "Lat": 2675,
+        "Lat": 306,
         "Throughput": 40
     },
     {
@@ -68,7 +68,7 @@
         "CLBs": 6048,
         "BRAM": 399,
         "DSPs": 0,
-        "Lat": 1882,
+        "Lat": 2711,
         "Throughput": 102.6
     },
     {
@@ -76,12 +76,12 @@
         "CLBs": 2532,
         "BRAM": 2,
         "DSPs": 0,
-        "Lat": 21,
+        "Lat": 15,
         "Throughput": 49.38
     },
     {
         "nome": "AES1",
-        "CLBs": 2045,
+        "CLBs": 2451,
         "BRAM": 2,
         "DSPs": 0,
         "Lat": 21,
@@ -90,7 +90,7 @@
     {
         "nome": "AES2",
         "CLBs": 4095,
-        "BRAM": 3,
+        "BRAM": 2,
         "DSPs": 0,
         "Lat": 2,
         "Throughput": 59.3
@@ -98,9 +98,9 @@
     {
         "nome": "AES3",
         "CLBs": 2034,
-        "BRAM": 2,
+        "BRAM": 5,
         "DSPs": 0,
-        "Lat": 20,
+        "Lat": 19,
         "Throughput": 45
     },
     {
@@ -108,7 +108,7 @@
         "CLBs": 9561,
         "BRAM": 450,
         "DSPs": 0,
-        "Lat": 15,
+        "Lat": 18,
         "Throughput": 119.3
     }
 ]

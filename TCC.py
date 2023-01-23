@@ -254,11 +254,31 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
 
                 part=0
                 while size_CLB!=0 and size_BRAM!=0 and size_DSP!=0:
+                    
                     sort_part=random.randint(0,2)
+                    
+                    if size_CLB-part_tipos[sort_part][0]<part_p[0]or size_BRAM-part_tipos[sort_part][1]<part_p[1] or size_DSP-part_tipos[sort_part][2]<part_p[2]:
+                        clb=size_CLB
+                        bram=size_BRAM
+                        dsp=size_DSP
+                        lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
+                        size_DSP=0
+                        size_BRAM=0
+                        size_DSP=0
+                                
+                                
+                    else:
+                        clb=part_tipos[sort_part][0]
+                        bram=part_tipos[sort_part][1]
+                        dsp=part_tipos[sort_part][2]
+                        size_CLB=size_CLB-part_tipos[sort_part][0]
+                        size_BRAM=size_BRAM-part_tipos[sort_part][1]
+                        size_DSP=size_DSP-part_tipos[sort_part][2]
+                        lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
                     
 
 
-                    lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
+                    
                     part+=1
 
                 lista_Fpga.append(lista_Part)
@@ -631,9 +651,9 @@ elif modo=='2':
             gerador_Dados(nodos_G, links_G,req)
             lista_Req,lista_Paths,lista_Nodos=ler_Dados()
             
-            #print(lista_Nodos)
+            print(lista_Nodos)
             results=greedy(lista_Req,lista_Paths,lista_Nodos)
-            #print(lista_Nodos)
+            print(lista_Nodos)
             
             lista_Results.update({
                 "Teste"+str(index):{

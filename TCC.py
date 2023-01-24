@@ -633,17 +633,20 @@ if modo == '1':
 
 elif modo=='2':
 
-    lista_Results={}
+    lista_Results_g=[]
+    lista_Results_w=[]
     dataset_index=[]
     dataset_req_Aloc=[]
     dataset_wrongrun=[]
     aloc_Desv=[]
     valor_Desv=[]
+    wrong_Desv=[]
 
     for index in range (5,45,5):
-        req_Aloc=[]
+        req_Aloc_g=[]
+        req_Aloc_w=[]
         valor_Final=[]
-        for cont in range(50):
+        for cont in range(5):
             size=index
             nodos_G=size
             links_G=int(size*1.2)
@@ -651,31 +654,45 @@ elif modo=='2':
             gerador_Dados(nodos_G, links_G,req)
             lista_Req,lista_Paths,lista_Nodos=ler_Dados()
             
-            print(lista_Nodos)
-            results=greedy(lista_Req,lista_Paths,lista_Nodos)
-            print(lista_Nodos)
+            results_g=greedy(lista_Req,lista_Paths,lista_Nodos)
+            results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
             
-            lista_Results.update({
+            
+            lista_Results_g.append({
                 "Teste"+str(index):{
                 "Lista Requisicoes": len(lista_Req),
-                "Requiscoes alocadas": results[0]},
+                "Requiscoes alocadas": results_g[0]},
                 "Nodos": len(lista_Nodos),
-                "Valor": results[2]
+                #"Valor": results_g[2]
                 })
 
-            req_Aloc.append(results[0])
-            valor_Final.append(results[2])
+            req_Aloc_g.append(results_g[0])
+            #valor_Final.append(results[2])
 
-        aloc_Desv.append(stats.pstdev(req_Aloc))
-        valor_Desv.append(stats.pstdev(valor_Final))
+            lista_Results_w.append({
+                "Teste"+str(index):{ 
+                "Lista Requisicoes": len(lista_Req),
+                "Requiscoes alocadas": results_w[0]},
+                "Nodos": len(lista_Nodos),
+                })
+            req_Aloc_w.append(results_w[0])
+
+        aloc_Desv.append(stats.pstdev(req_Aloc_g))
+        #valor_Desv.append(stats.pstdev(valor_Final))
+        wrong_Desv.append(stats.pstdev(req_Aloc_w))
         dataset_index.append(index)
-        dataset_req_Aloc.append(stats.mean(req_Aloc))
-        dataset_wrongrun.append(stats.mean(valor_Final))
+        dataset_req_Aloc.append(stats.mean(req_Aloc_g))
+        dataset_wrongrun.append(stats.mean(req_Aloc_w))
         
-    plot(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
+    print(req_Aloc_w)
+    print(req_Aloc_g)    
+    plot(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
 
-    with open ("Req Alocadas.json","w") as outfile:
-        json.dump(lista_Results, outfile,indent=4)
+    with open ("Req_Alocadas.json","w") as outfile:
+        json.dump(lista_Results_g, outfile,indent=4)
+        
+    with open ("Req_Wrong.json","w") as outfile:
+        json.dump(lista_Results_w, outfile,indent=4)
 
     
 else:

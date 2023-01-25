@@ -13,23 +13,7 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
 
     funcao = {}
     requisicoes = {}
-    '''
-    for i in range (0,4):
     
-        randval= random.randint(2,10)
-        BRAM=randval*64
-        DSP=random.randint(0,4)
-        Lat=random.randint(100,200)
-        Thro=random.randint(10,100)
-        implementacoes[i] = {
-        "nome" : "I" + str(i),
-        "CLBs" : randval,
-        "BRAM" : BRAM,
-        "DSPs" : DSP,
-        "Lat" : Lat,
-        "Throughput": Thro
-        }
-    '''
     implementacoes=[{
         "nome" : "FW0",
         "CLBs" : 1150,
@@ -183,7 +167,7 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
     topologia_rede=[]
 
     fpga=[[27120,480,1824],[105300,1728,1080],[134280,2520,2880]]
-    
+    list_thro=[40,100,200,400]
 
     for a in range(0,nro_Nodos):
         lista_Fpga=[]
@@ -198,7 +182,7 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
                 lista_Links.append(nodoD)
 
         for c in range(0,len(lista_Links)):
-            thro=random.randint(100,1000)
+            thro=random.choice(list_thro)
             lat= random.randint(5,200)
             lista_Links[c]={lista_Links[c]: {"Lat": lat, "Throughput": thro}}
        
@@ -209,10 +193,10 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
             for i in range(nro_fpga):
 
                 lista_Part=[]
-                sort_Fpga=random.randint(0,2)
-                size_CLB = fpga[sort_Fpga][0]
-                size_BRAM= fpga[sort_Fpga][1]
-                size_DSP= fpga[sort_Fpga][2]
+                sort_Fpga=random.choice(fpga)
+                size_CLB = sort_Fpga[0]
+                size_BRAM= sort_Fpga[1]
+                size_DSP= sort_Fpga[2]
 
                 part_p=[2640,96,192]
                 part_m=[8640,144,576]
@@ -255,9 +239,9 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
                 part=0
                 while size_CLB!=0 and size_BRAM!=0 and size_DSP!=0:
                     
-                    sort_part=random.randint(0,2)
+                    sort_part=random.choice(part_tipos)
                     
-                    if size_CLB-part_tipos[sort_part][0]<part_p[0]or size_BRAM-part_tipos[sort_part][1]<part_p[1] or size_DSP-part_tipos[sort_part][2]<part_p[2]:
+                    if size_CLB-sort_part[0]<part_p[0]or size_BRAM-sort_part[1]<part_p[1] or size_DSP-sort_part[2]<part_p[2]:
                         clb=size_CLB
                         bram=size_BRAM
                         dsp=size_DSP
@@ -268,12 +252,12 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
                                 
                                 
                     else:
-                        clb=part_tipos[sort_part][0]
-                        bram=part_tipos[sort_part][1]
-                        dsp=part_tipos[sort_part][2]
-                        size_CLB=size_CLB-part_tipos[sort_part][0]
-                        size_BRAM=size_BRAM-part_tipos[sort_part][1]
-                        size_DSP=size_DSP-part_tipos[sort_part][2]
+                        clb=sort_part[0]
+                        bram=sort_part[1]
+                        dsp=sort_part[2]
+                        size_CLB=size_CLB-sort_part[0]
+                        size_BRAM=size_BRAM-sort_part[1]
+                        size_DSP=size_DSP-sort_part[2]
                         lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
                     
 
@@ -337,8 +321,8 @@ class Partition:
 @dataclass
 class Link:
     nodo_d: str
-    max_Lat: int
-    min_T: int
+    min_Lat: int
+    max_T: int
 
 @dataclass
 class Node:
@@ -501,9 +485,9 @@ def check_Path(node_D,nodos,req):
     
     for nodo in nodos:
         if int(nodo.nodo_d)==node_D:
-            if nodo.max_Lat<=req.max_Lat:
-                if nodo.min_T>=req.min_T:
-                    new_Thro=nodo.min_T-req.min_T
+            if nodo.min_Lat<=req.max_Lat:
+                if nodo.max_T>=req.min_T:
+                    new_Thro=nodo.max_T-req.min_T
                     valid_Path=1
                     
     return [valid_Path,node_D,new_Thro]
@@ -585,15 +569,12 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
     return(len(aloc_Req), aloc_Req, cash)
     
 
-    
-
 def plot(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun):
     '''
     test=zip(dataset_1,dataset_2,dataset_3)
     lista_test=list(sorted(test, key=lambda teste: teste[0]))
     dataset_1,dataset_2,dataset_3 = zip(*lista_test)
     '''
-
     fig = plt.figure() 
     ax = fig.add_subplot(111) 
     ax.plot(dataset_index, dataset_req_Aloc,color='tab:green') 
@@ -605,101 +586,100 @@ def plot(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun):
     ax.grid() 
     ax.set_xlabel("Numero de Nodos") 
     ax.set_ylabel(r"Nossa abordagem",color='tab:green') 
-    ax2.set_ylabel(r"Abordagem errada", color='tab:red') 
-    ax2.set_ylim(0, 10000) 
+    ax2.set_ylabel(r"Abordagem conflitante", color='tab:red') 
+    ax2.set_ylim(0, 100) 
     ax.set_ylim(0, 100)
+    #ax.set_xlim(0,40)
     
     plt.savefig('Resultado.png')
     plt.show()
      
 
-                            
+def main():
 
+    modo=None
+    while  (modo != '2' and modo != '1'):
         
+        modo=input("1- Testar unitario\n2- Teste em escala\n")
 
-
-
-
-modo=input("1- Testar unitario\n2- Teste em escala\n")
-
-if modo == '1':
-    nodos_G=int(input("Numero de nodos da rede:\n"))
-    links_G=int(input("Numero de links da rede:\n"))
-    req=int(input("Numero de requisicoes:\n"))
-    gerador_Dados(nodos_G, links_G,req)
-    lista_Req,lista_Paths,lista_Nodos=ler_Dados()
-    wrong_Run(lista_Req,lista_Paths,lista_Nodos)
-    greedy(lista_Req,lista_Paths,lista_Nodos)
-
-elif modo=='2':
-
-    lista_Results_g=[]
-    lista_Results_w=[]
-    dataset_index=[]
-    dataset_req_Aloc=[]
-    dataset_wrongrun=[]
-    aloc_Desv=[]
-    valor_Desv=[]
-    wrong_Desv=[]
-
-    for index in range (5,45,5):
-        req_Aloc_g=[]
-        req_Aloc_w=[]
-        valor_Final=[]
-        for cont in range(5):
-            size=index
-            nodos_G=size
-            links_G=int(size*1.2)
-            req=random.randint(int(size*1.5),int(size*3))
+        if modo == '1':
+            nodos_G=int(input("Numero de nodos da rede:\n"))
+            links_G=int(input("Numero de links da rede:\n"))
+            req=int(input("Numero de requisicoes:\n"))
             gerador_Dados(nodos_G, links_G,req)
             lista_Req,lista_Paths,lista_Nodos=ler_Dados()
-            
-            results_g=greedy(lista_Req,lista_Paths,lista_Nodos)
-            results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
-            
-            
-            lista_Results_g.append({
-                "Teste"+str(index):{
-                "Lista Requisicoes": len(lista_Req),
-                "Requiscoes alocadas": results_g[0]},
-                "Nodos": len(lista_Nodos),
-                #"Valor": results_g[2]
-                })
+            wrong_Run(lista_Req,lista_Paths,lista_Nodos)
+            greedy(lista_Req,lista_Paths,lista_Nodos)
 
-            req_Aloc_g.append(results_g[0])
-            #valor_Final.append(results[2])
+        elif modo=='2':
 
-            lista_Results_w.append({
-                "Teste"+str(index):{ 
-                "Lista Requisicoes": len(lista_Req),
-                "Requiscoes alocadas": results_w[0]},
-                "Nodos": len(lista_Nodos),
-                })
-            req_Aloc_w.append(results_w[0])
+            lista_Results_g=[]
+            lista_Results_w=[]
+            dataset_index=[]
+            dataset_req_Aloc=[]
+            dataset_wrongrun=[]
+            aloc_Desv=[]
+            #valor_Desv=[]
+            wrong_Desv=[]
 
-        aloc_Desv.append(stats.pstdev(req_Aloc_g))
-        #valor_Desv.append(stats.pstdev(valor_Final))
-        wrong_Desv.append(stats.pstdev(req_Aloc_w))
-        dataset_index.append(index)
-        dataset_req_Aloc.append(stats.mean(req_Aloc_g))
-        dataset_wrongrun.append(stats.mean(req_Aloc_w))
+            for index in range (5,45,5):
+                req_Aloc_g=[]
+                req_Aloc_w=[]
+                valor_Final=[]
+                for cont in range(5):
+                    size=index
+                    nodos_G=size
+                    links_G=int(size*1.2)
+                    req=random.randint(int(size*1.5),int(size*3))
+                    gerador_Dados(nodos_G, links_G,req)
+                    lista_Req,lista_Paths,lista_Nodos=ler_Dados()
+                    
+                    results_g=greedy(lista_Req,lista_Paths,lista_Nodos)
+                    results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
+                    
+                    
+                    lista_Results_g.append({
+                        "Teste"+str(index):{
+                        "Lista Requisicoes": len(lista_Req),
+                        "Requiscoes alocadas": results_g[0]},
+                        "Nodos": len(lista_Nodos),
+                        #"Valor": results_g[2]
+                        })
+
+                    req_Aloc_g.append(results_g[0])
+                    #valor_Final.append(results[2])
+
+                    lista_Results_w.append({
+                        "Teste"+str(index):{ 
+                        "Lista Requisicoes": len(lista_Req),
+                        "Requiscoes alocadas": results_w[0]},
+                        "Nodos": len(lista_Nodos),
+                        })
+                    req_Aloc_w.append(results_w[0])
+
+                aloc_Desv.append(stats.pstdev(req_Aloc_g))
+                #valor_Desv.append(stats.pstdev(valor_Final))
+                wrong_Desv.append(stats.pstdev(req_Aloc_w))
+                dataset_index.append(index)
+                dataset_req_Aloc.append(stats.mean(req_Aloc_g))
+                dataset_wrongrun.append(stats.mean(req_Aloc_w))
+                
+               
+            plot(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
+
+            with open ("Req_Alocadas.json","w") as outfile:
+                json.dump(lista_Results_g, outfile,indent=4)
+                
+            with open ("Req_Wrong.json","w") as outfile:
+                json.dump(lista_Results_w, outfile,indent=4)
+
         
-    print(req_Aloc_w)
-    print(req_Aloc_g)    
-    plot(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
-
-    with open ("Req_Alocadas.json","w") as outfile:
-        json.dump(lista_Results_g, outfile,indent=4)
-        
-    with open ("Req_Wrong.json","w") as outfile:
-        json.dump(lista_Results_w, outfile,indent=4)
-
-    
-else:
-    print("Modo inválido")
+        else:
+            print("Modo inválido")
 
 
 
 
-
+if __name__ == "__main__":
+    main()
 

@@ -7,151 +7,8 @@ from dataclasses import dataclass
 import statistics as stats
 
 
-
-
-def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
-
-    funcao = {}
-    requisicoes = {}
+def gerador_Topologia(nro_Nodos, nro_Links):
     
-    implementacoes=[{
-        "nome" : "FW0",
-        "CLBs" : 1150,
-        "BRAM" : 5,
-        "DSPs" : 0,
-        "Lat" : 4.2,
-        "Throughput": 2.9},
-        {
-        "nome" : "FW1",
-        "CLBs" : 8537,
-        "BRAM" : 1,
-        "DSPs" : 0,
-        "Lat" : 23,
-        "Throughput": 2},
-        {
-        "nome" : "FW2",
-        "CLBs" : 8123,
-        "BRAM" : 241,
-        "DSPs" : 0,
-        "Lat" : 73,
-        "Throughput": 92.16},
-        {
-        "nome" : "DPI0",
-        "CLBs" : 8377,
-        "BRAM" : 37,
-        "DSPs" : 0,
-        "Lat" : 278,
-        "Throughput": 0.8},
-        {
-        "nome" : "DPI1",
-        "CLBs" : 8612,
-        "BRAM" : 438,
-        "DSPs" : 0,
-        "Lat" : 2778,
-        "Throughput": 0.8},
-        {
-        "nome" : "DPI2",
-        "CLBs" : 15206,
-        "BRAM" : 36,
-        "DSPs" : 0,
-        "Lat" : random.randint(278,2778),
-        "Throughput": 14.4},
-        {
-        "nome" : "DPI3",
-        "CLBs" : 5154,
-        "BRAM" : 407,
-        "DSPs" : 0,
-        "Lat" : random.randint(278,2778),
-        "Throughput": 40},
-        {
-        "nome" : "DPI4",
-        "CLBs" : 713,
-        "BRAM" : 96,
-        "DSPs" : 0,
-        "Lat" : random.randint(278,2778),
-        "Throughput": 40},
-        {
-        "nome" : "DPI5",
-        "CLBs" : 6048,
-        "BRAM" : 399,
-        "DSPs" : 0,
-        "Lat" : random.randint(278,2778),
-        "Throughput": 102.6},
-         {
-        "nome" : "AES0",
-        "CLBs" : 2532,
-        "BRAM" : random.randint(1,5),
-        "DSPs" : 0,
-        "Lat" : random.randint(2,21),
-        "Throughput": 49.38},
-        {
-        "nome" : "AES1",
-        "CLBs" : random.randint(2000,3000),
-        "BRAM" : 2,
-        "DSPs" : 0,
-        "Lat" : 21,
-        "Throughput": 1.054},
-        {
-        "nome" : "AES2",
-        "CLBs" : 4095,
-        "BRAM" : random.randint(1,5),
-        "DSPs" : 0,
-        "Lat" : 2,
-        "Throughput": 59.3},
-        {
-        "nome" : "AES3",
-        "CLBs" : 2034,
-        "BRAM" : random.randint(1,5),
-        "DSPs" : 0,
-        "Lat" : random.randint(2,21),
-        "Throughput": 45},
-        {
-        "nome" : "AES4",
-        "CLBs" : 9561,
-        "BRAM" : 450,
-        "DSPs" : 0,
-        "Lat" : random.randint(2,21),
-        "Throughput": 119.3}
-    ] #descricao de valores de diferentes implementacoes de funcoes
-
-    
-
-
-    nro_Func=random.randint(9,12)
-    
-    for j in range (nro_Func):
-        sort_Func=random.randint(0,len(implementacoes)-1)
-        if implementacoes[sort_Func]["nome"][0]=='F':
-            nome='Firewall'
-        elif implementacoes[sort_Func]["nome"][0]=='D':
-            nome='Deep Packet Inspection'
-        elif implementacoes[sort_Func]["nome"][0]=='A':
-            nome='Advanced Encryption Standard'
-        funcao[j] = {
-            "Nome": nome,
-            "implementacao": implementacoes[sort_Func]
-            }
-
-    for k in range (0,nro_Req):
-        rand_fun=random.randint(0,nro_Func-1)
-        rand_nodo_S=random.randint(0,nro_Nodos-1)
-        rand_nodo_D=random.randint(0,nro_Nodos-1)
-        while rand_nodo_S==rand_nodo_D:
-            rand_nodo_D=random.randint(0,nro_Nodos)
-        
-        aux=funcao[rand_fun]["implementacao"]
-        valor=(aux['CLBs']+(aux['BRAM']*10))/50
-        valor=valor *random.uniform(0.9,1.1)
-
-        requisicoes[k] = {
-            "Nodo_S": rand_nodo_S,
-            "Nodo_D": rand_nodo_D,
-            "max_Lat": aux["Lat"],
-            "min_T": aux["Throughput"],
-            "funcao": funcao[rand_fun],
-            "valor": valor
-            }
-
     G = nx.gnm_random_graph(nro_Nodos, nro_Links)
     '''
     #visualiza grafico em tela
@@ -271,6 +128,180 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
             
         
         topologia_rede.append({"Nodo"+str(a): {"FPGA": lista_Fpga, "Links": lista_Links}})
+        
+    with open ("topologia.json","w") as outfile:
+        json.dump(topologia_rede, outfile, indent=4)
+
+
+def check_Lat(nodo_S,nodo_D,lista_Paths,lista_Nodos):
+    
+    path=list(dfs_caminhos(lista_Paths,nodo_S,nodo_D))
+    path_Ord=sorted(path,key=len)
+    lat=None
+    
+    for p in path_Ord:
+        for b,c in zip(p,p[1:]):
+            
+            
+            for nodo in lista_Nodos[b].link:
+                if int(nodo.nodo_d)==c:
+                    if lat==None:
+                        lat=nodo.min_Lat
+                    elif nodo.min_Lat<lat:
+                        lat=nodo.min_Lat
+                    
+    return lat         
+    
+
+def gerador_Req(nro_Nodos,nro_Req):
+
+    
+    lista_Caminhos,lista_Nodos=ler_Topologia()
+        
+    funcao = {}
+    requisicoes = {}
+
+    implementacoes=[{
+        "nome" : "FW0",
+        "CLBs" : 1150,
+        "BRAM" : 5,
+        "DSPs" : 0,
+        "Lat" : 4.2,
+        "Throughput": 2.9},
+        {
+        "nome" : "FW1",
+        "CLBs" : 8537,
+        "BRAM" : 1,
+        "DSPs" : 0,
+        "Lat" : 23,
+        "Throughput": 2},
+        {
+        "nome" : "FW2",
+        "CLBs" : 8123,
+        "BRAM" : 241,
+        "DSPs" : 0,
+        "Lat" : 73,
+        "Throughput": 92.16},
+        {
+        "nome" : "DPI0",
+        "CLBs" : 8377,
+        "BRAM" : 37,
+        "DSPs" : 0,
+        "Lat" : 278,
+        "Throughput": 0.8},
+        {
+        "nome" : "DPI1",
+        "CLBs" : 8612,
+        "BRAM" : 438,
+        "DSPs" : 0,
+        "Lat" : 2778,
+        "Throughput": 0.8},
+        {
+        "nome" : "DPI2",
+        "CLBs" : 15206,
+        "BRAM" : 36,
+        "DSPs" : 0,
+        "Lat" : random.randint(278,2778),
+        "Throughput": 14.4},
+        {
+        "nome" : "DPI3",
+        "CLBs" : 5154,
+        "BRAM" : 407,
+        "DSPs" : 0,
+        "Lat" : random.randint(278,2778),
+        "Throughput": 40},
+        {
+        "nome" : "DPI4",
+        "CLBs" : 713,
+        "BRAM" : 96,
+        "DSPs" : 0,
+        "Lat" : random.randint(278,2778),
+        "Throughput": 40},
+        {
+        "nome" : "DPI5",
+        "CLBs" : 6048,
+        "BRAM" : 399,
+        "DSPs" : 0,
+        "Lat" : random.randint(278,2778),
+        "Throughput": 102.6},
+         {
+        "nome" : "AES0",
+        "CLBs" : 2532,
+        "BRAM" : random.randint(1,5),
+        "DSPs" : 0,
+        "Lat" : random.randint(2,21),
+        "Throughput": 49.38},
+        {
+        "nome" : "AES1",
+        "CLBs" : random.randint(2000,3000),
+        "BRAM" : 2,
+        "DSPs" : 0,
+        "Lat" : 21,
+        "Throughput": 1.054},
+        {
+        "nome" : "AES2",
+        "CLBs" : 4095,
+        "BRAM" : random.randint(1,5),
+        "DSPs" : 0,
+        "Lat" : 2,
+        "Throughput": 59.3},
+        {
+        "nome" : "AES3",
+        "CLBs" : 2034,
+        "BRAM" : random.randint(1,5),
+        "DSPs" : 0,
+        "Lat" : random.randint(2,21),
+        "Throughput": 45},
+        {
+        "nome" : "AES4",
+        "CLBs" : 9561,
+        "BRAM" : 450,
+        "DSPs" : 0,
+        "Lat" : random.randint(2,21),
+        "Throughput": 119.3}
+    ] #descricao de valores de diferentes implementacoes de funcoes
+
+
+    nro_Func=random.randint(9,12)
+    
+    for j in range (nro_Func):
+        sort_Func=random.randint(0,len(implementacoes)-1)
+        if implementacoes[sort_Func]["nome"][0]=='F':
+            nome='Firewall'
+        elif implementacoes[sort_Func]["nome"][0]=='D':
+            nome='Deep Packet Inspection'
+        elif implementacoes[sort_Func]["nome"][0]=='A':
+            nome='Advanced Encryption Standard'
+        funcao[j] = {
+            "Nome": nome,
+            "implementacao": implementacoes[sort_Func]
+            }
+
+    for k in range (0,nro_Req):
+        rand_fun=random.randint(0,nro_Func-1)
+        rand_nodo_S=random.randint(0,nro_Nodos-1)
+        rand_nodo_D=random.randint(0,nro_Nodos-1)
+        while rand_nodo_S==rand_nodo_D:
+            rand_nodo_D=random.randint(0,nro_Nodos)
+        
+        aux=funcao[rand_fun]["implementacao"]
+        valor=(aux['CLBs']+(aux['BRAM']*10))/50
+        valor=valor *random.uniform(0.9,1.1)
+        
+
+        lat=check_Lat(rand_nodo_S,rand_nodo_D,lista_Caminhos, lista_Nodos)            
+        
+        requisicoes[k] = {
+            "Nodo_S": rand_nodo_S,
+            "Nodo_D": rand_nodo_D,
+            "max_Lat": int(lat*1.3),
+            "min_T": aux["Throughput"],
+            "funcao": funcao[rand_fun],
+            "valor": valor
+            }
+
+        
+    
      
     with open ("requisicoes.json","w") as outfile:
         json.dump(requisicoes, outfile, indent=4)
@@ -281,10 +312,7 @@ def gerador_Dados(nro_Nodos,nro_Links,nro_Req):
     with open ("implementacoes.json","w") as outfile:
         json.dump(implementacoes, outfile, indent=4)
 
-    with open ("topologia.json","w") as outfile:
-        json.dump(topologia_rede, outfile, indent=4)
-
-
+    
 def dfs_caminhos(grafo, inicio, fim):
     pilha = [(inicio, [inicio])]
     while pilha:
@@ -331,9 +359,38 @@ class Node:
     link: Link
 
 
-def ler_Dados():
+def ler_Requisicoes():
+    
     with open("requisicoes.json") as file1:
         requisicoes = json.load(file1)
+        
+        
+        
+    lista_Req=[]
+    
+    for a,val in enumerate(requisicoes.values()):
+        nodo_S=val["Nodo_S"]
+        nodo_D=val["Nodo_D"]
+        lat=val["max_Lat"]
+        thro=val["min_T"]
+        nome_F=val["funcao"]["Nome"]
+        imp=val["funcao"]["implementacao"]
+        valor=val["valor"]
+        nome_I=imp["nome"]
+        clb=imp["CLBs"]
+        bram=imp["BRAM"]
+        dsp=imp["DSPs"]
+        lat=imp["Lat"]
+        thro=imp["Throughput"]
+        c_Func=Function(nome_F,nome_I,clb,bram,dsp)
+        c_Req=Req(nodo_S,nodo_D,lat,thro,c_Func,valor)
+        lista_Req.append(c_Req)
+        
+    return lista_Req
+
+
+def ler_Topologia():
+    
 
 
     with open("topologia.json") as file2:
@@ -344,12 +401,8 @@ def ler_Dados():
     links=[]
     lista_Caminhos=[]
     caminhos=[]
-    
-    lista_Req=[]
     lista_Nodos=[]
-   
-    
-    
+
 
     for i,v in enumerate(topologia):
         
@@ -361,10 +414,10 @@ def ler_Dados():
         lista_Links=[]
         lista_Fpga=[]
 
-        for j in links:
-            nodo_d=str(*j.keys())   
-            lat=j[nodo_d]["Lat"]
-            thro=j[nodo_d]["Throughput"]
+        for l in links:
+            nodo_d=str(*l.keys())   
+            lat=l[nodo_d]["Lat"]
+            thro=l[nodo_d]["Throughput"]
             const_Link=Link(nodo_d,lat,thro)
             lista_Links.append(const_Link)
             caminhos.append(int(nodo_d))
@@ -388,25 +441,9 @@ def ler_Dados():
         
         lista_Nodos.append(const_Nodo)
                     
-    for a,val in enumerate(requisicoes.values()):
-        nodo_S=val["Nodo_S"]
-        nodo_D=val["Nodo_D"]
-        lat=val["max_Lat"]
-        thro=val["min_T"]
-        nome_F=val["funcao"]["Nome"]
-        imp=val["funcao"]["implementacao"]
-        valor=val["valor"]
-        nome_I=imp["nome"]
-        clb=imp["CLBs"]
-        bram=imp["BRAM"]
-        dsp=imp["DSPs"]
-        lat=imp["Lat"]
-        thro=imp["Throughput"]
-        c_Func=Function(nome_F,nome_I,clb,bram,dsp)
-        c_Req=Req(nodo_S,nodo_D,lat,thro,c_Func,valor)
-        lista_Req.append(c_Req)
+    
 
-    return lista_Req,lista_Caminhos,lista_Nodos
+    return lista_Caminhos,lista_Nodos
 
 
 def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
@@ -606,10 +643,13 @@ def main():
             nodos_G=int(input("Numero de nodos da rede:\n"))
             links_G=int(input("Numero de links da rede:\n"))
             req=int(input("Numero de requisicoes:\n"))
-            gerador_Dados(nodos_G, links_G,req)
-            lista_Req,lista_Paths,lista_Nodos=ler_Dados()
-            wrong_Run(lista_Req,lista_Paths,lista_Nodos)
-            greedy(lista_Req,lista_Paths,lista_Nodos)
+            gerador_Topologia(nodos_G,links_G)
+            gerador_Req(nodos_G,req)
+            lista_Paths,lista_Nodos=ler_Topologia()
+            lista_Req=ler_Requisicoes
+            print(lista_Req)
+            #wrong_Run(lista_Req,lista_Paths,lista_Nodos)
+            #greedy(lista_Req,lista_Paths,lista_Nodos)
 
         elif modo=='2':
 
@@ -631,9 +671,10 @@ def main():
                     nodos_G=size
                     links_G=int(size*1.2)
                     req=random.randint(int(size*1.5),int(size*3))
-                    gerador_Dados(nodos_G, links_G,req)
-                    lista_Req,lista_Paths,lista_Nodos=ler_Dados()
-                    
+                    gerador_Topologia(nodos_G, links_G)
+                    gerador_Req(nodos_G,req)
+                    lista_Paths,lista_Nodos=ler_Topologia()
+                    lista_Req=ler_Requisicoes
                     results_g=greedy(lista_Req,lista_Paths,lista_Nodos)
                     results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
                     

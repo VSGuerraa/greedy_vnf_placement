@@ -5,21 +5,24 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
 import statistics as stats
+import numpy as np
 
 
 def gerador_Topologia(nro_Nodos, nro_Links):
     
     G = nx.gnm_random_graph(nro_Nodos, nro_Links)
+    
+    while not(nx.is_connected(G)):
+        G = nx.gnm_random_graph(nro_Nodos, nro_Links)
     '''
     #visualiza grafico em tela
-
-    #subax1 = plt.subplot(121)
+    
+    subax1 = plt.subplot(121)
     nx.draw(G, with_labels=True, font_weight='bold')
     plt.show() 
-
+    plt.savefig('Grafo.png')
     '''
     lista=list(G.edges)
-
 
     topologia_rede=[]
 
@@ -40,7 +43,7 @@ def gerador_Topologia(nro_Nodos, nro_Links):
 
         for c in range(0,len(lista_Links)):
             thro=random.choice(list_thro)
-            lat= random.randint(5,200)
+            lat= random.randint(20,200)
             lista_Links[c]={lista_Links[c]: {"Lat": lat, "Throughput": thro}}
        
 
@@ -107,7 +110,6 @@ def gerador_Topologia(nro_Nodos, nro_Links):
                         size_BRAM=0
                         size_DSP=0
                                 
-                                
                     else:
                         clb=sort_part[0]
                         bram=sort_part[1]
@@ -117,16 +119,10 @@ def gerador_Topologia(nro_Nodos, nro_Links):
                         size_DSP=size_DSP-sort_part[2]
                         lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
                     
-
-
-                    
                     part+=1
 
                 lista_Fpga.append(lista_Part)
-                
-
-            
-        
+                        
         topologia_rede.append({"Nodo"+str(a): {"FPGA": lista_Fpga, "Links": lista_Links}})
         
     with open ("topologia.json","w") as outfile:
@@ -137,20 +133,25 @@ def check_Lat(nodo_S,nodo_D,lista_Paths,lista_Nodos):
     
     path=list(dfs_caminhos(lista_Paths,nodo_S,nodo_D))
     path_Ord=sorted(path,key=len)
-    lat=None
+    menor_Lat=None
     
     for p in path_Ord:
+        lat=None
+        
         for b,c in zip(p,p[1:]):
-            
-            
             for nodo in lista_Nodos[b].link:
                 if int(nodo.nodo_d)==c:
                     if lat==None:
                         lat=nodo.min_Lat
-                    elif nodo.min_Lat<lat:
-                        lat=nodo.min_Lat
-                    
-    return lat         
+                    else:
+                        lat=lat+nodo.min_Lat
+        if menor_Lat==None:
+            menor_Lat=lat
+        
+        if lat<menor_Lat:
+            menor_Lat=lat
+        
+    return menor_Lat         
     
 
 def gerador_Req(nro_Nodos,nro_Req):
@@ -277,12 +278,13 @@ def gerador_Req(nro_Nodos,nro_Req):
             "implementacao": implementacoes[sort_Func]
             }
 
+    
     for k in range (0,nro_Req):
         rand_fun=random.randint(0,nro_Func-1)
-        rand_nodo_S=random.randint(0,nro_Nodos-1)
-        rand_nodo_D=random.randint(0,nro_Nodos-1)
+        rand_nodo_S=random.randint(0,(nro_Nodos-1))
+        rand_nodo_D=random.randint(0,(nro_Nodos-1))
         while rand_nodo_S==rand_nodo_D:
-            rand_nodo_D=random.randint(0,nro_Nodos)
+            rand_nodo_D=random.randint(0,nro_Nodos-1)
         
         aux=funcao[rand_fun]["implementacao"]
         valor=(aux['CLBs']+(aux['BRAM']*10))/50
@@ -380,8 +382,6 @@ def ler_Requisicoes():
         clb=imp["CLBs"]
         bram=imp["BRAM"]
         dsp=imp["DSPs"]
-        lat=imp["Lat"]
-        thro=imp["Throughput"]
         c_Func=Function(nome_F,nome_I,clb,bram,dsp)
         c_Req=Req(nodo_S,nodo_D,lat,thro,c_Func,valor)
         lista_Req.append(c_Req)
@@ -461,6 +461,9 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
                 dsp+=part.dsp
             lista_Fpga.append([nodo_id,clb,bram,dsp])
             
+    with open ("topologia_wrong.json","w") as outfile:
+        json.dump(lista_Fpga, outfile, indent=4)       
+            
     aloc_Req=[]
     
     for req in lista_Req:
@@ -511,7 +514,11 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
         #se link e recursos satisfazem os requisitos, req eh alocada e atualiza-se recursos consumidos
 
     ratio=len(aloc_Req)/len(lista_Req)
-    print("Nr requisicoes alocadas:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
+    
+    #print(lista_Fpga)
+    print("Nr requisicoes alocadas W:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
+    
+    
     
     return(len(aloc_Req), aloc_Req)
 
@@ -557,11 +564,6 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
         
 
         if len(lista_Nodos[req.init_node].fpga)!=0:
-            '''
-            print(lista_Nodos[req.init_node].fpga)
-            print(len(lista_Nodos[req.init_node].fpga))
-            print(req.init_node)
-            '''
             for a,parts in enumerate(lista_Nodos[req.init_node].fpga):
                 if len(parts)==0:
                     continue
@@ -601,7 +603,7 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
 
         
     #print("Requisicoes alocadas:",aloc_Req)
-    print("Nr requisicoes alocadas:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
+    print("Nr requisicoes alocadas G:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
 
     return(len(aloc_Req), aloc_Req, cash)
     
@@ -646,10 +648,12 @@ def main():
             gerador_Topologia(nodos_G,links_G)
             gerador_Req(nodos_G,req)
             lista_Paths,lista_Nodos=ler_Topologia()
-            lista_Req=ler_Requisicoes
-            print(lista_Req)
-            #wrong_Run(lista_Req,lista_Paths,lista_Nodos)
-            #greedy(lista_Req,lista_Paths,lista_Nodos)
+            lista_Req=ler_Requisicoes()
+            res_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
+            print("Wrong:",res_w[1])
+            res_g=greedy(lista_Req,lista_Paths,lista_Nodos)
+            print("Greedy:",res_g[1])
+            
 
         elif modo=='2':
 
@@ -665,8 +669,8 @@ def main():
             for index in range (5,45,5):
                 req_Aloc_g=[]
                 req_Aloc_w=[]
-                valor_Final=[]
-                for cont in range(5):
+                #valor_Final=[]
+                for cont in range(50):
                     size=index
                     nodos_G=size
                     links_G=int(size*1.2)
@@ -674,7 +678,7 @@ def main():
                     gerador_Topologia(nodos_G, links_G)
                     gerador_Req(nodos_G,req)
                     lista_Paths,lista_Nodos=ler_Topologia()
-                    lista_Req=ler_Requisicoes
+                    lista_Req=ler_Requisicoes()
                     results_g=greedy(lista_Req,lista_Paths,lista_Nodos)
                     results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
                     
@@ -717,8 +721,6 @@ def main():
         
         else:
             print("Modo inválido")
-
-
 
 
 if __name__ == "__main__":

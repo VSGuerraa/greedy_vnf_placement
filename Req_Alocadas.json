@@ -1,22 +1,22 @@
 [
     {
         "Teste5": {
-            "Lista Requisicoes": 15,
-            "Requiscoes alocadas": 4
+            "Lista Requisicoes": 7,
+            "Requiscoes alocadas": 3
         },
         "Nodos": 5
     },
     {
         "Teste5": {
             "Lista Requisicoes": 15,
-            "Requiscoes alocadas": 2
-        },
-        "Nodos": 5
-    },
-    {
-        "Teste5": {
-            "Lista Requisicoes": 12,
             "Requiscoes alocadas": 1
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 10,
+            "Requiscoes alocadas": 5
         },
         "Nodos": 5
     },
@@ -30,9 +30,345 @@
     {
         "Teste5": {
             "Lista Requisicoes": 11,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 8,
+            "Requiscoes alocadas": 1
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 1
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 8,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 12,
+            "Requiscoes alocadas": 3
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 15,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 15,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 9,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 7,
             "Requiscoes alocadas": 2
         },
         "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 1
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 7,
+            "Requiscoes alocadas": 1
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 0
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 12,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 7,
+            "Requiscoes alocadas": 0
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 9,
+            "Requiscoes alocadas": 2
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 7,
+            "Requiscoes alocadas": 2
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 7,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 9,
+            "Requiscoes alocadas": 2
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 15,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 11,
+            "Requiscoes alocadas": 1
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 14,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 12,
+            "Requiscoes alocadas": 4
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 8,
+            "Requiscoes alocadas": 3
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 14,
+            "Requiscoes alocadas": 4
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 11,
+            "Requiscoes alocadas": 2
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 10,
+            "Requiscoes alocadas": 3
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 11,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 8,
+            "Requiscoes alocadas": 3
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 12,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 14,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 15,
+            "Requiscoes alocadas": 4
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 15,
+            "Requiscoes alocadas": 3
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 14,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 13,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 10,
+            "Requiscoes alocadas": 3
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 8,
+            "Requiscoes alocadas": 3
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 10,
+            "Requiscoes alocadas": 3
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 15,
+            "Requiscoes alocadas": 1
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 9,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste5": {
+            "Lista Requisicoes": 7,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 5
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 29,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 28,
+            "Requiscoes alocadas": 4
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 15,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 10
     },
     {
         "Teste10": {
@@ -43,21 +379,126 @@
     },
     {
         "Teste10": {
+            "Lista Requisicoes": 21,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 23,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 26,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 25,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 27,
+            "Requiscoes alocadas": 9
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 22,
+            "Requiscoes alocadas": 3
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 24,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
             "Lista Requisicoes": 28,
-            "Requiscoes alocadas": 2
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 21,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 15,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 26,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 22,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 20,
+            "Requiscoes alocadas": 4
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 19,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 20,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 28,
+            "Requiscoes alocadas": 4
         },
         "Nodos": 10
     },
     {
         "Teste10": {
             "Lista Requisicoes": 17,
-            "Requiscoes alocadas": 1
+            "Requiscoes alocadas": 6
         },
         "Nodos": 10
     },
     {
         "Teste10": {
-            "Lista Requisicoes": 28,
+            "Lista Requisicoes": 22,
             "Requiscoes alocadas": 5
         },
         "Nodos": 10
@@ -65,9 +506,240 @@
     {
         "Teste10": {
             "Lista Requisicoes": 21,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 21,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 17,
+            "Requiscoes alocadas": 4
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 16,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 27,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 16,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 15,
             "Requiscoes alocadas": 5
         },
         "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 23,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 20,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 19,
+            "Requiscoes alocadas": 4
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 27,
+            "Requiscoes alocadas": 2
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 28,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 18,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 29,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 26,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 21,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 30,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 17,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 16,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 22,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 22,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 30,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 16,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 22,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 21,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 17,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 22,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste10": {
+            "Lista Requisicoes": 20,
+            "Requiscoes alocadas": 9
+        },
+        "Nodos": 10
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 34,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 37,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 38,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 22,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 30,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 15
     },
     {
         "Teste15": {
@@ -78,85 +750,687 @@
     },
     {
         "Teste15": {
-            "Lista Requisicoes": 32,
-            "Requiscoes alocadas": 8
+            "Lista Requisicoes": 33,
+            "Requiscoes alocadas": 11
         },
         "Nodos": 15
     },
     {
         "Teste15": {
-            "Lista Requisicoes": 25,
+            "Lista Requisicoes": 23,
             "Requiscoes alocadas": 4
         },
         "Nodos": 15
     },
     {
         "Teste15": {
-            "Lista Requisicoes": 38,
-            "Requiscoes alocadas": 0
+            "Lista Requisicoes": 25,
+            "Requiscoes alocadas": 6
         },
         "Nodos": 15
     },
     {
         "Teste15": {
-            "Lista Requisicoes": 38,
-            "Requiscoes alocadas": 2
+            "Lista Requisicoes": 37,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 24,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 36,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 30,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 33,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 35,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 23,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 33,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 43,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 42,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 35,
+            "Requiscoes alocadas": 9
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 28,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 27,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 42,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 29,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 35,
+            "Requiscoes alocadas": 9
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 30,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 27,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 25,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 31,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 26,
+            "Requiscoes alocadas": 9
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 23,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 29,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 18
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 39,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 22,
+            "Requiscoes alocadas": 4
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 25,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 29,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 36,
+            "Requiscoes alocadas": 12
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 39,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 29,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 36,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 43,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 32,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 22,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 33,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 15
+    },
+    {
+        "Teste15": {
+            "Lista Requisicoes": 42,
+            "Requiscoes alocadas": 13
         },
         "Nodos": 15
     },
     {
         "Teste20": {
-            "Lista Requisicoes": 53,
-            "Requiscoes alocadas": 11
+            "Lista Requisicoes": 45,
+            "Requiscoes alocadas": 17
         },
         "Nodos": 20
     },
     {
         "Teste20": {
-            "Lista Requisicoes": 46,
-            "Requiscoes alocadas": 3
+            "Lista Requisicoes": 50,
+            "Requiscoes alocadas": 13
         },
         "Nodos": 20
     },
     {
         "Teste20": {
-            "Lista Requisicoes": 35,
-            "Requiscoes alocadas": 6
+            "Lista Requisicoes": 30,
+            "Requiscoes alocadas": 13
         },
         "Nodos": 20
     },
     {
         "Teste20": {
-            "Lista Requisicoes": 34,
-            "Requiscoes alocadas": 6
+            "Lista Requisicoes": 59,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 39,
+            "Requiscoes alocadas": 8
         },
         "Nodos": 20
     },
     {
         "Teste20": {
             "Lista Requisicoes": 33,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 58,
+            "Requiscoes alocadas": 21
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 53,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 46,
+            "Requiscoes alocadas": 8
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 37,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 42,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 53,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 32,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 56,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 58,
+            "Requiscoes alocadas": 19
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 51,
+            "Requiscoes alocadas": 26
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 42,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 39,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 46,
+            "Requiscoes alocadas": 21
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 38,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 42,
             "Requiscoes alocadas": 12
         },
         "Nodos": 20
     },
     {
-        "Teste25": {
-            "Lista Requisicoes": 53,
-            "Requiscoes alocadas": 0
+        "Teste20": {
+            "Lista Requisicoes": 34,
+            "Requiscoes alocadas": 11
         },
-        "Nodos": 25
+        "Nodos": 20
     },
     {
-        "Teste25": {
-            "Lista Requisicoes": 67,
+        "Teste20": {
+            "Lista Requisicoes": 57,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 36,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 47,
+            "Requiscoes alocadas": 18
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 40,
             "Requiscoes alocadas": 15
         },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 43,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 51,
+            "Requiscoes alocadas": 19
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 37,
+            "Requiscoes alocadas": 5
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 43,
+            "Requiscoes alocadas": 18
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 48,
+            "Requiscoes alocadas": 12
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 57,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 52,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 19
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 37,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 56,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 56,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 18
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 46,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 37,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 58,
+            "Requiscoes alocadas": 12
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 48,
+            "Requiscoes alocadas": 9
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 42,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 43,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 27
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 56,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste20": {
+            "Lista Requisicoes": 52,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 20
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 72,
+            "Requiscoes alocadas": 24
+        },
         "Nodos": 25
     },
     {
         "Teste25": {
-            "Lista Requisicoes": 68,
-            "Requiscoes alocadas": 17
+            "Lista Requisicoes": 38,
+            "Requiscoes alocadas": 7
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 74,
+            "Requiscoes alocadas": 32
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 62,
+            "Requiscoes alocadas": 28
         },
         "Nodos": 25
     },
@@ -169,10 +1443,535 @@
     },
     {
         "Teste25": {
+            "Lista Requisicoes": 60,
+            "Requiscoes alocadas": 12
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 72,
+            "Requiscoes alocadas": 31
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 49,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 59,
+            "Requiscoes alocadas": 30
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 75,
+            "Requiscoes alocadas": 9
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 72,
+            "Requiscoes alocadas": 30
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 46,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 50,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 65,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 62,
+            "Requiscoes alocadas": 25
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 72,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 48,
+            "Requiscoes alocadas": 23
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 52,
+            "Requiscoes alocadas": 23
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 44,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 51,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 59,
+            "Requiscoes alocadas": 34
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 65,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 38,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 44,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 41,
+            "Requiscoes alocadas": 9
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 60,
+            "Requiscoes alocadas": 25
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 48,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 48,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 57,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 50,
+            "Requiscoes alocadas": 30
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 72,
+            "Requiscoes alocadas": 25
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 42,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
             "Lista Requisicoes": 70,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 70,
+            "Requiscoes alocadas": 12
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 46,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 66,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 50,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 49,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 49,
             "Requiscoes alocadas": 18
         },
         "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 46,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 62,
+            "Requiscoes alocadas": 21
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 51,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 60,
+            "Requiscoes alocadas": 23
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 59,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 37,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste25": {
+            "Lista Requisicoes": 66,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 25
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 59,
+            "Requiscoes alocadas": 19
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 83,
+            "Requiscoes alocadas": 35
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 76,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 55,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 64,
+            "Requiscoes alocadas": 23
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 90,
+            "Requiscoes alocadas": 31
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 69,
+            "Requiscoes alocadas": 25
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 47,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 48,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 58,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 90,
+            "Requiscoes alocadas": 38
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 57,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 83,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 71,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 68,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 45,
+            "Requiscoes alocadas": 6
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 83,
+            "Requiscoes alocadas": 35
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 87,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 74,
+            "Requiscoes alocadas": 14
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 61,
+            "Requiscoes alocadas": 18
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 88,
+            "Requiscoes alocadas": 25
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 61,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 56,
+            "Requiscoes alocadas": 29
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 81,
+            "Requiscoes alocadas": 35
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 46,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 88,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 88,
+            "Requiscoes alocadas": 36
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 51,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 67,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 61,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 30
     },
     {
         "Teste30": {
@@ -183,99 +1982,820 @@
     },
     {
         "Teste30": {
-            "Lista Requisicoes": 73,
-            "Requiscoes alocadas": 11
+            "Lista Requisicoes": 86,
+            "Requiscoes alocadas": 35
         },
         "Nodos": 30
     },
     {
         "Teste30": {
-            "Lista Requisicoes": 60,
-            "Requiscoes alocadas": 12
+            "Lista Requisicoes": 53,
+            "Requiscoes alocadas": 19
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 63,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 68,
+            "Requiscoes alocadas": 27
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 90,
+            "Requiscoes alocadas": 21
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 59,
+            "Requiscoes alocadas": 26
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 62,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 59,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 46,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 63,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 90,
+            "Requiscoes alocadas": 36
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 52,
+            "Requiscoes alocadas": 18
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 71,
+            "Requiscoes alocadas": 21
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 56,
+            "Requiscoes alocadas": 10
+        },
+        "Nodos": 30
+    },
+    {
+        "Teste30": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 20
         },
         "Nodos": 30
     },
     {
         "Teste30": {
             "Lista Requisicoes": 50,
-            "Requiscoes alocadas": 11
+            "Requiscoes alocadas": 20
         },
         "Nodos": 30
     },
     {
         "Teste30": {
-            "Lista Requisicoes": 78,
-            "Requiscoes alocadas": 14
+            "Lista Requisicoes": 64,
+            "Requiscoes alocadas": 16
         },
         "Nodos": 30
     },
     {
         "Teste35": {
-            "Lista Requisicoes": 81,
-            "Requiscoes alocadas": 14
-        },
-        "Nodos": 35
-    },
-    {
-        "Teste35": {
-            "Lista Requisicoes": 82,
-            "Requiscoes alocadas": 21
-        },
-        "Nodos": 35
-    },
-    {
-        "Teste35": {
-            "Lista Requisicoes": 73,
+            "Lista Requisicoes": 54,
             "Requiscoes alocadas": 12
         },
         "Nodos": 35
     },
     {
         "Teste35": {
-            "Lista Requisicoes": 102,
+            "Lista Requisicoes": 60,
+            "Requiscoes alocadas": 26
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 90,
+            "Requiscoes alocadas": 38
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 63,
+            "Requiscoes alocadas": 9
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 99,
+            "Requiscoes alocadas": 34
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 70,
+            "Requiscoes alocadas": 26
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 73,
+            "Requiscoes alocadas": 25
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 83,
+            "Requiscoes alocadas": 32
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 101,
+            "Requiscoes alocadas": 36
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 76,
+            "Requiscoes alocadas": 26
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 66,
+            "Requiscoes alocadas": 19
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 18
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 89,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 69,
+            "Requiscoes alocadas": 33
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 67,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 77,
+            "Requiscoes alocadas": 26
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 95,
             "Requiscoes alocadas": 20
         },
         "Nodos": 35
     },
     {
         "Teste35": {
-            "Lista Requisicoes": 57,
-            "Requiscoes alocadas": 9
+            "Lista Requisicoes": 82,
+            "Requiscoes alocadas": 30
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 89,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 89,
+            "Requiscoes alocadas": 27
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 65,
+            "Requiscoes alocadas": 21
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 99,
+            "Requiscoes alocadas": 31
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 95,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 75,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 70,
+            "Requiscoes alocadas": 18
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 96,
+            "Requiscoes alocadas": 21
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 55,
+            "Requiscoes alocadas": 11
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 102,
+            "Requiscoes alocadas": 31
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 76,
+            "Requiscoes alocadas": 34
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 66,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 96,
+            "Requiscoes alocadas": 15
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 102,
+            "Requiscoes alocadas": 42
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 76,
+            "Requiscoes alocadas": 19
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 103,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 91,
+            "Requiscoes alocadas": 52
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 91,
+            "Requiscoes alocadas": 29
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 91,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 56,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 97,
+            "Requiscoes alocadas": 47
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 83,
+            "Requiscoes alocadas": 23
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 56,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 68,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 56,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 95,
+            "Requiscoes alocadas": 26
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 54,
+            "Requiscoes alocadas": 12
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 75,
+            "Requiscoes alocadas": 33
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 104,
+            "Requiscoes alocadas": 32
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 83,
+            "Requiscoes alocadas": 16
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 101,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 35
+    },
+    {
+        "Teste35": {
+            "Lista Requisicoes": 62,
+            "Requiscoes alocadas": 14
         },
         "Nodos": 35
     },
     {
         "Teste40": {
-            "Lista Requisicoes": 76,
+            "Lista Requisicoes": 67,
+            "Requiscoes alocadas": 27
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 77,
+            "Requiscoes alocadas": 30
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 115,
+            "Requiscoes alocadas": 24
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 119,
+            "Requiscoes alocadas": 38
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 109,
+            "Requiscoes alocadas": 48
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 86,
+            "Requiscoes alocadas": 31
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 88,
+            "Requiscoes alocadas": 32
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 96,
+            "Requiscoes alocadas": 34
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 109,
+            "Requiscoes alocadas": 33
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 68,
+            "Requiscoes alocadas": 19
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 117,
+            "Requiscoes alocadas": 35
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 120,
+            "Requiscoes alocadas": 35
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 106,
+            "Requiscoes alocadas": 43
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 67,
+            "Requiscoes alocadas": 21
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 73,
+            "Requiscoes alocadas": 30
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 94,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 96,
+            "Requiscoes alocadas": 33
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 69,
+            "Requiscoes alocadas": 20
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 77,
             "Requiscoes alocadas": 22
         },
         "Nodos": 40
     },
     {
         "Teste40": {
-            "Lista Requisicoes": 99,
+            "Lista Requisicoes": 102,
+            "Requiscoes alocadas": 30
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 92,
+            "Requiscoes alocadas": 32
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 92,
+            "Requiscoes alocadas": 27
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 116,
+            "Requiscoes alocadas": 23
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 63,
+            "Requiscoes alocadas": 23
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 118,
+            "Requiscoes alocadas": 53
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 120,
+            "Requiscoes alocadas": 40
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 100,
+            "Requiscoes alocadas": 33
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 72,
+            "Requiscoes alocadas": 22
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 92,
+            "Requiscoes alocadas": 35
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 63,
+            "Requiscoes alocadas": 23
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 112,
+            "Requiscoes alocadas": 53
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 83,
+            "Requiscoes alocadas": 21
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 73,
             "Requiscoes alocadas": 25
         },
         "Nodos": 40
     },
     {
         "Teste40": {
-            "Lista Requisicoes": 84,
+            "Lista Requisicoes": 70,
+            "Requiscoes alocadas": 17
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 68,
+            "Requiscoes alocadas": 26
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 103,
+            "Requiscoes alocadas": 30
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 77,
+            "Requiscoes alocadas": 19
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 68,
+            "Requiscoes alocadas": 26
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 83,
+            "Requiscoes alocadas": 31
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 118,
+            "Requiscoes alocadas": 36
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 87,
+            "Requiscoes alocadas": 27
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 115,
             "Requiscoes alocadas": 22
         },
         "Nodos": 40
     },
     {
         "Teste40": {
-            "Lista Requisicoes": 113,
-            "Requiscoes alocadas": 37
+            "Lista Requisicoes": 69,
+            "Requiscoes alocadas": 15
         },
         "Nodos": 40
     },
     {
         "Teste40": {
-            "Lista Requisicoes": 97,
-            "Requiscoes alocadas": 17
+            "Lista Requisicoes": 60,
+            "Requiscoes alocadas": 12
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 74,
+            "Requiscoes alocadas": 13
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 117,
+            "Requiscoes alocadas": 46
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 109,
+            "Requiscoes alocadas": 25
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 77,
+            "Requiscoes alocadas": 33
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 111,
+            "Requiscoes alocadas": 31
+        },
+        "Nodos": 40
+    },
+    {
+        "Teste40": {
+            "Lista Requisicoes": 61,
+            "Requiscoes alocadas": 24
         },
         "Nodos": 40
     }

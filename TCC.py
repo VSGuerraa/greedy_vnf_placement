@@ -1,6 +1,5 @@
 import json
 import random
-from tracemalloc import Statistic
 import networkx as nx
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
@@ -461,12 +460,14 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
                 dsp+=part.dsp
             lista_Fpga.append([nodo_id,clb,bram,dsp])
             
+            
+    
     with open ("topologia_wrong.json","w") as outfile:
         json.dump(lista_Fpga, outfile, indent=4)       
             
     aloc_Req=[]
     
-    for req in lista_Req:
+    for nr_req,req in enumerate(lista_Req):
         path=list(dfs_caminhos(lista_Paths,req.init_node,req.out_node))
         path_Ord=sorted(path,key=len)
         check_Node=False
@@ -474,10 +475,10 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
         refresh_Links=[]
         device_id=None
         
-
+        
         if lista_Nodos[req.init_node].fpga!=0:
             for i,device in enumerate(lista_Fpga):
-                if int(device[0][4])==req.init_node:
+                if device[0]=='Nodo'+str(req.init_node):
                     if device[1]>=req.func.clb:
                         if device[2]>=req.func.bram:
                             if device[3]>=req.func.dsp:
@@ -506,17 +507,17 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
             lista_Fpga[device_id][2]=lista_Fpga[device_id][2]-req.func.bram
             lista_Fpga[device_id][3]=lista_Fpga[device_id][3]-req.func.dsp
             
+            
+            
             for nodo_I,nodo_F,thro in refresh_Links:
                 for l in (lista_Nodos[nodo_I].link):
                     if int(l.nodo_d)==nodo_F:
                         l.min_T=thro
-            
         #se link e recursos satisfazem os requisitos, req eh alocada e atualiza-se recursos consumidos
-
+    
     ratio=len(aloc_Req)/len(lista_Req)
     
-    #print(lista_Fpga)
-    print("Nr requisicoes alocadas W:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
+    #print("Nr requisicoes alocadas W:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
     
     
     
@@ -602,8 +603,7 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
 
 
         
-    #print("Requisicoes alocadas:",aloc_Req)
-    print("Nr requisicoes alocadas G:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
+    #print("Nr requisicoes alocadas G:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
 
     return(len(aloc_Req), aloc_Req, cash)
     

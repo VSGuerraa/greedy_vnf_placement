@@ -4,7 +4,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
 import statistics as stats
-import numpy as np
+
 
 
 def gerador_Topologia(nro_Nodos, nro_Links):
@@ -24,8 +24,11 @@ def gerador_Topologia(nro_Nodos, nro_Links):
     lista=list(G.edges)
 
     topologia_rede=[]
+    fpga=[]
+    
 
-    fpga=[[27120,480,1824],[105300,1728,1080],[134280,2520,2880]]
+
+    fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
     list_thro=[40,100,200,400]
 
     for a in range(0,nro_Nodos):
@@ -722,7 +725,22 @@ def main():
         else:
             print("Modo inválido")
 
-
+'''
 if __name__ == "__main__":
     main()
+'''
 
+fpga=[]
+
+with open('KU040.txt','r') as file:
+    fpga.append(file.read())
+    
+with open('KU095.txt','r') as file:
+    fpga.append(file.read())
+    
+with open('VU190.txt','r') as file:
+    fpga.append(file.read())
+
+
+fpga[0].remove('CCCDCCCDCCCCBCCCCCBCCCCCCCCCC')
+print()

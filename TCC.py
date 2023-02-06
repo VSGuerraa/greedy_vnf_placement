@@ -1,9 +1,10 @@
 import json
+import math
 import random
-import networkx as nx
-import matplotlib.pyplot as plt
-from dataclasses import dataclass
 import statistics as stats
+from dataclasses import dataclass
+import matplotlib.pyplot as plt
+import networkx as nx
 
 
 
@@ -64,40 +65,7 @@ def gerador_Topologia(nro_Nodos, nro_Links):
                 part_m=[8640,144,576]
                 part_g=[27120,480,1824]
                 part_tipos=[part_p,part_m,part_g]
-                '''
-                max_CLB=15200
-                max_BRAM=450
-
-                nro_parts=random.randint(1,4)
-                if sort_Fpga==0 and nro_fpga ==1:
-                    clb=27120
-                    bram=480
-                    dsp=1368
-                    lista_Part.append({"Part0": {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
-                    list(lista_Part)
-                
-                else:
-
-                    for part in range(nro_parts):
-                        if size_CLB-max_CLB <= max_CLB:
-                            clb=size_CLB
-                        else:
-                            clb=max_CLB
-                            size_CLB-=max_CLB
-                         
-                        if size_BRAM-max_BRAM<=max_BRAM:
-                            bram=size_BRAM
-                        else:
-                            bram=max_BRAM
-                            size_BRAM-=max_BRAM
-
-                        dsp=int(size_DSP/nro_parts)
-                        lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
-                        list(lista_Part)
-
-                        ''' #modo antigo de particionamento
-
-
+        
                 part=0
                 while size_CLB!=0 and size_BRAM!=0 and size_DSP!=0:
                     
@@ -559,8 +527,11 @@ def check_Parts(partitions, requisitions):
 def check_Wrong(aloc_Req):
 
     for req in aloc_Req:
-        req=req
-
+        
+        min_Tile_clb=math.ceil(req.func.clb/60)
+        min_Tile_bram=math.ceil(req.func.bram/12)
+        min_Tile_dsp=math.ceil(req.func.dsp/24)
+        
 
 
 def greedy(lista_Req,lista_Paths,lista_Nodos):
@@ -663,6 +634,7 @@ def main():
             print("Wrong:",res_w[1])
             res_g=greedy(lista_Req,lista_Paths,lista_Nodos)
             print("Greedy:",res_g[1])
+            check_Wrong(res_w[1])
             
 
         elif modo=='2':
@@ -681,7 +653,7 @@ def main():
                 req_Aloc_g=[]
                 req_Aloc_w=[]
                 #valor_Final=[]
-                for cont in range(50):
+                for cont in range(5):
                     size=index
                     nodos_G=size
                     links_G=int(size*1.2)
@@ -692,8 +664,7 @@ def main():
                     lista_Req=ler_Requisicoes()
                     results_g=greedy(lista_Req,lista_Paths,lista_Nodos)
                     results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
-                    
-                    
+            
                     lista_Results_g.append({
                         "Teste"+str(index):{
                         "Lista Requisicoes": len(lista_Req),
@@ -721,13 +692,18 @@ def main():
                 dataset_wrongrun.append(stats.mean(req_Aloc_w))
                 
                
+               
             plot(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
 
-            with open ("Req_Alocadas.json","w") as outfile:
-                json.dump(results_g[1], outfile,indent=4)
+            with open("Req_Alocadas.txt","w") as outfile:
+                for result in results_g[1]:
+                    outfile.write(str(result))
+                    outfile.write('\n')
                 
-            with open ("Req_Wrong.json","w") as outfile:
-                json.dump(results_w[1], outfile,indent=4)
+            with open("Req_Wrong.txt","w") as outfile:
+                for result in results_w[1]:
+                    outfile.write(str(result))
+                    outfile.write('\n')
 
         
         else:
@@ -736,11 +712,13 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 '''
+
     
 fpga=[]
-fpga_Resources=[[]]
+aux=[]
+fpga_Resources=[]
+
 
 
 with open('KU040.txt','r') as file:
@@ -752,17 +730,19 @@ with open('KU095.txt','r') as file:
 with open('VU190.txt','r') as file:
     fpga.append(file.read())
 
-for index,device in enumerate(fpga):
-    
+for device in fpga:
+    aux=[]
     device=device.split('\n')
-    size_x=len(device)
-    #size_y=
-    for i,row in enumerate(device):
+    for row in device:
         row=row.split(';')
-        fpga_Resources[index][i].append(row)
+        aux.append(row)
+    fpga_Resources.append(aux)
     
-print(fpga_Resources)
 
-#print(fpga[0])
+        '''
+    
 
-'''
+
+
+
+

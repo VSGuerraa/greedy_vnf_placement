@@ -556,6 +556,13 @@ def check_Parts(partitions, requisitions):
     return(index_min) 
         
 
+def check_Wrong(aloc_Req):
+
+    for req in aloc_Req:
+        req=req
+
+
+
 def greedy(lista_Req,lista_Paths,lista_Nodos):
     aloc_Req=[]
     cash=0
@@ -660,6 +667,7 @@ def main():
 
         elif modo=='2':
 
+            print('Executando...')
             lista_Results_g=[]
             lista_Results_w=[]
             dataset_index=[]
@@ -716,21 +724,24 @@ def main():
             plot(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
 
             with open ("Req_Alocadas.json","w") as outfile:
-                json.dump(lista_Results_g, outfile,indent=4)
+                json.dump(results_g[1], outfile,indent=4)
                 
             with open ("Req_Wrong.json","w") as outfile:
-                json.dump(lista_Results_w, outfile,indent=4)
+                json.dump(results_w[1], outfile,indent=4)
 
         
         else:
             print("Modo inválido")
 
-'''
+
 if __name__ == "__main__":
     main()
-'''
 
+'''
+    
 fpga=[]
+fpga_Resources=[[]]
+
 
 with open('KU040.txt','r') as file:
     fpga.append(file.read())
@@ -741,6 +752,17 @@ with open('KU095.txt','r') as file:
 with open('VU190.txt','r') as file:
     fpga.append(file.read())
 
+for index,device in enumerate(fpga):
+    
+    device=device.split('\n')
+    size_x=len(device)
+    #size_y=
+    for i,row in enumerate(device):
+        row=row.split(';')
+        fpga_Resources[index][i].append(row)
+    
+print(fpga_Resources)
 
-fpga[0].remove('CCCDCCCDCCCCBCCCCCBCCCCCCCCCC')
-print()
+#print(fpga[0])
+
+'''

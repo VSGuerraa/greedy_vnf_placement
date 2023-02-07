@@ -525,14 +525,31 @@ def check_Parts(partitions, requisitions):
         
 
 def check_Wrong(aloc_Req):
+    
+    with open("topologia_wrong.json") as file:
+        topologia = json.load(file)
+        
+    for index,device in enumerate(topologia):
+            topologia[index][1]=device[1]*0.9
+            topologia[index][2]=device[2]*0.9
+            topologia[index][3]=device[3]*0.9
+            
+    fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
 
     for req in aloc_Req:
         
         min_Tile_clb=math.ceil(req.func.clb/60)
         min_Tile_bram=math.ceil(req.func.bram/12)
-        min_Tile_dsp=math.ceil(req.func.dsp/24)
+        for id,device in enumerate(topologia):
+            if device[0]=='Nodo'+req.init_node:
+                modelo=device
+                i_Modelo=id
+                break
         
-
+            
+        for index in range(0,min_Tile_clb+1):
+            
+            
 
 def greedy(lista_Req,lista_Paths,lista_Nodos):
     aloc_Req=[]
@@ -710,9 +727,10 @@ def main():
             print("Modo inválido")
 
 
+'''
 if __name__ == "__main__":
     main()
-'''
+
 
     
 fpga=[]
@@ -738,6 +756,15 @@ for device in fpga:
         aux.append(row)
     fpga_Resources.append(aux)
     
+
+#fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
+
+
+part_p=[2340,12,0]
+part_m=[8640,96,0]
+part_g=[15240,480,0]
+
+
 
         '''
     

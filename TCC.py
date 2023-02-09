@@ -305,8 +305,8 @@ class Function:
 
 @dataclass
 class Req:
-    init_node:str
-    out_node:str
+    init_node:int
+    out_node:int
     max_Lat:int
     min_T:int
     func:Function
@@ -534,7 +534,7 @@ def check_Wrong(aloc_Req):
             topologia[index][2]=device[2]*0.9
             topologia[index][3]=device[3]*0.9
             
-    fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
+    #fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
       
     aloc_W=[]
     
@@ -544,58 +544,82 @@ def check_Wrong(aloc_Req):
         min_Tile_bram=math.ceil(req.func.bram/12)
         
         for id,device in enumerate(topologia):
-            if device[0]=='Nodo'+req.init_node:
-                modelo=device
-                i_Modelo=id
+            if device[0]=='Nodo'+str(req.init_node):
+                dispositivo=device
                 
                 min_Clb=0
                 min_Bram=0
                     
-                if int(modelo[1]/27000)==1:
-                    for divisor in range(5,0,-1):
-                        comp=0
-                        if min_Tile_clb%divisor == 0 and min_Tile_clb<(modelo[2]*(divisor/5)):
-                            for index in range(0,min_Tile_clb+1,10):            
-                                min_Bram+=divisor*12
-                            break
+                if int(dispositivo[1]/27000)==1:
+                    divisor=5
+                    min_Tile=5
+                if int(dispositivo[1]/60000)==1:
+                    divisor=8
+                    min_Tile=3
+                if int(dispositivo[1]/120000)==1:
+                    divisor=15
+                    min_Tile=2
+                    
+                    
+                for linha in range(divisor,0,-1):
+                    comp=0
+                    if min_Tile_clb%linha == 0 and min_Tile_clb<(dispositivo[2]*(linha/divisor)):
+                        for index in range(0,min_Tile_clb+1,10):            
+                            min_Bram+=linha*12
+                            melhor=0
+                        break
+                    else:
+                        if comp==0:
+                            comp=(min_Tile_clb%linha) / linha
+                            
                         else:
-                            if comp==0:
-                                comp=(min_Tile_clb%divisor) / divisor
-                                
-                            else:
-                                if comp>((min_Tile_clb%divisor) / divisor):
-                                    comp=(min_Tile_clb%divisor) / divisor
-                                    melhor=divisor              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
+                            if comp>((min_Tile_clb%linha) / linha):
+                                comp=(min_Tile_clb%linha) / linha
+                                melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
+                if melhor!=0:
                     for index in range(0,min_Tile_clb+1,10):            
                         min_Bram+=melhor*12
-                    
-                    for divisor in range(5,0,-1):
-                        comp=0
-                        if min_Tile_bram%divisor == 0 and min_Tile_bram<(modelo[1]*(divisor/5)):
-                            for index in range(0,min_Tile_bram+1,5):            
-                                min_Clb+=divisor*60
-                                melhor=0
-                            break
-                        else:
-                            if comp==0:
-                                comp=(min_Tile_bram%divisor) / divisor
-                                
-                            else:
-                                if comp>((min_Tile_bram%divisor) / divisor):
-                                    comp=(min_Tile_bram%divisor) / divisor
-                                    melhor=divisor              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
-                    if melhor!=0:
-                        for index in range(0,min_Tile_bram+1,5):            
-                            min_Clb+=melhor*60
-                    
-                    
-                    if modelo[1]-min_Clb<0 or modelo[2]-min_Bram<0:
-                        if 'device+1'=='Nodo'+req.init_node and 'device+1[1]!=modelo atual
+                
+                
+                
+                for linha in range(divisor,0,-1):
+                    comp=0
+                    if min_Tile_bram%linha == 0 and min_Tile_bram<(dispositivo[1]*(linha/divisor)):
+                        for index in range(0,min_Tile_bram+1,min_Tile):            
+                            min_Clb+=linha*60
+                            melhor=0
+                        break
+                    else:
+                        if comp==0:
+                            comp=(min_Tile_bram%linha) / linha
                             
+                        else:
+                            if comp>((min_Tile_bram%linha) / linha):
+                                comp=(min_Tile_bram%linha) / linha
+                                melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
+                if melhor!=0:
+                    for index in range(0,min_Tile_bram+1,min_Tile):            
+                        min_Clb+=melhor*60
+                
+                
+                if dispositivo[1]-min_Clb<0 or dispositivo[2]-min_Bram<0:
+                    continue
+                
+                else:
+                    if min_Bram<min_Tile_bram:
+                        min_Bram=min_Tile_bram
+                    if min_Clb<min_Tile_clb:
+                        min_Clb=min_Tile_clb
+                        
+                    topologia[id][1]=topologia[id][1]-min_Clb
+                    topologia[id][2]=topologia[id][2]-min_Bram
                     
-
-        
-            
+                                               
+                    
+                            
+            else:
+                aloc_W.append(req)                
+                                     
 
 def greedy(lista_Req,lista_Paths,lista_Nodos):
     aloc_Req=[]
@@ -773,11 +797,10 @@ def main():
             print("Modo inválido")
 
 
-'''
 if __name__ == "__main__":
     main()
 
-
+'''
     
 fpga=[]
 aux=[]

@@ -264,6 +264,7 @@ def gerador_Req(nro_Nodos,nro_Req):
         lat=check_Lat(rand_nodo_S,rand_nodo_D,lista_Caminhos, lista_Nodos)            
         
         requisicoes[k] = {
+            "Id": k,
             "Nodo_S": rand_nodo_S,
             "Nodo_D": rand_nodo_D,
             "max_Lat": int(lat*1.3),
@@ -272,9 +273,6 @@ def gerador_Req(nro_Nodos,nro_Req):
             "valor": valor
             }
 
-        
-    
-     
     with open ("requisicoes.json","w") as outfile:
         json.dump(requisicoes, outfile, indent=4)
 
@@ -305,6 +303,7 @@ class Function:
 
 @dataclass
 class Req:
+    id:int
     init_node:int
     out_node:int
     max_Lat:int
@@ -341,6 +340,7 @@ def ler_Requisicoes():
     lista_Req=[]
     
     for a,val in enumerate(requisicoes.values()):
+        Id=val["Id"]
         nodo_S=val["Nodo_S"]
         nodo_D=val["Nodo_D"]
         lat=val["max_Lat"]
@@ -353,7 +353,7 @@ def ler_Requisicoes():
         bram=imp["BRAM"]
         dsp=imp["DSPs"]
         c_Func=Function(nome_F,nome_I,clb,bram,dsp)
-        c_Req=Req(nodo_S,nodo_D,lat,thro,c_Func,valor)
+        c_Req=Req(Id,nodo_S,nodo_D,lat,thro,c_Func,valor)
         lista_Req.append(c_Req)
         
     return lista_Req
@@ -540,11 +540,12 @@ def check_Wrong(aloc_Req):
     
     for req in aloc_Req:
         
+        not_valid=True
         min_Tile_clb=math.ceil(req.func.clb/60)
         min_Tile_bram=math.ceil(req.func.bram/12)
         
         for id,device in enumerate(topologia):
-            if device[0]=='Nodo'+str(req.init_node):
+            if device[0]=='Nodo'+str(req.init_node) and device[1]!=0:
                 dispositivo=device
                 
                 min_Clb=0
@@ -553,49 +554,49 @@ def check_Wrong(aloc_Req):
                 if int(dispositivo[1]/27000)==1:
                     divisor=5
                     min_Tile=5
-                if int(dispositivo[1]/60000)==1:
+                elif int(dispositivo[1]/60000)==1:
                     divisor=8
                     min_Tile=3
-                if int(dispositivo[1]/120000)==1:
+                elif int(dispositivo[1]/120000)==1:
                     divisor=15
                     min_Tile=2
                     
-                    
+                comparador=0    
                 for linha in range(divisor,0,-1):
-                    comp=0
-                    if min_Tile_clb%linha == 0 and min_Tile_clb<(dispositivo[2]*(linha/divisor)):
-                        for index in range(0,min_Tile_clb+1,10):            
-                            min_Bram+=linha*12
-                            melhor=0
+                    
+                    if min_Tile_clb%linha == 0 and min_Tile_clb<(dispositivo[1]*(linha/divisor)):
+                        for index in range(0,int(min_Tile_clb/linha),10):            
+                            min_Bram+=linha
+                        melhor=0
                         break
                     else:
-                        if comp==0:
-                            comp=(min_Tile_clb%linha) / linha
+                        if comparador==0:
+                            comparador=(min_Tile_clb%linha) / linha
                             
                         else:
-                            if comp>((min_Tile_clb%linha) / linha):
-                                comp=(min_Tile_clb%linha) / linha
+                            if comparador>((min_Tile_clb%linha) / linha):
+                                comparador=(min_Tile_clb%linha) / linha
                                 melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
                 if melhor!=0:
                     for index in range(0,min_Tile_clb+1,10):            
                         min_Bram+=melhor*12
                 
                 
-                
+                comparador=0
                 for linha in range(divisor,0,-1):
-                    comp=0
-                    if min_Tile_bram%linha == 0 and min_Tile_bram<(dispositivo[1]*(linha/divisor)):
-                        for index in range(0,min_Tile_bram+1,min_Tile):            
-                            min_Clb+=linha*60
-                            melhor=0
+                    
+                    if min_Tile_bram%linha == 0 and min_Tile_bram<(dispositivo[2]*(linha/divisor)):
+                        for index in range(0,int(min_Tile_bram/linha),min_Tile):            
+                            min_Clb+=linha
+                        melhor=0
                         break
                     else:
-                        if comp==0:
-                            comp=(min_Tile_bram%linha) / linha
+                        if comparador==0:
+                            comparador=(min_Tile_bram%linha) / linha
                             
                         else:
-                            if comp>((min_Tile_bram%linha) / linha):
-                                comp=(min_Tile_bram%linha) / linha
+                            if comparador>((min_Tile_bram%linha) / linha):
+                                comparador=(min_Tile_bram%linha) / linha
                                 melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
                 if melhor!=0:
                     for index in range(0,min_Tile_bram+1,min_Tile):            
@@ -613,14 +614,17 @@ def check_Wrong(aloc_Req):
                         
                     topologia[id][1]=topologia[id][1]-min_Clb
                     topologia[id][2]=topologia[id][2]-min_Bram
-                    
+                    not_valid = False
                                                
                     
                             
-            else:
-                aloc_W.append(req)                
+        if not_valid == True: 
+            aloc_W.append(req)
+            print(req)
+    #print("aloc_W:", aloc_W) 
+    return aloc_W
+                   
                                      
-
 def greedy(lista_Req,lista_Paths,lista_Nodos):
     aloc_Req=[]
     cash=0
@@ -718,10 +722,14 @@ def main():
             lista_Paths,lista_Nodos=ler_Topologia()
             lista_Req=ler_Requisicoes()
             res_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
-            print("Wrong:",res_w[1])
             res_g=greedy(lista_Req,lista_Paths,lista_Nodos)
-            print("Greedy:",res_g[1])
-            check_Wrong(res_w[1])
+            for i in res_w[1]:
+                print("W:",i.id)
+            for j in res_g[1]:
+                print("G:",j.id)
+            j=check_Wrong(res_w[1])
+            for i in j:
+                print("WW:",i.id)
             
 
         elif modo=='2':

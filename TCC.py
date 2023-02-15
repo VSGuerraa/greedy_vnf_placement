@@ -235,7 +235,7 @@ def gerador_Req(nro_Nodos,nro_Req):
 
     nro_Func=random.randint(9,12)
     
-    for j in range (nro_Func):
+    for func in range (nro_Func):
         sort_Func=random.randint(0,len(implementacoes)-1)
         if implementacoes[sort_Func]["nome"][0]=='F':
             nome='Firewall'
@@ -243,13 +243,13 @@ def gerador_Req(nro_Nodos,nro_Req):
             nome='Deep Packet Inspection'
         elif implementacoes[sort_Func]["nome"][0]=='A':
             nome='Advanced Encryption Standard'
-        funcao[j] = {
+        funcao[func] = {
             "Nome": nome,
             "implementacao": implementacoes[sort_Func]
             }
-
+        implementacoes[sort_Func]["CLBs"]=int(implementacoes[sort_Func]["CLBs"]*1.25) #considera que apenas 80% das clb são de fato utilizadas
     
-    for k in range (0,nro_Req):
+    for index in range (0,nro_Req):
         rand_fun=random.randint(0,nro_Func-1)
         rand_nodo_S=random.randint(0,(nro_Nodos-1))
         rand_nodo_D=random.randint(0,(nro_Nodos-1))
@@ -258,13 +258,13 @@ def gerador_Req(nro_Nodos,nro_Req):
         
         aux=funcao[rand_fun]["implementacao"]
         valor=(aux['CLBs']+(aux['BRAM']*10))/50
-        valor=valor *random.uniform(0.9,1.1)
+        valor=int(valor*random.uniform(0.9,1.1))
         
 
         lat=check_Lat(rand_nodo_S,rand_nodo_D,lista_Caminhos, lista_Nodos)            
         
-        requisicoes[k] = {
-            "Id": k,
+        requisicoes[index] = {
+            "Id": index,
             "Nodo_S": rand_nodo_S,
             "Nodo_D": rand_nodo_D,
             "max_Lat": int(lat*1.3),
@@ -545,6 +545,7 @@ def check_Wrong(aloc_Req):
         min_Tile_bram=math.ceil(req.func.bram/12)
         
         for id,device in enumerate(topologia):
+            
             if device[0]=='Nodo'+str(req.init_node) and device[1]!=0:
                 dispositivo=device
                 
@@ -562,6 +563,7 @@ def check_Wrong(aloc_Req):
                     min_Tile=2
                     
                 comparador=0    
+                #checa por numero de CLB
                 for linha in range(divisor,0,-1):
                     
                     if min_Tile_clb%linha == 0 and min_Tile_clb<(dispositivo[1]*(linha/divisor)):
@@ -578,11 +580,14 @@ def check_Wrong(aloc_Req):
                                 comparador=(min_Tile_clb%linha) / linha
                                 melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
                 if melhor!=0:
-                    for index in range(0,min_Tile_clb+1,10):            
-                        min_Bram+=melhor*12
+                    for index in range(0,min_Tile_clb/melhor,10):            
+                        min_Bram+=melhor
+                    linha=melhor
                 
+                part=[linha,math.ceil(min_Tile_clb/linha)]
                 
                 comparador=0
+                #checa por numero de BRAM
                 for linha in range(divisor,0,-1):
                     
                     if min_Tile_bram%linha == 0 and min_Tile_bram<(dispositivo[2]*(linha/divisor)):
@@ -599,22 +604,28 @@ def check_Wrong(aloc_Req):
                                 comparador=(min_Tile_bram%linha) / linha
                                 melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
                 if melhor!=0:
-                    for index in range(0,min_Tile_bram+1,min_Tile):            
-                        min_Clb+=melhor*60
+                    for index in range(0,min_Tile_bram/melhor,min_Tile):            
+                        min_Clb+=melhor
+                    linha=melhor
                 
                 
-                if dispositivo[1]-min_Clb<0 or dispositivo[2]-min_Bram<0:
+                if dispositivo[1]-min_Tile_bram<0 or dispositivo[2]-min_Tile_bram<0:
                     continue
                 
                 else:
-                    if min_Bram<min_Tile_bram:
-                        min_Bram=min_Tile_bram
-                    if min_Clb<min_Tile_clb:
-                        min_Clb=min_Tile_clb
-                        
-                    topologia[id][1]=topologia[id][1]-min_Clb
-                    topologia[id][2]=topologia[id][2]-min_Bram
-                    not_valid = False
+                    if min_Bram>=min_Tile_bram or min_Clb>=min_Tile_clb:
+                        if part[0]>=linha: 
+                            min_Clb=part[0]*math.ceil(min_Tile_clb/part[0])*60
+                            min_Bram=part[0]*math.ceil(min_Tile_bram/part[0])*12
+                            topologia[id][1]=topologia[id][1]-min_Clb
+                            topologia[id][2]=topologia[id][2]-min_Bram
+                            not_valid = False
+                        else:
+                            min_Clb=linha*math.ceil(min_Tile_clb/linha)*60
+                            min_Bram=linha*math.ceil(min_Tile_bram/linha)*12
+                            topologia[id][1]=topologia[id][1]-min_Clb
+                            topologia[id][2]=topologia[id][2]-min_Bram
+                            not_valid = False
                                                
                     
                             
@@ -623,7 +634,7 @@ def check_Wrong(aloc_Req):
             print(req)
     #print("aloc_W:", aloc_W) 
     return aloc_W
-                   
+#rever após corrigir partições corretas                  
                                      
 def greedy(lista_Req,lista_Paths,lista_Nodos):
     aloc_Req=[]
@@ -723,13 +734,19 @@ def main():
             lista_Req=ler_Requisicoes()
             res_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
             res_g=greedy(lista_Req,lista_Paths,lista_Nodos)
+            a=[]
+            b=[]
+            c=[]
             for i in res_w[1]:
-                print("W:",i.id)
+                a.append(i.id)
+            print("W:",a)
             for j in res_g[1]:
-                print("G:",j.id)
+                b.append(j.id)
+            print("G:",b)
             j=check_Wrong(res_w[1])
             for i in j:
-                print("WW:",i.id)
+                c.append(i.id)
+            print("WW:",c)
             
 
         elif modo=='2':

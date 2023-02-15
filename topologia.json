@@ -5,6 +5,52 @@
                 [
                     {
                         "Part0": {
+                            "CLBs": 134280,
+                            "BRAM": 3780,
+                            "DSP": 1800
+                        }
+                    }
+                ],
+                [
+                    {
+                        "Part0": {
+                            "CLBs": 2640,
+                            "BRAM": 96,
+                            "DSP": 192
+                        }
+                    },
+                    {
+                        "Part1": {
+                            "CLBs": 8640,
+                            "BRAM": 144,
+                            "DSP": 576
+                        }
+                    },
+                    {
+                        "Part2": {
+                            "CLBs": 2640,
+                            "BRAM": 96,
+                            "DSP": 192
+                        }
+                    },
+                    {
+                        "Part3": {
+                            "CLBs": 8640,
+                            "BRAM": 144,
+                            "DSP": 576
+                        }
+                    },
+                    {
+                        "Part4": {
+                            "CLBs": 7740,
+                            "BRAM": 120,
+                            "DSP": 384
+                        }
+                    }
+                ],
+                [
+                    {
+                        "Part0": {
                             "CLBs": 8640,
                             "BRAM": 144,
                             "DSP": 576
@@ -12,30 +58,25 @@
                     },
                     {
                         "Part1": {
-                            "CLBs": 58560,
-                            "BRAM": 1536,
-                            "DSP": 192
+                            "CLBs": 8640,
+                            "BRAM": 144,
+                            "DSP": 576
+                        }
+                    },
+                    {
+                        "Part2": {
+                            "CLBs": 117000,
+                            "BRAM": 3492,
+                            "DSP": 648
                         }
                     }
                 ]
             ],
             "Links": [
                 {
-                    "2": {
-                        "Lat": 51,
-                        "Throughput": 200
-                    }
-                },
-                {
-                    "1": {
-                        "Lat": 83,
-                        "Throughput": 400
-                    }
-                },
-                {
                     "4": {
-                        "Lat": 187,
-                        "Throughput": 100
+                        "Lat": 25,
+                        "Throughput": 40
                     }
                 }
             ]
@@ -61,36 +102,29 @@
                     },
                     {
                         "Part2": {
-                            "CLBs": 2640,
-                            "BRAM": 96,
-                            "DSP": 192
-                        }
-                    },
-                    {
-                        "Part3": {
-                            "CLBs": 16380,
-                            "BRAM": 264,
-                            "DSP": 960
+                            "CLBs": 123000,
+                            "BRAM": 3540,
+                            "DSP": 1032
                         }
                     }
                 ]
             ],
             "Links": [
                 {
-                    "0": {
-                        "Lat": 152,
-                        "Throughput": 100
-                    }
-                },
-                {
-                    "2": {
-                        "Lat": 68,
+                    "4": {
+                        "Lat": 86,
                         "Throughput": 40
                     }
                 },
                 {
-                    "4": {
-                        "Lat": 140,
+                    "2": {
+                        "Lat": 186,
+                        "Throughput": 40
+                    }
+                },
+                {
+                    "3": {
+                        "Lat": 59,
                         "Throughput": 400
                     }
                 }
@@ -103,53 +137,30 @@
                 [
                     {
                         "Part0": {
-                            "CLBs": 8640,
-                            "BRAM": 144,
-                            "DSP": 576
-                        }
-                    },
-                    {
-                        "Part1": {
-                            "CLBs": 58560,
-                            "BRAM": 1536,
-                            "DSP": 192
-                        }
-                    }
-                ],
-                [
-                    {
-                        "Part0": {
-                            "CLBs": 8640,
-                            "BRAM": 144,
-                            "DSP": 576
-                        }
-                    },
-                    {
-                        "Part1": {
-                            "CLBs": 58560,
-                            "BRAM": 1536,
-                            "DSP": 192
+                            "CLBs": 30300,
+                            "BRAM": 600,
+                            "DSP": 1920
                         }
                     }
                 ]
             ],
             "Links": [
                 {
-                    "0": {
-                        "Lat": 192,
-                        "Throughput": 40
+                    "1": {
+                        "Lat": 30,
+                        "Throughput": 100
                     }
                 },
                 {
-                    "1": {
-                        "Lat": 79,
+                    "3": {
+                        "Lat": 114,
                         "Throughput": 200
                     }
                 },
                 {
                     "4": {
-                        "Lat": 149,
-                        "Throughput": 100
+                        "Lat": 56,
+                        "Throughput": 400
                     }
                 }
             ]
@@ -157,6 +168,31 @@
     },
     {
         "Nodo3": {
+            "FPGA": [],
+            "Links": [
+                {
+                    "1": {
+                        "Lat": 138,
+                        "Throughput": 200
+                    }
+                },
+                {
+                    "2": {
+                        "Lat": 76,
+                        "Throughput": 40
+                    }
+                },
+                {
+                    "4": {
+                        "Lat": 146,
+                        "Throughput": 40
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "Nodo4": {
             "FPGA": [
                 [
                     {
@@ -170,62 +206,65 @@
                 [
                     {
                         "Part0": {
-                            "CLBs": 2640,
-                            "BRAM": 96,
-                            "DSP": 192
+                            "CLBs": 8640,
+                            "BRAM": 144,
+                            "DSP": 576
                         }
                     },
                     {
                         "Part1": {
-                            "CLBs": 2640,
-                            "BRAM": 96,
+                            "CLBs": 58560,
+                            "BRAM": 1536,
                             "DSP": 192
+                        }
+                    }
+                ],
+                [
+                    {
+                        "Part0": {
+                            "CLBs": 8640,
+                            "BRAM": 144,
+                            "DSP": 576
+                        }
+                    },
+                    {
+                        "Part1": {
+                            "CLBs": 8640,
+                            "BRAM": 144,
+                            "DSP": 576
                         }
                     },
                     {
                         "Part2": {
-                            "CLBs": 61920,
-                            "BRAM": 1488,
-                            "DSP": 384
+                            "CLBs": 13020,
+                            "BRAM": 312,
+                            "DSP": 768
                         }
                     }
                 ]
             ],
             "Links": [
                 {
-                    "4": {
-                        "Lat": 81,
-                        "Throughput": 400
-                    }
-                }
-            ]
-        }
-    },
-    {
-        "Nodo4": {
-            "FPGA": [],
-            "Links": [
-                {
                     "0": {
-                        "Lat": 130,
-                        "Throughput": 400
+                        "Lat": 162,
+                        "Throughput": 100
                     }
                 },
                 {
                     "1": {
-                        "Lat": 138,
-                        "Throughput": 400
+                        "Lat": 143,
+                        "Throughput": 200
                     }
                 },
                 {
                     "2": {
-                        "Lat": 32,
-                        "Throughput": 400
+                        "Lat": 120,
+                        "Throughput": 40
                     }
                 },
                 {
                     "3": {
-                        "Lat": 99,
+                        "Lat": 156,
                         "Throughput": 200
                     }
                 }

@@ -53,8 +53,23 @@ def gerador_Topologia(nro_Nodos, nro_Links):
         nro_fpga=random.randint(0,3)
         if nro_fpga!=0:
             
-            for i in range(nro_fpga):
-
+            for device in range(nro_fpga):
+                
+                lista_Part=[]
+                sort_Fpga=random.choice(range(len(fpga)))
+                fpga_P=[]
+                fpga_M=[]
+                fpga_G=[]
+                
+                size_Fgpa=[fpga_P,fpga_M,fpga_G]
+                sort_Size=random.choice(size_Fgpa[sort_Fpga])
+                for part in sort_Size:
+                    clb=sort_Size[0]
+                    bram=sort_Size[1]
+                    dsp=sort_Size[2]
+                    lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
+            lista_Fpga.append(lista_Part)
+            '''
                 lista_Part=[]
                 sort_Fpga=random.choice(fpga)
                 size_CLB = sort_Fpga[0]
@@ -92,7 +107,7 @@ def gerador_Topologia(nro_Nodos, nro_Links):
                     part+=1
 
                 lista_Fpga.append(lista_Part)
-                        
+                '''  
         topologia_rede.append({"Nodo"+str(a): {"FPGA": lista_Fpga, "Links": lista_Links}})
         
     with open ("topologia.json","w") as outfile:
@@ -854,9 +869,9 @@ for device in fpga:
 #fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
 
 
-part_p=[2340,12,0]
-part_m=[8640,96,0]
-part_g=[15240,480,0]
+part_p=[2940,12,0]
+part_m=[10800,96,0]
+part_g=[19080,480,0]
 
 
 

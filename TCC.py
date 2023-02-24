@@ -31,6 +31,120 @@ def gerador_Topologia(nro_Nodos, nro_Links):
 
     fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
     list_thro=[40,100,200,400]
+    fpga_P=[    
+                {
+                    "Part0": {
+                        "CLBs": 22200,
+                        "BRAM": 480,
+                        "DSP": 1560
+                    }
+                },
+                {
+                    "Part0": {
+                        "CLBs": 10800,
+                        "BRAM": 300,
+                        "DSP": 600
+                    },
+                    "Part1": {
+                        "CLBs": 10800,
+                        "BRAM": 180,
+                        "DSP": 600
+                    },
+                    "Part2": {
+                        "CLBs": 2958,
+                        "BRAM": 40,
+                        "DSP": 240
+                    }
+                } 
+            ]
+    
+    fpga_M=[
+            {
+                    "Part0": {
+                        "CLBs": 19200,
+                        "BRAM": 480,
+                        "DSP": 192
+                    },
+                    "Part1": {
+                        "CLBs": 20160,
+                        "BRAM": 480,
+                        "DSP": 192
+                    },
+                    "Part2": {
+                        "CLBs": 10440,
+                        "BRAM": 288,
+                        "DSP": 144
+                    },
+                    
+                    "Part3": {
+                        "CLBs": 3060,
+                        "BRAM": 108,
+                        "DSP": 0
+                    },
+                    "Part4": {
+                        "CLBs": 3060,
+                        "BRAM": 144,
+                        "DSP": 72
+                    },
+                    "Part5": {
+                        "CLBs": 3060,
+                        "BRAM": 72,
+                        "DSP": 72
+                    }
+            }             
+            ]
+    fpga_G=[
+        {
+                    "Part0": {
+                        "CLBs": 19800,
+                        "BRAM": 504,
+                        "DSP": 288
+                    },
+                    "Part1": {
+                        "CLBs": 19080,
+                        "BRAM": 576,
+                        "DSP": 288
+                    },
+                    "Part2": {
+                        "CLBs": 22140,
+                        "BRAM": 540,
+                        "DSP": 216
+                    },
+                    
+                    "Part3": {
+                        "CLBs": 19440,
+                        "BRAM": 540,
+                        "DSP": 216
+                    },
+                    "Part4": {
+                        "CLBs": 10980,
+                        "BRAM": 288,
+                        "DSP": 144
+                    },
+                    "Part5": {
+                        "CLBs": 10800,
+                        "BRAM": 360,
+                        "DSP": 144
+                    },
+                    "Part6": {
+                        "CLBs": 2940,
+                        "BRAM": 72,
+                        "DSP": 0
+                    },
+                    "Part7": {
+                        "CLBs": 2940,
+                        "BRAM": 72,
+                        "DSP": 0
+                    },
+                    "Part8": {
+                        "CLBs": 2940,
+                        "BRAM": 84,
+                        "DSP": 24
+                    }
+            }
+        ]
+                
+    size_Fgpa=[fpga_P,fpga_M,fpga_G]
 
     for a in range(0,nro_Nodos):
         lista_Fpga=[]
@@ -57,17 +171,9 @@ def gerador_Topologia(nro_Nodos, nro_Links):
                 
                 lista_Part=[]
                 sort_Fpga=random.choice(range(len(fpga)))
-                fpga_P=[]
-                fpga_M=[]
-                fpga_G=[]
                 
-                size_Fgpa=[fpga_P,fpga_M,fpga_G]
-                sort_Size=random.choice(size_Fgpa[sort_Fpga])
-                for part in sort_Size:
-                    clb=sort_Size[0]
-                    bram=sort_Size[1]
-                    dsp=sort_Size[2]
-                    lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
+                lista_Part=random.choice(size_Fgpa[sort_Fpga])
+                
             lista_Fpga.append(lista_Part)
             '''
                 lista_Part=[]
@@ -413,11 +519,10 @@ def ler_Topologia():
             lista_Parts=[]
             for part in fpga:
                 
-                nodo=str(*part.keys())
-
-                clb=part[nodo]["CLBs"]
-                bram=part[nodo]["BRAM"]
-                dsp=part[nodo]["DSP"]
+                #nodo=str(*part.keys())
+                clb=fpga[part]["CLBs"]
+                bram=fpga[part]["BRAM"]
+                dsp=fpga[part]["DSP"]
                 const_Part=Partition(clb,bram,dsp)
                 lista_Parts.append(const_Part)
             lista_Fpga.append(lista_Parts)
@@ -531,24 +636,34 @@ def check_Parts(partitions, requisitions):
         weight_clb=1
         weight_bram=50
         weight_dsp=20
+        if part.clb-requisitions.func.clb<0:
+            continue
+        if part.bram-requisitions.func.bram<0:
+            continue
+        if part.bram-requisitions.func.bram<0:
+            continue
         total_weight=(part.clb-requisitions.func.clb)*weight_clb
         total_weight+=(part.bram-requisitions.func.bram)*weight_bram
         total_weight+=(part.dsp-requisitions.func.dsp)*weight_dsp
         pesos.append(total_weight)
+    if len(pesos)==0:
+        return False
+    
     index_min = min(range(len(pesos)), key=pesos.__getitem__)
+    
     return(index_min) 
-        
+#Checa por partição que aloca melhor a req     
 
 def check_Wrong(aloc_Req):
     
     with open("topologia_wrong.json") as file:
         topologia = json.load(file)
-        
+    '''    
     for index,device in enumerate(topologia):
             topologia[index][1]=device[1]*0.9
             topologia[index][2]=device[2]*0.9
             topologia[index][3]=device[3]*0.9
-            
+    '''        
     #fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
       
     aloc_W=[]
@@ -567,13 +682,13 @@ def check_Wrong(aloc_Req):
                 min_Clb=0
                 min_Bram=0
                     
-                if int(dispositivo[1]/27000)==1:
+                if int(dispositivo[1]/22000)==1:
                     divisor=5
                     min_Tile=5
-                elif int(dispositivo[1]/60000)==1:
+                elif int(dispositivo[1]/58000)==1:
                     divisor=8
                     min_Tile=3
-                elif int(dispositivo[1]/120000)==1:
+                elif int(dispositivo[1]/110000)==1:
                     divisor=15
                     min_Tile=2
                     
@@ -667,6 +782,8 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
                 if len(parts)==0:
                     continue
                 best_part=check_Parts(parts,req)
+                if best_part==False:
+                    continue
                 if parts[best_part].clb>=req.func.clb:
                     if parts[best_part].bram>=req.func.bram:
                         if parts[best_part].dsp>=req.func.dsp:

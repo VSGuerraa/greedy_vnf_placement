@@ -667,6 +667,7 @@ def check_Wrong(aloc_Req):
     #fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
       
     aloc_W=[]
+    divisor=0
     
     for req in aloc_Req:
         
@@ -685,17 +686,21 @@ def check_Wrong(aloc_Req):
                 if int(dispositivo[1]/22000)==1:
                     divisor=5
                     min_Tile=5
+                    modelo=1
                 elif int(dispositivo[1]/58000)==1:
                     divisor=8
                     min_Tile=3
+                    modelo=2
                 elif int(dispositivo[1]/110000)==1:
                     divisor=15
                     min_Tile=2
+                    modelo=3
                     
-                comparador=0    
+                comparador=0
+                melhor=1  
+                min_Tile=1 
                 #checa por numero de CLB
                 for linha in range(divisor,0,-1):
-                    
                     if min_Tile_clb%linha == 0 and min_Tile_clb<(dispositivo[1]*(linha/divisor)):
                         for index in range(0,int(min_Tile_clb/linha),10):            
                             min_Bram+=linha
@@ -710,7 +715,7 @@ def check_Wrong(aloc_Req):
                                 comparador=(min_Tile_clb%linha) / linha
                                 melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
                 if melhor!=0:
-                    for index in range(0,min_Tile_clb/melhor,10):            
+                    for index in range(0,int(min_Tile_clb/melhor),10):            
                         min_Bram+=melhor
                     linha=melhor
                 
@@ -734,7 +739,7 @@ def check_Wrong(aloc_Req):
                                 comparador=(min_Tile_bram%linha) / linha
                                 melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
                 if melhor!=0:
-                    for index in range(0,min_Tile_bram/melhor,min_Tile):            
+                    for index in range(0,int(min_Tile_bram/melhor),min_Tile):            
                         min_Clb+=melhor
                     linha=melhor
                 
@@ -760,9 +765,7 @@ def check_Wrong(aloc_Req):
                     
                             
         if not_valid == True: 
-            aloc_W.append(req)
-            print(req)
-    #print("aloc_W:", aloc_W) 
+            aloc_W.append([req,modelo])
     return aloc_W
 #rever após corrigir partições corretas                  
                                      
@@ -823,7 +826,7 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
     return(len(aloc_Req), aloc_Req, cash)
     
 
-def plot(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun):
+def plot_Func(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun):
     '''
     test=zip(dataset_1,dataset_2,dataset_3)
     lista_test=list(sorted(test, key=lambda teste: teste[0]))
@@ -847,6 +850,14 @@ def plot(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun):
     
     plt.savefig('Resultado.png')
     plt.show()
+
+
+def plot_Invalidos(lista_Invalidos,nr_Nodos):
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot.bar(lista_Invalidos[1],color=['green','red','blue'], ec='k',stacked=True) 
+    ax.set_xlabel("Numero de Nodos") 
+    plt.show()
      
 
 def main():
@@ -866,6 +877,8 @@ def main():
             lista_Req=ler_Requisicoes()
             res_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
             res_g=greedy(lista_Req,lista_Paths,lista_Nodos)
+            
+            #visualização apenas
             a=[]
             b=[]
             c=[]
@@ -877,7 +890,7 @@ def main():
             print("G:",b)
             j=check_Wrong(res_w[1])
             for i in j:
-                c.append(i.id)
+                c.append(i[0].id)
             print("WW:",c)
             
 
@@ -892,6 +905,7 @@ def main():
             aloc_Desv=[]
             #valor_Desv=[]
             wrong_Desv=[]
+            lista_Invalidos=[]
 
             for index in range (5,45,5):
                 req_Aloc_g=[]
@@ -908,7 +922,11 @@ def main():
                     lista_Req=ler_Requisicoes()
                     results_g=greedy(lista_Req,lista_Paths,lista_Nodos)
                     results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
-            
+                    aux=check_Wrong(results_w[1])
+                    lista_Invalidos.append(aux)
+
+                    
+                    
                     lista_Results_g.append({
                         "Teste"+str(index):{
                         "Lista Requisicoes": len(lista_Req),
@@ -936,8 +954,8 @@ def main():
                 dataset_wrongrun.append(stats.mean(req_Aloc_w))
                 
                
-               
-            plot(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
+            plot_Invalidos(lista_Invalidos,index)  
+            plot_Func(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
 
             with open("Req_Alocadas.txt","w") as outfile:
                 for result in results_g[1]:
@@ -956,46 +974,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-'''
-    
-fpga=[]
-aux=[]
-fpga_Resources=[]
-
-
-
-with open('KU040.txt','r') as file:
-    fpga.append(file.read())
-    
-with open('KU095.txt','r') as file:
-    fpga.append(file.read())
-    
-with open('VU190.txt','r') as file:
-    fpga.append(file.read())
-
-for device in fpga:
-    aux=[]
-    device=device.split('\n')
-    for row in device:
-        row=row.split(';')
-        aux.append(row)
-    fpga_Resources.append(aux)
-    
-
-#fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
-
-
-part_p=[2940,12,0]
-part_m=[10800,96,0]
-part_g=[19080,480,0]
-
-
-
-        '''
-    
-
-
-
-
-

@@ -32,14 +32,16 @@ def gerador_Topologia(nro_Nodos, nro_Links):
     fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
     list_thro=[40,100,200,400]
     fpga_P=[    
-                {
+                {   "Modelo": 'P',
+                    
                     "Part0": {
                         "CLBs": 22200,
                         "BRAM": 480,
                         "DSP": 1560
                     }
                 },
-                {
+                {   "Modelo": 'P',   
+                 
                     "Part0": {
                         "CLBs": 10800,
                         "BRAM": 300,
@@ -59,7 +61,8 @@ def gerador_Topologia(nro_Nodos, nro_Links):
             ]
     
     fpga_M=[
-            {
+            {       "Modelo": 'M',
+             
                     "Part0": {
                         "CLBs": 19200,
                         "BRAM": 480,
@@ -94,7 +97,8 @@ def gerador_Topologia(nro_Nodos, nro_Links):
             }             
             ]
     fpga_G=[
-        {
+        {           "Modelo": 'G',
+         
                     "Part0": {
                         "CLBs": 19800,
                         "BRAM": 504,
@@ -166,13 +170,13 @@ def gerador_Topologia(nro_Nodos, nro_Links):
 
         nro_fpga=random.randint(0,3)
         if nro_fpga!=0:
-            
+            lista_Part=[]
             for device in range(nro_fpga):
                 
-                lista_Part=[]
+                
                 sort_Fpga=random.choice(range(len(fpga)))
                 
-                lista_Part=random.choice(size_Fgpa[sort_Fpga])
+                lista_Part.append(random.choice(size_Fgpa[sort_Fpga]))
                 
             lista_Fpga.append(lista_Part)
             '''
@@ -516,16 +520,19 @@ def ler_Topologia():
 
         
         for fpga in fpgas:
-            lista_Parts=[]
-            for part in fpga:
-                
-                #nodo=str(*part.keys())
-                clb=fpga[part]["CLBs"]
-                bram=fpga[part]["BRAM"]
-                dsp=fpga[part]["DSP"]
-                const_Part=Partition(clb,bram,dsp)
-                lista_Parts.append(const_Part)
-            lista_Fpga.append(lista_Parts)
+            
+            for parts in fpga:
+                lista_Parts=[]
+                for part in parts:
+                #id=str(*part.keys())
+                    if part=='Modelo':
+                        continue
+                    clb=parts[part]["CLBs"]
+                    bram=parts[part]["BRAM"]
+                    dsp=parts[part]["DSP"]
+                    const_Part=Partition(clb,bram,dsp)
+                    lista_Parts.append(const_Part)
+                lista_Fpga.append(lista_Parts)
             
         const_Nodo=Node(nodo_id,lista_Fpga,lista_Links)
         
@@ -549,7 +556,13 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
                 clb+=part.clb
                 bram+=part.bram
                 dsp+=part.dsp
-            lista_Fpga.append([nodo_id,clb,bram,dsp])
+            if int(clb/110000)==1:
+                modelo=3
+            elif int(clb/58000)==1:
+                modelo=2
+            elif int(clb/22000)==1:
+                modelo=1
+            lista_Fpga.append([nodo_id,modelo,clb,bram,dsp])
             
             
     
@@ -570,9 +583,9 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
         if lista_Nodos[req.init_node].fpga!=0:
             for i,device in enumerate(lista_Fpga):
                 if device[0]=='Nodo'+str(req.init_node):
-                    if device[1]>=req.func.clb:
-                        if device[2]>=req.func.bram:
-                            if device[3]>=req.func.dsp:
+                    if device[2]>=req.func.clb:
+                        if device[3]>=req.func.bram:
+                            if device[4]>=req.func.dsp:
                                 check_Node=True
                                 device_id=i  
                                 break            
@@ -594,9 +607,9 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
         if check_Link and check_Node:
             
             aloc_Req.append(req)
-            lista_Fpga[device_id][1]=lista_Fpga[device_id][1]-req.func.clb
-            lista_Fpga[device_id][2]=lista_Fpga[device_id][2]-req.func.bram
-            lista_Fpga[device_id][3]=lista_Fpga[device_id][3]-req.func.dsp
+            lista_Fpga[device_id][2]=lista_Fpga[device_id][2]-req.func.clb
+            lista_Fpga[device_id][3]=lista_Fpga[device_id][3]-req.func.bram
+            lista_Fpga[device_id][4]=lista_Fpga[device_id][4]-req.func.dsp
             
             
             
@@ -658,16 +671,11 @@ def check_Wrong(aloc_Req):
     
     with open("topologia_wrong.json") as file:
         topologia = json.load(file)
-    '''    
-    for index,device in enumerate(topologia):
-            topologia[index][1]=device[1]*0.9
-            topologia[index][2]=device[2]*0.9
-            topologia[index][3]=device[3]*0.9
-    '''        
+    
+          
     #fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
       
     aloc_W=[]
-    divisor=0
     
     for req in aloc_Req:
         
@@ -683,25 +691,21 @@ def check_Wrong(aloc_Req):
                 min_Clb=0
                 min_Bram=0
                     
-                if int(dispositivo[1]/22000)==1:
+                if dispositivo[1]==1:
                     divisor=5
                     min_Tile=5
-                    modelo=1
-                elif int(dispositivo[1]/58000)==1:
+                elif dispositivo[1]==2:
                     divisor=8
                     min_Tile=3
-                    modelo=2
-                elif int(dispositivo[1]/110000)==1:
+                elif dispositivo[1]==3:
                     divisor=15
                     min_Tile=2
-                    modelo=3
                     
                 comparador=0
-                melhor=1  
-                min_Tile=1 
+                
                 #checa por numero de CLB
                 for linha in range(divisor,0,-1):
-                    if min_Tile_clb%linha == 0 and min_Tile_clb<(dispositivo[1]*(linha/divisor)):
+                    if min_Tile_clb%linha == 0 and min_Tile_clb<(dispositivo[2]*(linha/divisor)):
                         for index in range(0,int(min_Tile_clb/linha),10):            
                             min_Bram+=linha
                         melhor=0
@@ -725,7 +729,7 @@ def check_Wrong(aloc_Req):
                 #checa por numero de BRAM
                 for linha in range(divisor,0,-1):
                     
-                    if min_Tile_bram%linha == 0 and min_Tile_bram<(dispositivo[2]*(linha/divisor)):
+                    if min_Tile_bram%linha == 0 and min_Tile_bram<(dispositivo[3]*(linha/divisor)):
                         for index in range(0,int(min_Tile_bram/linha),min_Tile):            
                             min_Clb+=linha
                         melhor=0
@@ -744,7 +748,7 @@ def check_Wrong(aloc_Req):
                     linha=melhor
                 
                 
-                if dispositivo[1]-min_Tile_bram<0 or dispositivo[2]-min_Tile_bram<0:
+                if dispositivo[2]-min_Tile_bram<0 or dispositivo[3]-min_Tile_bram<0:
                     continue
                 
                 else:
@@ -765,7 +769,7 @@ def check_Wrong(aloc_Req):
                     
                             
         if not_valid == True: 
-            aloc_W.append([req,modelo])
+            aloc_W.append([req,dispositivo[1]])
     return aloc_W
 #rever após corrigir partições corretas                  
                                      

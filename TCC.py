@@ -5,6 +5,9 @@ import statistics as stats
 from dataclasses import dataclass
 import matplotlib.pyplot as plt
 import networkx as nx
+import copy
+import numpy as np
+
 
 
 
@@ -773,7 +776,7 @@ def check_Wrong(aloc_Req):
     return aloc_W
 #rever após corrigir partições corretas                  
                                      
-def greedy(lista_Req,lista_Paths,lista_Nodos):
+def greedy(lista_Req,lista_Paths,node_List):
     aloc_Req=[]
     cash=0
     for req in lista_Req:
@@ -784,8 +787,8 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
         refresh_Links=[]
         
 
-        if len(lista_Nodos[req.init_node].fpga)!=0:
-            for a,parts in enumerate(lista_Nodos[req.init_node].fpga):
+        if len(node_List[req.init_node].fpga)!=0:
+            for a,parts in enumerate(node_List[req.init_node].fpga):
                 if len(parts)==0:
                     continue
                 best_part=check_Parts(parts,req)
@@ -800,7 +803,7 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
                 
         for p in path_Ord:
             for b,c in zip(p,p[1:]):
-                lista_Check=check_Path(c,lista_Nodos[b].link,req)
+                lista_Check=check_Path(c,node_List[b].link,req)
                 check_Link+=lista_Check[0]
                 aux_Lista=b,lista_Check[1],lista_Check[2]
                 refresh_Links.append(aux_Lista)
@@ -813,13 +816,12 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
         if check_Link and check_Node:
             
             aloc_Req.append(req)
-            lista_Nodos[req.init_node].fpga[fpga_num].pop(best_part)
+            node_List[req.init_node].fpga[fpga_num].pop(best_part)
             for nodo_I,nodo_F,thro in refresh_Links:
-                for l in (lista_Nodos[nodo_I].link):
+                for l in (node_List[nodo_I].link):
                     if int(l.nodo_d)==nodo_F:
                         l.min_T=thro
             cash+=req.price
-
 
     ratio=len(aloc_Req)/len(lista_Req)
 
@@ -831,38 +833,69 @@ def greedy(lista_Req,lista_Paths,lista_Nodos):
     
 
 def plot_Func(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun):
-    '''
-    test=zip(dataset_1,dataset_2,dataset_3)
-    lista_test=list(sorted(test, key=lambda teste: teste[0]))
-    dataset_1,dataset_2,dataset_3 = zip(*lista_test)
-    '''
+    
     fig = plt.figure() 
     ax = fig.add_subplot(111) 
-    ax.plot(dataset_index, dataset_req_Aloc,color='tab:green') 
+    ax.plot(dataset_index, dataset_req_Aloc,color='tab:green',label='Abordagem Realista') 
     ax.errorbar(dataset_index, dataset_req_Aloc, yerr=aloc_Desv, fmt="go")
-    ax2 = ax.twinx() 
-    ax2.plot(dataset_index, dataset_wrongrun, color = 'tab:red') 
-    ax2.errorbar(dataset_index, dataset_wrongrun, yerr=valor_Desv,fmt='ro')
-    plt.title('Numero de funcoes alocadas', fontweight="bold") 
+    ax.plot(dataset_index, dataset_wrongrun, color = 'tab:red', label='Abordagem Conflitante') 
+    ax.errorbar(dataset_index, dataset_wrongrun, yerr=valor_Desv,fmt='ro')
+    #plt.title('Numero de funcoes alocadas', fontweight="bold") 
     ax.grid() 
-    ax.set_xlabel("Numero de Nodos") 
-    ax.set_ylabel(r"Nossa abordagem",color='tab:green') 
-    ax2.set_ylabel(r"Abordagem conflitante", color='tab:red') 
-    ax2.set_ylim(0, 100) 
+    ax.set_xlabel("Número de Nodos") 
+    ax.set_ylabel("Funções Alocadas") 
     ax.set_ylim(0, 100)
-    #ax.set_xlim(0,40)
     
-    plt.savefig('Resultado.png')
+    plt.legend(loc=2)
+    plt.savefig('Grafico_Func.png')
     plt.show()
 
 
 def plot_Invalidos(lista_Invalidos,nr_Nodos):
+    
+    
+    P=[]
+    M=[]
+    G=[]
+    
+    if lista_Invalidos[1]==1:
+        P.append(lista_Invalidos[0])
+    elif lista_Invalidos[1]==2:
+        M.append(lista_Invalidos[0])
+    elif lista_Invalidos[1]==3:
+        G.append(lista_Invalidos[0])
+    
+    
+    boys = (20, 35, 30, 35, 27)
+    girls = (25, 32, 34, 20, 25)
+    non_b=(15,23,24,18,5)
+    ind = np.arange(nr_Nodos)  
+    width = 0.35 
+    
+    fig = plt.subplots(figsize =(10, 7))
+    p1 = plt.bar(ind, len(P), width)
+    p2 = plt.bar(ind, len(M), width,bottom = G)
+    p3 = plt.bar(ind, len(G), width)
+    
+    plt.ylabel('Numero de alocações inválidas')
+    plt.xlabel('Número de nodos')
+    #plt.xticks(ind, ('T1', 'T2', 'T3', 'T4', 'T5'))
+    #plt.yticks(np.arange(0, 81, 10))
+    plt.legend((p1[0], p2[0]), ('boys', 'girls'))
+    
+    plt.show()
+    
+    
+    
+    
+    '''
+    
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.plot.bar(lista_Invalidos[1],color=['green','red','blue'], ec='k',stacked=True) 
     ax.set_xlabel("Numero de Nodos") 
     plt.show()
-     
+    '''
 
 def main():
 
@@ -923,8 +956,10 @@ def main():
                     gerador_Topologia(nodos_G, links_G)
                     gerador_Req(nodos_G,req)
                     lista_Paths,lista_Nodos=ler_Topologia()
+                    lista_Nodos_aux=copy.deepcopy(lista_Nodos)
                     lista_Req=ler_Requisicoes()
                     results_g=greedy(lista_Req,lista_Paths,lista_Nodos)
+                    lista_Nodos=lista_Nodos_aux
                     results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
                     aux=check_Wrong(results_w[1])
                     lista_Invalidos.append(aux)
@@ -958,7 +993,7 @@ def main():
                 dataset_wrongrun.append(stats.mean(req_Aloc_w))
                 
                
-            plot_Invalidos(lista_Invalidos,index)  
+           # plot_Invalidos(lista_Invalidos,index)  
             plot_Func(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
 
             with open("Req_Alocadas.txt","w") as outfile:

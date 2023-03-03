@@ -1,7 +1,7 @@
 [
     {
         "nome": "FW0",
-        "CLBs": 1437,
+        "CLBs": 2806,
         "BRAM": 5,
         "DSPs": 0,
         "Lat": 4.2,
@@ -25,7 +25,7 @@
     },
     {
         "nome": "DPI0",
-        "CLBs": 8377,
+        "CLBs": 10471,
         "BRAM": 37,
         "DSPs": 0,
         "Lat": 278,
@@ -41,26 +41,26 @@
     },
     {
         "nome": "DPI2",
-        "CLBs": 23758,
+        "CLBs": 29697,
         "BRAM": 36,
         "DSPs": 0,
-        "Lat": 2151,
+        "Lat": 932,
         "Throughput": 14.4
     },
     {
         "nome": "DPI3",
-        "CLBs": 8052,
+        "CLBs": 5154,
         "BRAM": 407,
         "DSPs": 0,
-        "Lat": 2151,
+        "Lat": 1807,
         "Throughput": 40
     },
     {
         "nome": "DPI4",
-        "CLBs": 891,
+        "CLBs": 713,
         "BRAM": 96,
         "DSPs": 0,
-        "Lat": 1427,
+        "Lat": 1375,
         "Throughput": 40
     },
     {
@@ -68,7 +68,7 @@
         "CLBs": 6048,
         "BRAM": 399,
         "DSPs": 0,
-        "Lat": 1970,
+        "Lat": 1490,
         "Throughput": 102.6
     },
     {
@@ -76,12 +76,12 @@
         "CLBs": 2532,
         "BRAM": 5,
         "DSPs": 0,
-        "Lat": 18,
+        "Lat": 10,
         "Throughput": 49.38
     },
     {
         "nome": "AES1",
-        "CLBs": 2067,
+        "CLBs": 2698,
         "BRAM": 2,
         "DSPs": 0,
         "Lat": 21,
@@ -89,26 +89,26 @@
     },
     {
         "nome": "AES2",
-        "CLBs": 6397,
-        "BRAM": 4,
+        "CLBs": 4095,
+        "BRAM": 2,
         "DSPs": 0,
         "Lat": 2,
         "Throughput": 59.3
     },
     {
         "nome": "AES3",
-        "CLBs": 2034,
-        "BRAM": 4,
+        "CLBs": 2542,
+        "BRAM": 3,
         "DSPs": 0,
-        "Lat": 5,
+        "Lat": 21,
         "Throughput": 45
     },
     {
         "nome": "AES4",
-        "CLBs": 14938,
+        "CLBs": 11951,
         "BRAM": 450,
         "DSPs": 0,
-        "Lat": 5,
+        "Lat": 6,
         "Throughput": 119.3
     }
 ]

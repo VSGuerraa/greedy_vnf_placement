@@ -851,9 +851,9 @@ def plot_Func(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongr
     plt.show()
 
 
-def plot_Invalidos(lista_Invalidos):
+def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
     
-    nr_Simul=50
+    nr_Simul=5
     
     #quebra a lista de req inv em lista de listas com tamanho de acordo com nr de simulaçoes por tamanho de rede
     result = [lista_Invalidos[i:i+nr_Simul] for i in range(0, len(lista_Invalidos), nr_Simul)]
@@ -868,6 +868,27 @@ def plot_Invalidos(lista_Invalidos):
     nodo_40=[]
     nodos=[nodo_5,nodo_10,nodo_15,nodo_20,nodo_25,nodo_30,nodo_35,nodo_40]
     
+    size_P=0
+    size_M=0
+    size_G=0
+    
+    size_P_I=0
+    size_M_I=0
+    size_G_I=0
+    
+    
+    for inst in lista_Nodos_all:
+        for nodo in inst:
+            for device in nodo.fpga:
+                if len(device)==9:
+                    size_G+=1
+                elif len(device)==6:
+                    size_M+=1
+                else:
+                    size_P+=1
+    
+
+    
     for ind_nodo,step in enumerate(result):
         P=[]
         M=[]
@@ -881,10 +902,13 @@ def plot_Invalidos(lista_Invalidos):
                     continue
                 if req[1]==1:
                     P.append([req,index])
+                    size_P_I+=1
                 elif req[1]==2:
                     M.append([req,index])
+                    size_M_I+=1
                 elif req[1]==3:
                     G.append([req,index])
+                    size_G_I+=1
         for simul in range(nr_Simul): 
             media_P=[]
             media_M=[]
@@ -911,10 +935,11 @@ def plot_Invalidos(lista_Invalidos):
         nodos[ind_nodo].append(aux_media)
             
     
+    ratio=[size_P_I/size_P,size_M_I/size_M,size_G_I/size_G]
     
-    barWidth = 0.1
-    fig = plt.subplots()
     
+
+    '''
     # Set position of bar on X axis
     br1 = np.arange(3)
     br2 = [x + barWidth for x in br1]
@@ -942,16 +967,23 @@ def plot_Invalidos(lista_Invalidos):
             edgecolor ='k', label ='35')
     plt.bar(br8, nodos[7], color ='tab:purple', width = barWidth,
             edgecolor ='k', label ='40')
+    '''
+    barWidth = 0.1
+    br1 = ['KU040','KU095',"VU190"]
+
+    
+    plt.bar(br1, ratio, color ='tab:red', width = barWidth, edgecolor ='k')
+    
     
     # Adding Xticks
-    plt.xlabel('Modelos FPGA', fontweight ='bold', fontsize = 15)
-    plt.ylabel('Quantidade de requisições inválidas', fontweight ='bold', fontsize = 15)
-    plt.xticks([r + barWidth for r in range(3)],['KU040', 'KU095', 'VU190'])
-    plt.legend(title='Numero nodos por topologia',loc='best')
-    plt.show()
+    plt.xlabel('Modelos FPGA')
+    plt.ylabel('Quantidade de alocações inválidas')
+    #plt.ylim(min(ratio),max(ratio)+0.05)
+    #plt.legend(loc='upper left')
     plt.savefig('Grafico_FPGA.png')
+    plt.show()
     
-
+    
 def main():
 
     modo=None
@@ -998,12 +1030,13 @@ def main():
             #valor_Desv=[]
             wrong_Desv=[]
             lista_Invalidos=[]
-
+            lista_Nodos_all=[]
+            
             for index in range (5,45,5):
                 req_Aloc_g=[]
                 req_Aloc_w=[]
                 #valor_Final=[]
-                for cont in range(50):
+                for cont in range(5):
                     size=index
                     nodos_G=size
                     links_G=int(size*1.2)
@@ -1014,12 +1047,14 @@ def main():
                     lista_Nodos_aux=copy.deepcopy(lista_Nodos)
                     lista_Req=ler_Requisicoes()
                     results_g=greedy(lista_Req,lista_Paths,lista_Nodos)
-                    lista_Nodos=lista_Nodos_aux
+                    lista_Nodos=copy.deepcopy(lista_Nodos_aux)
                     results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
+                    lista_Nodos=copy.deepcopy(lista_Nodos_aux)
                     aux=check_Wrong(results_w[1])
                     if len(aux)==0:
                         aux=[0,0]
                     lista_Invalidos.append(aux)
+                    lista_Nodos_all.append(lista_Nodos)
 
                     lista_Results_g.append({
                         "Teste"+str(index):{
@@ -1048,7 +1083,7 @@ def main():
                 dataset_wrongrun.append(stats.mean(req_Aloc_w))
                 
                
-            plot_Invalidos(lista_Invalidos)  
+            plot_Invalidos(lista_Invalidos,lista_Nodos_all)  
             plot_Func(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
 
             with open("Req_Alocadas.txt","w") as outfile:

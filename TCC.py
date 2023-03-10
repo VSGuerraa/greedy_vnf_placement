@@ -153,7 +153,7 @@ def gerador_Topologia(nro_Nodos, nro_Links):
                 
     size_Fgpa=[fpga_P,fpga_M,fpga_G]
 
-    for a in range(0,nro_Nodos):
+    for a in range(nro_Nodos):
         lista_Fpga=[]
         lista_Links=[]
         
@@ -165,13 +165,14 @@ def gerador_Topologia(nro_Nodos, nro_Links):
             if nodoS == a:
                 lista_Links.append(nodoD)
 
-        for c in range(0,len(lista_Links)):
+        for c in range(len(lista_Links)):
             thro=random.choice(list_thro)
             lat= random.randint(20,200)
             lista_Links[c]={lista_Links[c]: {"Lat": lat, "Throughput": thro}}
        
 
         nro_fpga=random.randint(0,3)
+        
         if nro_fpga!=0:
             lista_Part=[]
             for device in range(nro_fpga):
@@ -227,7 +228,7 @@ def gerador_Topologia(nro_Nodos, nro_Links):
         json.dump(topologia_rede, outfile, indent=4)
 
 
-def check_Lat(nodo_S,nodo_D,lista_Paths,lista_Nodos):
+def check_Lat(nodo_S,nodo_D,lista_Paths,lista_Nodos): #checa menor lat dentre os caminhos possiveis
     
     path=list(dfs_caminhos(lista_Paths,nodo_S,nodo_D))
     path_Ord=sorted(path,key=len)
@@ -377,10 +378,11 @@ def gerador_Req(nro_Nodos,nro_Req):
             }
         implementacoes[sort_Func]["CLBs"]=int(implementacoes[sort_Func]["CLBs"]*1.25) #considera que apenas 80% das clb são de fato utilizadas
     
-    for index in range (0,nro_Req):
+    for index in range (nro_Req):
         rand_fun=random.randint(0,nro_Func-1)
         rand_nodo_S=random.randint(0,(nro_Nodos-1))
         rand_nodo_D=random.randint(0,(nro_Nodos-1))
+        
         while rand_nodo_S==rand_nodo_D:
             rand_nodo_D=random.randint(0,nro_Nodos-1)
         
@@ -629,7 +631,7 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
     
     
     return(len(aloc_Req), aloc_Req)
-
+#executa o algoritmo guloso pela visão '
 
 def check_Path(node_D,nodos,req):
     valid_Path=0
@@ -844,7 +846,7 @@ def plot_Func(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongr
     ax.grid() 
     ax.set_xlabel("Número de Nodos") 
     ax.set_ylabel("Funções Alocadas") 
-    ax.set_ylim(0, 100)
+    ax.set_ylim(0, 60)
     
     plt.legend(loc=2)
     plt.savefig('Grafico_Func.png')

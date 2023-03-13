@@ -859,6 +859,8 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
     
     #quebra a lista de req inv em lista de listas com tamanho de acordo com nr de simulaçoes por tamanho de rede
     result = [lista_Invalidos[i:i+nr_Simul] for i in range(0, len(lista_Invalidos), nr_Simul)]
+    lista_Nodos= [lista_Nodos_all[i:i+nr_Simul] for i in range(0, len(lista_Nodos_all), nr_Simul)]
+    
     
     nodo_5=[]
     nodo_10=[]
@@ -869,6 +871,7 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
     nodo_35=[]
     nodo_40=[]
     nodos=[nodo_5,nodo_10,nodo_15,nodo_20,nodo_25,nodo_30,nodo_35,nodo_40]
+    ratio=[]
     
     size_P=0
     size_M=0
@@ -880,14 +883,14 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
     
     
     for inst in lista_Nodos_all:
-        for nodo in inst:
-            for device in nodo.fpga:
-                if len(device)==9:
-                    size_G+=1
-                elif len(device)==6:
-                    size_M+=1
-                else:
-                    size_P+=1
+                for nodo in inst:
+                    for device in nodo.fpga:
+                        if len(device)==9:
+                            size_G+=1
+                        elif len(device)==6:
+                            size_M+=1
+                        else:
+                            size_P+=1
     
 
     
@@ -914,7 +917,24 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
         for simul in range(nr_Simul): 
             media_P=[]
             media_M=[]
-            media_G=[]    
+            media_G=[]
+            
+            size_P=0
+            size_M=0
+            size_G=0
+            
+            inst=lista_Nodos[ind_nodo][simul]
+            for nodo in inst:
+                    for device in nodo.fpga:
+                        if len(device)==9:
+                            size_G+=1
+                        elif len(device)==6:
+                            size_M+=1
+                        else:
+                            size_P+=1
+            
+            
+                
             for elem in P:
                 if elem[1]==simul:
                     media_P.append(elem)
@@ -930,19 +950,19 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
             
             
         aux_media=stats.mean(aux_media_P)
+        ratio.append(aux_media/size_P)
         nodos[ind_nodo].append(aux_media)
         aux_media=stats.mean(aux_media_M)
+        ratio.append(aux_media/size_M)
         nodos[ind_nodo].append(aux_media)        
         aux_media=stats.mean(aux_media_G)
+        ratio.append(aux_media/size_G)
         nodos[ind_nodo].append(aux_media)
-            
-    
-    ratio=[size_P_I/size_P,size_M_I/size_M,size_G_I/size_G]
-    
+
+        
     
 
-    '''
-    # Set position of bar on X axis
+    barWidth = 0.1
     br1 = np.arange(3)
     br2 = [x + barWidth for x in br1]
     br3 = [x + barWidth for x in br2]
@@ -951,8 +971,7 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
     br6 = [x + barWidth for x in br5]
     br7 = [x + barWidth for x in br6]
     br8 = [x + barWidth for x in br7]
-        
-    # Make the plot
+    
     plt.bar(br1, nodos[0], color ='tab:red', width = barWidth,
             edgecolor ='k', label ='5')
     plt.bar(br2, nodos[1], color ='tab:orange', width = barWidth,
@@ -969,19 +988,15 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
             edgecolor ='k', label ='35')
     plt.bar(br8, nodos[7], color ='tab:purple', width = barWidth,
             edgecolor ='k', label ='40')
-    '''
-    barWidth = 0.1
-    br1 = ['KU040','KU095',"VU190"]
-
-    
-    plt.bar(br1, ratio, color ='tab:red', width = barWidth, edgecolor ='k')
     
     
+    labels=['KU040', 'KU095', 'VU190']
     # Adding Xticks
     plt.xlabel('Modelos FPGA')
     plt.ylabel('Quantidade de alocações inválidas')
     #plt.ylim(min(ratio),max(ratio)+0.05)
-    #plt.legend(loc='upper left')
+    plt.legend(loc='upper left')
+    plt.xticks([r + barWidth for r in range(3)],['KU040', 'KU095', 'VU190'])
     plt.savefig('Grafico_FPGA.png')
     plt.show()
     

@@ -1,7 +1,7 @@
 [
     {
         "nome": "FW0",
-        "CLBs": 1796,
+        "CLBs": 1150,
         "BRAM": 5,
         "DSPs": 0,
         "Lat": 4.2,
@@ -17,7 +17,7 @@
     },
     {
         "nome": "FW2",
-        "CLBs": 10153,
+        "CLBs": 8123,
         "BRAM": 241,
         "DSPs": 0,
         "Lat": 73,
@@ -25,7 +25,7 @@
     },
     {
         "nome": "DPI0",
-        "CLBs": 8377,
+        "CLBs": 20450,
         "BRAM": 37,
         "DSPs": 0,
         "Lat": 278,
@@ -44,15 +44,15 @@
         "CLBs": 15206,
         "BRAM": 36,
         "DSPs": 0,
-        "Lat": 1481,
+        "Lat": 1611,
         "Throughput": 14.4
     },
     {
         "nome": "DPI3",
-        "CLBs": 6442,
+        "CLBs": 10065,
         "BRAM": 407,
         "DSPs": 0,
-        "Lat": 1585,
+        "Lat": 1040,
         "Throughput": 40
     },
     {
@@ -60,7 +60,7 @@
         "CLBs": 713,
         "BRAM": 96,
         "DSPs": 0,
-        "Lat": 324,
+        "Lat": 2619,
         "Throughput": 40
     },
     {
@@ -68,20 +68,20 @@
         "CLBs": 7560,
         "BRAM": 399,
         "DSPs": 0,
-        "Lat": 1916,
+        "Lat": 1554,
         "Throughput": 102.6
     },
     {
         "nome": "AES0",
         "CLBs": 3165,
-        "BRAM": 4,
+        "BRAM": 1,
         "DSPs": 0,
-        "Lat": 21,
+        "Lat": 3,
         "Throughput": 49.38
     },
     {
         "nome": "AES1",
-        "CLBs": 2186,
+        "CLBs": 3465,
         "BRAM": 2,
         "DSPs": 0,
         "Lat": 21,
@@ -89,8 +89,8 @@
     },
     {
         "nome": "AES2",
-        "CLBs": 7996,
-        "BRAM": 3,
+        "CLBs": 4095,
+        "BRAM": 4,
         "DSPs": 0,
         "Lat": 2,
         "Throughput": 59.3
@@ -98,9 +98,9 @@
     {
         "nome": "AES3",
         "CLBs": 2034,
-        "BRAM": 4,
+        "BRAM": 5,
         "DSPs": 0,
-        "Lat": 17,
+        "Lat": 8,
         "Throughput": 45
     },
     {
@@ -108,7 +108,7 @@
         "CLBs": 11951,
         "BRAM": 450,
         "DSPs": 0,
-        "Lat": 3,
+        "Lat": 21,
         "Throughput": 119.3
     }
 ]

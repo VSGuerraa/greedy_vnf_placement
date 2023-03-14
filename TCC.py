@@ -761,14 +761,14 @@ def check_Wrong(aloc_Req):
                         if part[0]>=linha: 
                             min_Clb=part[0]*math.ceil(min_Tile_clb/part[0])*60
                             min_Bram=part[0]*math.ceil(min_Tile_bram/part[0])*12
-                            topologia[id][1]=topologia[id][1]-min_Clb
-                            topologia[id][2]=topologia[id][2]-min_Bram
+                            topologia[id][2]=topologia[id][2]-min_Clb
+                            topologia[id][3]=topologia[id][3]-min_Bram
                             not_valid = False
                         else:
                             min_Clb=linha*math.ceil(min_Tile_clb/linha)*60
                             min_Bram=linha*math.ceil(min_Tile_bram/linha)*12
-                            topologia[id][1]=topologia[id][1]-min_Clb
-                            topologia[id][2]=topologia[id][2]-min_Bram
+                            topologia[id][2]=topologia[id][2]-min_Clb
+                            topologia[id][3]=topologia[id][3]-min_Bram
                             not_valid = False
                                                
                     
@@ -950,14 +950,14 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
             
             
         aux_media=stats.mean(aux_media_P)
-        ratio.append(aux_media/size_P)
-        nodos[ind_nodo].append(aux_media)
+        ratio=aux_media/size_P
+        nodos[ind_nodo].append(ratio)
         aux_media=stats.mean(aux_media_M)
-        ratio.append(aux_media/size_M)
-        nodos[ind_nodo].append(aux_media)        
+        ratio=aux_media/size_M
+        nodos[ind_nodo].append(ratio)        
         aux_media=stats.mean(aux_media_G)
-        ratio.append(aux_media/size_G)
-        nodos[ind_nodo].append(aux_media)
+        ratio=(aux_media/size_G)
+        nodos[ind_nodo].append(ratio)
 
         
     
@@ -1025,8 +1025,7 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
     ax.plot([5,10,15,20,25,30,35,40], nodos,color='tab:green',label='Abordagem Realista')
     ax.grid() 
     ax.set_xlabel("Número de Nodos") 
-    ax.set_ylabel("Funções Alocadas") 
-    plt.legend(loc=2)
+    ax.set_ylabel("Alocações inválidas") 
     plt.savefig('Grafico_Func_invalido.png')
     plt.show()
     

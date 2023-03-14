@@ -853,7 +853,7 @@ def plot_Func(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongr
     plt.show()
 
 
-def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
+def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
     
     nr_Simul=5
     
@@ -861,7 +861,7 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
     result = [lista_Invalidos[i:i+nr_Simul] for i in range(0, len(lista_Invalidos), nr_Simul)]
     lista_Nodos= [lista_Nodos_all[i:i+nr_Simul] for i in range(0, len(lista_Nodos_all), nr_Simul)]
     
-    
+    soma=[0,0,0]
     nodo_5=[]
     nodo_10=[]
     nodo_15=[]
@@ -961,7 +961,16 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
 
         
     
-
+    for nodo in nodos:
+        soma[0]+=nodo[0]
+        soma[1]+=nodo[1]
+        soma[2]+=nodo[2]
+    soma[0]=soma[0]/len(nodos)
+    soma[1]=soma[1]/len(nodos)
+    soma[2]=soma[2]/len(nodos)
+    nodos.append(soma)
+    
+    
     barWidth = 0.1
     br1 = np.arange(3)
     br2 = [x + barWidth for x in br1]
@@ -971,6 +980,7 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
     br6 = [x + barWidth for x in br5]
     br7 = [x + barWidth for x in br6]
     br8 = [x + barWidth for x in br7]
+    br9 = [x + barWidth for x in br8]
     
     plt.bar(br1, nodos[0], color ='tab:red', width = barWidth,
             edgecolor ='k', label ='5')
@@ -988,6 +998,8 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
             edgecolor ='k', label ='35')
     plt.bar(br8, nodos[7], color ='tab:purple', width = barWidth,
             edgecolor ='k', label ='40')
+    plt.bar(br9, nodos[8], color ='tab:brown', width = barWidth,
+            edgecolor ='k', label ='Média')
     
     
     labels=['KU040', 'KU095', 'VU190']
@@ -1001,6 +1013,24 @@ def plot_Invalidos(lista_Invalidos,lista_Nodos_all):
     plt.show()
     
     
+    
+    
+    for index,nodo in enumerate(nodos):
+        nodos[index]=nodo[0]+nodo[1]+nodo[2]
+    nodos.pop(8)
+        
+    
+    fig = plt.figure() 
+    ax = fig.add_subplot(111) 
+    ax.plot([5,10,15,20,25,30,35,40], nodos,color='tab:green',label='Abordagem Realista')
+    ax.grid() 
+    ax.set_xlabel("Número de Nodos") 
+    ax.set_ylabel("Funções Alocadas") 
+    plt.legend(loc=2)
+    plt.savefig('Grafico_Func_invalido.png')
+    plt.show()
+    
+
 def main():
 
     modo=None
@@ -1100,8 +1130,9 @@ def main():
                 dataset_wrongrun.append(stats.mean(req_Aloc_w))
                 
                
-            plot_Invalidos(lista_Invalidos,lista_Nodos_all)  
+            plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all)  
             plot_Func(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
+            
 
             with open("Req_Alocadas.txt","w") as outfile:
                 for result in results_g[1]:

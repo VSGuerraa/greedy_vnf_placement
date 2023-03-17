@@ -17,14 +17,16 @@ def gerador_Topologia(nro_Nodos, nro_Links):
     
     while not(nx.is_connected(G)):
         G = nx.gnm_random_graph(nro_Nodos, nro_Links)
-    '''
+    
     #visualiza grafico em tela
     
     subax1 = plt.subplot(121)
-    nx.draw(G, with_labels=True, font_weight='bold')
-    plt.show() 
+    nx.draw_circular(G, with_labels=True, font_weight='bold')
+    
     plt.savefig('Grafo.png')
-    '''
+    #plt.show() 
+    subax1.clear()
+    
     lista=list(G.edges)
 
     topologia_rede=[]
@@ -34,7 +36,8 @@ def gerador_Topologia(nro_Nodos, nro_Links):
 
     fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
     list_thro=[40,100,200,400]
-    fpga_P=[    
+    
+    fpga_P=[
                 {   "Modelo": 'P',
                     
                     "Part0": {
@@ -61,8 +64,7 @@ def gerador_Topologia(nro_Nodos, nro_Links):
                         "DSP": 240
                     }
                 } 
-            ]
-    
+            ]  
     fpga_M=[
             {       "Modelo": 'M',
              
@@ -838,9 +840,9 @@ def plot_Func(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongr
     
     fig = plt.figure() 
     ax = fig.add_subplot(111) 
-    ax.plot(dataset_index, dataset_req_Aloc,color='tab:green',label='Abordagem Realista') 
+    ax.plot(dataset_index, dataset_req_Aloc,color='tab:green',label='Abordagem Conciente de Partições') 
     ax.errorbar(dataset_index, dataset_req_Aloc, yerr=aloc_Desv, fmt="go")
-    ax.plot(dataset_index, dataset_wrongrun, color = 'tab:red', label='Abordagem Conflitante') 
+    ax.plot(dataset_index, dataset_wrongrun, color = 'tab:red', label='Abordagem Inconciente de Partições') 
     ax.errorbar(dataset_index, dataset_wrongrun, yerr=valor_Desv,fmt='ro')
     #plt.title('Numero de funcoes alocadas', fontweight="bold") 
     ax.grid() 
@@ -982,6 +984,7 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
     br8 = [x + barWidth for x in br7]
     br9 = [x + barWidth for x in br8]
     
+    plt.close()
     plt.bar(br1, nodos[0], color ='tab:red', width = barWidth,
             edgecolor ='k', label ='5')
     plt.bar(br2, nodos[1], color ='tab:orange', width = barWidth,
@@ -1005,10 +1008,9 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
     labels=['KU040', 'KU095', 'VU190']
     # Adding Xticks
     plt.xlabel('Modelos FPGA')
-    plt.ylabel('Quantidade de alocações inválidas')
-    #plt.ylim(min(ratio),max(ratio)+0.05)
+    plt.ylabel('Razão de alocações inválidas')
     plt.legend(loc='upper left')
-    plt.xticks([r + barWidth for r in range(3)],['KU040', 'KU095', 'VU190'])
+    plt.xticks(br1+0.4,labels)
     plt.savefig('Grafico_FPGA.png')
     plt.show()
     
@@ -1016,7 +1018,7 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
     
     
     for index,nodo in enumerate(nodos):
-        nodos[index]=nodo[0]+nodo[1]+nodo[2]
+        nodos[index]=(nodo[0]+nodo[1]+nodo[2])/len(nodos)
     nodos.pop(8)
         
     
@@ -1026,6 +1028,7 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
     ax.grid() 
     ax.set_xlabel("Número de Nodos") 
     ax.set_ylabel("Alocações inválidas") 
+    ax.set_ylim(0)
     plt.savefig('Grafico_Func_invalido.png')
     plt.show()
     

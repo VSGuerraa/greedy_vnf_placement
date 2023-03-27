@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import copy
 import numpy as np
+import re
 
 
 
@@ -587,24 +588,30 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
         device_id=None
         
         
-        if lista_Nodos[req.init_node].fpga!=0:
-            for i,device in enumerate(lista_Fpga):
-                if device[0]=='Nodo'+str(req.init_node):
-                    if device[2]>=req.func.clb:
-                        if device[3]>=req.func.bram:
-                            if device[4]>=req.func.dsp:
-                                check_Node=True
-                                device_id=i  
-                                break            
-                            #checa se fpga tem recursos para alocar requisicao
-
-        for p in path_Ord:
-            for b,c in zip(p,p[1:]):
+        for caminho in path_Ord:
+            
+            check_Node=False
+            check_Link=1
+            for nodo in caminho:
+                
+                for i,device in enumerate(lista_Fpga):
+                    if device[0]=='Nodo'+str(nodo):
+                        if device[2]>=req.func.clb:
+                            if device[3]>=req.func.bram:
+                                if device[4]>=req.func.dsp:
+                                    check_Node=True
+                                    device_id=i  
+                                    break            
+                                #checa se fpga tem recursos para alocar requisicao
+                if check_Node==True:
+                    break
+        
+            for b,c in zip(caminho,caminho[1:]):
                 lista_Check=check_Path(c,lista_Nodos[b].link,req)
                 check_Link+=lista_Check[0]
                 aux_Lista=b,lista_Check[1],lista_Check[2]
                 refresh_Links.append(aux_Lista)
-            if check_Link==len(p):
+            if check_Link==len(caminho):
                 check_Link=True
                 break
             else:
@@ -613,7 +620,7 @@ def wrong_Run(lista_Req,lista_Paths,lista_Nodos):
         
         if check_Link and check_Node:
             
-            aloc_Req.append(req)
+            aloc_Req.append([req,device[1],i])
             lista_Fpga[device_id][2]=lista_Fpga[device_id][2]-req.func.clb
             lista_Fpga[device_id][3]=lista_Fpga[device_id][3]-req.func.bram
             lista_Fpga[device_id][4]=lista_Fpga[device_id][4]-req.func.dsp
@@ -649,136 +656,161 @@ def check_Path(node_D,nodos,req):
     return [valid_Path,node_D,new_Thro]
 #checa se o caminho do nodo inicial ate o final eh valido em relacao a latencia e vazio
 
-def check_Parts(partitions, requisitions):
+def check_Parts(devices, requisition):
+    
+    
     pesos=[]
-    for part in partitions:
-        total_weight=0
-        weight_clb=1
-        weight_bram=50
-        weight_dsp=20
-        if part.clb-requisitions.func.clb<0:
-            continue
-        if part.bram-requisitions.func.bram<0:
-            continue
-        if part.bram-requisitions.func.bram<0:
-            continue
-        total_weight=(part.clb-requisitions.func.clb)*weight_clb
-        total_weight+=(part.bram-requisitions.func.bram)*weight_bram
-        total_weight+=(part.dsp-requisitions.func.dsp)*weight_dsp
-        pesos.append(total_weight)
-    if len(pesos)==0:
-        return False
     
-    index_min = min(range(len(pesos)), key=pesos.__getitem__)
+    weight_clb=1
+    weight_bram=50
+    weight_dsp=20
     
-    return(index_min) 
+    for fpga,partitions in enumerate(devices):
+        if len(partitions)==0: 
+            return False
+        for index_part,part in enumerate(partitions):
+            total_weight=0
+            
+            if part.clb-requisition.func.clb<0:
+                continue
+            if part.bram-requisition.func.bram<0:
+                continue
+            if part.bram-requisition.func.bram<0:
+                continue
+            total_weight=(part.clb-requisition.func.clb)*weight_clb
+            total_weight+=(part.bram-requisition.func.bram)*weight_bram
+            total_weight+=(part.dsp-requisition.func.dsp)*weight_dsp
+            pesos.append([total_weight,fpga,index_part])
+            
+    if len(pesos)==0: 
+            return False    
+    
+    
+    min_value = min(pesos, key=lambda sublist: sublist[0])
+    
+    return(min_value) 
+
 #Checa por partição que aloca melhor a req     
 
-def check_Wrong(aloc_Req):
+def check_Wrong(aloc_Req,lista_Paths):
     
     with open("topologia_wrong.json") as file:
         topologia = json.load(file)
     
-          
+       
     #fpga=[[30300,600,1920],[67200,1680,768],[134280,3780,1800]]
       
     aloc_W=[]
     
     for req in aloc_Req:
+        path=list(dfs_caminhos(lista_Paths,req[0].init_node,req[0].out_node))
+        path_Ord=sorted(path,key=len)
         
         not_valid=True
-        min_Tile_clb=math.ceil(req.func.clb/60)
-        min_Tile_bram=math.ceil(req.func.bram/12)
+        min_Tile_clb=math.ceil(req[0].func.clb/60)
+        min_Tile_bram=math.ceil(req[0].func.bram/12)
         
         for id,device in enumerate(topologia):
             
-            if device[0]=='Nodo'+str(req.init_node) and device[1]!=0:
-                dispositivo=device
-                
-                min_Clb=0
-                min_Bram=0
+            for path in path_Ord:
+                for nodo in path:
                     
-                if dispositivo[1]==1:
-                    divisor=5
-                    min_Tile=5
-                elif dispositivo[1]==2:
-                    divisor=8
-                    min_Tile=3
-                elif dispositivo[1]==3:
-                    divisor=15
-                    min_Tile=2
+                    if device[0]!="Nodo"+str(nodo) or device[1]==0:
+                        continue
+
+                    dispositivo=device
                     
-                comparador=0
-                
-                #checa por numero de CLB
-                for linha in range(divisor,0,-1):
-                    if min_Tile_clb%linha == 0 and min_Tile_clb<(dispositivo[2]*(linha/divisor)):
-                        for index in range(0,int(min_Tile_clb/linha),10):            
-                            min_Bram+=linha
-                        melhor=0
-                        break
-                    else:
-                        if comparador==0:
-                            comparador=(min_Tile_clb%linha) / linha
-                            
+                    min_Clb=0
+                    min_Bram=0
+                        
+                    if dispositivo[1]==1:
+                        divisor=5
+                        min_Tile=5
+                    elif dispositivo[1]==2:
+                        divisor=8
+                        min_Tile=3
+                    elif dispositivo[1]==3:
+                        divisor=15
+                        min_Tile=2
+                        
+                    comparador=0
+                    
+                    #checa por numero de CLB
+                    for linha in range(divisor,0,-1):
+                        if min_Tile_clb%linha == 0 and min_Tile_clb<(dispositivo[2]*(linha/divisor)):
+                            for index in range(0,int(min_Tile_clb/linha),10):            
+                                min_Bram+=linha
+                            melhor=0
+                            break
                         else:
-                            if comparador>((min_Tile_clb%linha) / linha):
+                            if comparador==0:
                                 comparador=(min_Tile_clb%linha) / linha
-                                melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
-                if melhor!=0:
-                    for index in range(0,int(min_Tile_clb/melhor),10):            
-                        min_Bram+=melhor
-                    linha=melhor
-                
-                part=[linha,math.ceil(min_Tile_clb/linha)]
-                
-                comparador=0
-                #checa por numero de BRAM
-                for linha in range(divisor,0,-1):
+                                
+                            else:
+                                if comparador>((min_Tile_clb%linha) / linha):
+                                    comparador=(min_Tile_clb%linha) / linha
+                                    melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
+                    if melhor!=0:
+                        for index in range(0,int(min_Tile_clb/melhor),10):            
+                            min_Bram+=melhor
+                        linha=melhor
                     
-                    if min_Tile_bram%linha == 0 and min_Tile_bram<(dispositivo[3]*(linha/divisor)):
-                        for index in range(0,int(min_Tile_bram/linha),min_Tile):            
-                            min_Clb+=linha
-                        melhor=0
-                        break
-                    else:
-                        if comparador==0:
-                            comparador=(min_Tile_bram%linha) / linha
-                            
+                    part=[linha,math.ceil(min_Tile_clb/linha)]
+                    
+                    comparador=0
+                    #checa por numero de BRAM
+                    for linha in range(divisor,0,-1):
+                        
+                        if min_Tile_bram%linha == 0 and min_Tile_bram<(dispositivo[3]*(linha/divisor)):
+                            for index in range(0,int(min_Tile_bram/linha),min_Tile):            
+                                min_Clb+=linha
+                            melhor=0
+                            break
                         else:
-                            if comparador>((min_Tile_bram%linha) / linha):
+                            if comparador==0:
                                 comparador=(min_Tile_bram%linha) / linha
-                                melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
-                if melhor!=0:
-                    for index in range(0,int(min_Tile_bram/melhor),min_Tile):            
-                        min_Clb+=melhor
-                    linha=melhor
-                
-                
-                if dispositivo[2]-min_Tile_bram<0 or dispositivo[3]-min_Tile_bram<0:
-                    continue
-                
-                else:
-                    if min_Bram>=min_Tile_bram or min_Clb>=min_Tile_clb:
-                        if part[0]>=linha: 
-                            min_Clb=part[0]*math.ceil(min_Tile_clb/part[0])*60
-                            min_Bram=part[0]*math.ceil(min_Tile_bram/part[0])*12
-                            topologia[id][2]=topologia[id][2]-min_Clb
-                            topologia[id][3]=topologia[id][3]-min_Bram
-                            not_valid = False
-                        else:
-                            min_Clb=linha*math.ceil(min_Tile_clb/linha)*60
-                            min_Bram=linha*math.ceil(min_Tile_bram/linha)*12
-                            topologia[id][2]=topologia[id][2]-min_Clb
-                            topologia[id][3]=topologia[id][3]-min_Bram
-                            not_valid = False
+                                
+                            else:
+                                if comparador>((min_Tile_bram%linha) / linha):
+                                    comparador=(min_Tile_bram%linha) / linha
+                                    melhor=linha              #checa por menor ratio entre coluna/linha, priorizando colunas maiores
+                    if melhor!=0:
+                        for index in range(0,int(min_Tile_bram/melhor),min_Tile):            
+                            min_Clb+=melhor
+                        linha=melhor
+                    
+                    
+                    if dispositivo[2]-min_Tile_bram<0 or dispositivo[3]-min_Tile_bram<0:
+                        continue
+                    
+                    else:
+                        if min_Bram>=min_Tile_bram or min_Clb>=min_Tile_clb:
+                            if part[0]>=linha: 
+                                min_Clb=part[0]*math.ceil(min_Tile_clb/part[0])*60
+                                min_Bram=part[0]*math.ceil(min_Tile_bram/part[0])*12
+                                topologia[id][2]=topologia[id][2]-min_Clb
+                                topologia[id][3]=topologia[id][3]-min_Bram
+                                not_valid = False
+                                break
+                            else:
+                                min_Clb=linha*math.ceil(min_Tile_clb/linha)*60
+                                min_Bram=linha*math.ceil(min_Tile_bram/linha)*12
+                                topologia[id][2]=topologia[id][2]-min_Clb
+                                topologia[id][3]=topologia[id][3]-min_Bram
+                                not_valid = False
+                                break
+                            
+                if not_valid == False:
+                    break
+            if not_valid == False:
+                    break
                                                
                     
                             
         if not_valid == True: 
-            aloc_W.append([req,dispositivo[1]])
+            aloc_W.append([req])
     return aloc_W
-#rever após corrigir partições corretas                  
+                 
                                      
 def greedy(lista_Req,lista_Paths,node_List):
     aloc_Req=[]
@@ -786,52 +818,65 @@ def greedy(lista_Req,lista_Paths,node_List):
     for req in lista_Req:
         path=list(dfs_caminhos(lista_Paths,req.init_node,req.out_node))
         path_Ord=sorted(path,key=len)
-        check_Node=False
-        check_Link=1
-        refresh_Links=[]
         
+        refresh_Links=[]
+        check_Link=False
 
-        if len(node_List[req.init_node].fpga)!=0:
-            for a,parts in enumerate(node_List[req.init_node].fpga):
-                if len(parts)==0:
+        
+        for caminho in path_Ord:
+            
+            if check_Link == True:
+                break
+            check_Node=False
+            check_Link=1
+            
+            for nodo in caminho:
+                if len(node_List[nodo].fpga)==0:
                     continue
-                best_part=check_Parts(parts,req)
+    
+                best_part=check_Parts(node_List[nodo].fpga,req)
                 if best_part==False:
                     continue
+                else:
+                    check_Node=True
+                    break
+                '''
                 if parts[best_part].clb>=req.func.clb:
                     if parts[best_part].bram>=req.func.bram:
                         if parts[best_part].dsp>=req.func.dsp:
                             check_Node=True
                             fpga_num=a
                             break
-                
-        for p in path_Ord:
-            for b,c in zip(p,p[1:]):
+                            '''
+            
+    #for p in path_Ord:
+            if check_Node==False:
+                continue
+            
+            for b,c in zip(caminho,caminho[1:]):
                 lista_Check=check_Path(c,node_List[b].link,req)
                 check_Link+=lista_Check[0]
                 aux_Lista=b,lista_Check[1],lista_Check[2]
                 refresh_Links.append(aux_Lista)
-            if check_Link==len(p):
+            if check_Link==len(caminho):
                 check_Link=True
                 break
             else:
                 check_Link=False
-        
+                
+    
         if check_Link and check_Node:
             
             aloc_Req.append(req)
-            node_List[req.init_node].fpga[fpga_num].pop(best_part)
+            node_List[nodo].fpga[best_part[1]].pop(best_part[2])
             for nodo_I,nodo_F,thro in refresh_Links:
                 for l in (node_List[nodo_I].link):
                     if int(l.nodo_d)==nodo_F:
                         l.min_T=thro
-            cash+=req.price
+        #cash+=req.price
 
-    ratio=len(aloc_Req)/len(lista_Req)
-
-
-        
-    #print("Nr requisicoes alocadas G:",len(aloc_Req),"\nRatio:",round(ratio,2),"%")
+    #ratio=len(aloc_Req)/len(lista_Req)
+    
 
     return(len(aloc_Req), aloc_Req, cash)
     
@@ -848,22 +893,21 @@ def plot_Func(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongr
     ax.grid() 
     ax.set_xlabel("Número de Nodos") 
     ax.set_ylabel("Funções Alocadas") 
-    ax.set_ylim(0, 60)
+    ax.set_ylim(0)
     
     plt.legend(loc=2)
     plt.savefig('Grafico_Func.png')
     plt.show()
 
 
-def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
+def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all, nr_Simul,lista_Wrong_run):
     
-    nr_Simul=5
     
     #quebra a lista de req inv em lista de listas com tamanho de acordo com nr de simulaçoes por tamanho de rede
     result = [lista_Invalidos[i:i+nr_Simul] for i in range(0, len(lista_Invalidos), nr_Simul)]
     lista_Nodos= [lista_Nodos_all[i:i+nr_Simul] for i in range(0, len(lista_Nodos_all), nr_Simul)]
+    lista_Req = [lista_Wrong_run[i:i+nr_Simul] for i in range(0, len(lista_Wrong_run), nr_Simul)]
     
-    soma=[0,0,0]
     nodo_5=[]
     nodo_10=[]
     nodo_15=[]
@@ -872,106 +916,105 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
     nodo_30=[]
     nodo_35=[]
     nodo_40=[]
-    nodos=[nodo_5,nodo_10,nodo_15,nodo_20,nodo_25,nodo_30,nodo_35,nodo_40]
-    ratio=[]
-    
-    size_P=0
-    size_M=0
-    size_G=0
-    
-    size_P_I=0
-    size_M_I=0
-    size_G_I=0
-    
-    
-    for inst in lista_Nodos_all:
-                for nodo in inst:
-                    for device in nodo.fpga:
-                        if len(device)==9:
-                            size_G+=1
-                        elif len(device)==6:
-                            size_M+=1
-                        else:
-                            size_P+=1
+    total=[0,0,0]
+    nodos=[nodo_5,nodo_10,nodo_15,nodo_20,nodo_25,nodo_30,nodo_35,nodo_40,total]
+  
     
 
+    KU040_Total=[]
+    KU095_Total=[]
+    VU190_Total=[]
     
-    for ind_nodo,step in enumerate(result):
-        P=[]
-        M=[]
-        G=[]
-        aux_media_P=[]
-        aux_media_M=[]
-        aux_media_G=[]
-        for index,reqs in enumerate(step):
-            for req in reqs:
+    
+    
+    for step in lista_Req:
+        for inst in step:
+            for req in inst:
+                
+                for passo in result:
+                    for instancia in passo:
+                        for requisition in instancia:
+                            if instancia == [0,0,0]:
+                                continue
+                            
+                            if req==requisition[0]:
+                                inst.remove(req)
+    
+    
+    
+    
+    
+    for step in lista_Nodos:
+        KU040=0
+        KU095=0
+        VU190=0
+        for inst in step:
+            for nodo in inst:
+                for fpga in nodo.fpga:
+                        if len(fpga)==9:
+                            VU190+=1
+                        elif len(fpga)==6:
+                            KU095+=1
+                        elif len(fpga)==3 or len(fpga)==1:
+                            KU040+=1
+        KU040_Total.append(KU040)
+        KU095_Total.append(KU095)
+        VU190_Total.append(VU190)
+    
+    
+    
+    for nodo in range(len(KU040_Total)):
+        nodos[nodo].append(KU040_Total[nodo])
+        nodos[nodo].append(KU095_Total[nodo])
+        nodos[nodo].append(VU190_Total[nodo])
+        nodos[8][0]+=KU040_Total[nodo]
+        nodos[8][1]+=KU095_Total[nodo]
+        nodos[8][2]+=VU190_Total[nodo]
+
+
+    KU040_Total=[]
+    KU095_Total=[]
+    VU190_Total=[]
+   
+    
+    for step in lista_Req:
+        KU040=0
+        KU095=0
+        VU190=0
+        lista_ids=[]
+        for inst in step:
+            for req in inst:
                 if req==0:
                     continue
-                if req[1]==1:
-                    P.append([req,index])
-                    size_P_I+=1
-                elif req[1]==2:
-                    M.append([req,index])
-                    size_M_I+=1
-                elif req[1]==3:
-                    G.append([req,index])
-                    size_G_I+=1
-        for simul in range(nr_Simul): 
-            media_P=[]
-            media_M=[]
-            media_G=[]
-            
-            size_P=0
-            size_M=0
-            size_G=0
-            
-            inst=lista_Nodos[ind_nodo][simul]
-            for nodo in inst:
-                    for device in nodo.fpga:
-                        if len(device)==9:
-                            size_G+=1
-                        elif len(device)==6:
-                            size_M+=1
-                        else:
-                            size_P+=1
-            
-            
-                
-            for elem in P:
-                if elem[1]==simul:
-                    media_P.append(elem)
-            for elem in M:
-                if elem[1]==simul:
-                    media_M.append(elem)
-            for elem in G:
-                if elem[1]==simul:
-                    media_G.append(elem)
-            aux_media_P.append(len(media_P))
-            aux_media_M.append(len(media_M))
-            aux_media_G.append(len(media_G))
-            
-            
-        aux_media=stats.mean(aux_media_P)
-        ratio=aux_media/size_P
-        nodos[ind_nodo].append(ratio)
-        aux_media=stats.mean(aux_media_M)
-        ratio=aux_media/size_M
-        nodos[ind_nodo].append(ratio)        
-        aux_media=stats.mean(aux_media_G)
-        ratio=(aux_media/size_G)
-        nodos[ind_nodo].append(ratio)
+                if req[2] in lista_ids:
+                    continue
+                else:
+                    lista_ids.append(req[2])
+                    if req[1]==3:
+                        VU190+=1
+                    elif req[1]==2:
+                        KU095+=1
+                    elif req[1]==1:
+                        KU040+=1
+        KU040_Total.append(KU040)
+        KU095_Total.append(KU095)
+        VU190_Total.append(VU190)
 
-        
+    soma_KU040=0
+    soma_KU095=0
+    soma_VU190=0
     
-    for nodo in nodos:
-        soma[0]+=nodo[0]
-        soma[1]+=nodo[1]
-        soma[2]+=nodo[2]
-    soma[0]=soma[0]/len(nodos)
-    soma[1]=soma[1]/len(nodos)
-    soma[2]=soma[2]/len(nodos)
-    nodos.append(soma)
+    for nodo in range(len(KU040_Total)):
+        nodos[nodo][0]=(KU040_Total[nodo]/ nodos[nodo][0])
+        soma_KU040+=KU040_Total[nodo]
+        nodos[nodo][1]=KU095_Total[nodo]/ nodos[nodo][1]
+        soma_KU095+=KU095_Total[nodo]
+        nodos[nodo][2]=VU190_Total[nodo]/ nodos[nodo][2]
+        soma_VU190+=VU190_Total[nodo]
     
+    nodos[8][0]=soma_KU040/ nodos[8][0]
+    nodos[8][1]=soma_KU095/ nodos[8][1]
+    nodos[8][2]=soma_VU190/ nodos[8][2]
     
     barWidth = 0.1
     br1 = np.arange(3)
@@ -1008,27 +1051,63 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all):
     labels=['KU040', 'KU095', 'VU190']
     # Adding Xticks
     plt.xlabel('Modelos FPGA')
-    plt.ylabel('Razão de alocações inválidas')
+    plt.ylabel('Fração de soluções inválidas')
     plt.legend(loc='upper left')
     plt.xticks(br1+0.4,labels)
     plt.savefig('Grafico_FPGA.png')
     plt.show()
     
+
+def plot_Solutions_inv(nr_Simul,lista_Invalidos):
     
     
     
-    for index,nodo in enumerate(nodos):
-        nodos[index]=(nodo[0]+nodo[1]+nodo[2])/len(nodos)
-    nodos.pop(8)
+    total_Inv=[]
+    result = [lista_Invalidos[i:i+nr_Simul] for i in range(0, len(lista_Invalidos), nr_Simul)]
+    '''
+    
+    lista_Nodos= [lista_Nodos_all[i:i+nr_Simul] for i in range(0, len(lista_Nodos_all), nr_Simul)]
+    
+    KU040_Total=[]
+    KU095_Total=[]
+    VU190_Total=[]
+    
+    
+    for step in lista_Nodos:
+        KU040=0
+        KU095=0
+        VU190=0
+        for inst in step:
+            for nodo in inst:
+                for fpga in nodo.fpga:
+                    if len(fpga)==9:
+                        VU190+=1
+                    elif len(fpga)==6:
+                        KU095+=1
+                    elif len(fpga)==3 or len(fpga)==1:
+                        KU040+=1
+        KU040_Total.append(KU040)
+        KU095_Total.append(KU095)
+        VU190_Total.append(VU190)
+                   ''' 
+    for step in result:
+        cont_Inv=0
+        for inst in step:
+            if inst == [0,0]:
+                cont_Inv+=1
+        total_Inv.append(cont_Inv)
         
-    
+    for step in range(len(result)):  
+        total_Inv[step]=nr_Simul-total_Inv[step]
+        total_Inv[step]=total_Inv[step]/nr_Simul
+        
+        
     fig = plt.figure() 
     ax = fig.add_subplot(111) 
-    ax.plot([5,10,15,20,25,30,35,40], nodos,color='tab:green',label='Abordagem Realista')
+    ax.plot([5,10,15,20,25,30,35,40], total_Inv,color='tab:green')
     ax.grid() 
     ax.set_xlabel("Número de Nodos") 
-    ax.set_ylabel("Alocações inválidas") 
-    ax.set_ylim(0)
+    ax.set_ylabel("Fração de soluções inválidas") 
     plt.savefig('Grafico_Func_invalido.png')
     plt.show()
     
@@ -1068,6 +1147,9 @@ def main():
             
 
         elif modo=='2':
+            
+            
+            nr_Repeat=50
 
             print('Executando...')
             lista_Results_g=[]
@@ -1080,12 +1162,14 @@ def main():
             wrong_Desv=[]
             lista_Invalidos=[]
             lista_Nodos_all=[]
+            lista_Nodos_W=[]
             
             for index in range (5,45,5):
                 req_Aloc_g=[]
                 req_Aloc_w=[]
+                nr_req_Aloc_W=[]
                 #valor_Final=[]
-                for cont in range(5):
+                for cont in range(nr_Repeat):
                     size=index
                     nodos_G=size
                     links_G=int(size*1.2)
@@ -1099,9 +1183,9 @@ def main():
                     lista_Nodos=copy.deepcopy(lista_Nodos_aux)
                     results_w=wrong_Run(lista_Req,lista_Paths,lista_Nodos)
                     lista_Nodos=copy.deepcopy(lista_Nodos_aux)
-                    aux=check_Wrong(results_w[1])
+                    aux=check_Wrong(results_w[1],lista_Paths)
                     if len(aux)==0:
-                        aux=[0,0]
+                        aux=[0,0,0]
                     lista_Invalidos.append(aux)
                     lista_Nodos_all.append(lista_Nodos)
 
@@ -1122,17 +1206,19 @@ def main():
                         "Requiscoes alocadas": results_w[0]},
                         "Nodos": len(lista_Nodos),
                         })
-                    req_Aloc_w.append(results_w[0])
-
+                    
+                    nr_req_Aloc_W.append(results_w[0])
+                    lista_Nodos_W.append(results_w[1])
                 aloc_Desv.append(stats.pstdev(req_Aloc_g))
                 #valor_Desv.append(stats.pstdev(valor_Final))
-                wrong_Desv.append(stats.pstdev(req_Aloc_w))
+                wrong_Desv.append(stats.pstdev(nr_req_Aloc_W))
                 dataset_index.append(index)
                 dataset_req_Aloc.append(stats.mean(req_Aloc_g))
-                dataset_wrongrun.append(stats.mean(req_Aloc_w))
+                dataset_wrongrun.append(stats.mean(nr_req_Aloc_W))
                 
                
-            plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all)  
+            plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all,nr_Repeat,lista_Nodos_W)  
+            plot_Solutions_inv(nr_Repeat, lista_Invalidos)
             plot_Func(aloc_Desv,wrong_Desv,dataset_index,dataset_req_Aloc,dataset_wrongrun)
             
 

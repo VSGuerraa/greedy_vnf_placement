@@ -885,9 +885,9 @@ def plot_Func(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongr
     
     fig = plt.figure() 
     ax = fig.add_subplot(111) 
-    ax.plot(dataset_index, dataset_req_Aloc,color='tab:green',label='Abordagem Consciente de Partições') 
+    ax.plot(dataset_index, dataset_req_Aloc,color='tab:green',label='Abordagem Ciente de Partições') 
     ax.errorbar(dataset_index, dataset_req_Aloc, yerr=aloc_Desv, fmt="go")
-    ax.plot(dataset_index, dataset_wrongrun, color = 'tab:red', label='Abordagem Não Consciente de Partições') 
+    ax.plot(dataset_index, dataset_wrongrun, color = 'tab:red', label='Abordagem Não Ciente de Partições') 
     ax.errorbar(dataset_index, dataset_wrongrun, yerr=valor_Desv,fmt='ro')
     #plt.title('Numero de funcoes alocadas', fontweight="bold") 
     ax.grid() 
@@ -1053,8 +1053,9 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all, nr_Simul,lista_Wrong_ru
     # Adding Xticks
     plt.xlabel('Modelos FPGA')
     plt.ylabel('Fração de soluções inválidas')
-    plt.legend(loc='upper left')
+    plt.legend(loc='upper left',  ncol = 3)
     plt.xticks(br1+0.4,labels)
+    plt.ylim(0,0.7)
     plt.savefig('Grafico_FPGA.png')
     plt.show()
     
@@ -1094,7 +1095,7 @@ def plot_Solutions_inv(nr_Simul,lista_Invalidos):
     for step in result:
         cont_Inv=0
         for inst in step:
-            if inst == [0,0]:
+            if inst == [0,0,0]:
                 cont_Inv+=1
         total_Inv.append(cont_Inv)
         
@@ -1150,7 +1151,7 @@ def main():
         elif modo=='2':
             
             
-            nr_Repeat=50
+            nr_Repeat=1000
 
             print('Executando...')
             lista_Results_g=[]

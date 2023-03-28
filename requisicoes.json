@@ -1,1206 +1,123 @@
 {
     "0": {
         "Id": 0,
-        "Nodo_S": 9,
-        "Nodo_D": 1,
-        "max_Lat": 746,
-        "min_T": 14.4,
+        "Nodo_S": 0,
+        "Nodo_D": 4,
+        "max_Lat": 289,
+        "min_T": 0.8,
         "funcao": {
             "Nome": "Deep Packet Inspection",
             "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
+                "nome": "DPI0",
+                "CLBs": 13088,
+                "BRAM": 37,
                 "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
+                "Lat": 278,
+                "Throughput": 0.8
             }
         },
-        "valor": 373
+        "valor": 266
     },
     "1": {
         "Id": 1,
-        "Nodo_S": 24,
-        "Nodo_D": 34,
-        "max_Lat": 314,
-        "min_T": 119.3,
+        "Nodo_S": 3,
+        "Nodo_D": 2,
+        "max_Lat": 176,
+        "min_T": 0.8,
         "funcao": {
-            "Nome": "Advanced Encryption Standard",
+            "Nome": "Deep Packet Inspection",
             "implementacao": {
-                "nome": "AES4",
-                "CLBs": 11951,
-                "BRAM": 450,
+                "nome": "DPI1",
+                "CLBs": 13456,
+                "BRAM": 438,
                 "DSPs": 0,
-                "Lat": 16,
-                "Throughput": 119.3
+                "Lat": 2778,
+                "Throughput": 0.8
             }
         },
-        "valor": 349
+        "valor": 332
     },
     "2": {
         "Id": 2,
-        "Nodo_S": 5,
-        "Nodo_D": 25,
-        "max_Lat": 679,
-        "min_T": 40,
+        "Nodo_S": 1,
+        "Nodo_D": 2,
+        "max_Lat": 74,
+        "min_T": 2,
         "funcao": {
-            "Nome": "Deep Packet Inspection",
+            "Nome": "Firewall",
             "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
+                "nome": "FW1",
+                "CLBs": 10671,
+                "BRAM": 1,
                 "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
+                "Lat": 23,
+                "Throughput": 2
             }
         },
-        "valor": 49
+        "valor": 225
     },
     "3": {
         "Id": 3,
-        "Nodo_S": 11,
-        "Nodo_D": 7,
-        "max_Lat": 422,
-        "min_T": 40,
+        "Nodo_S": 3,
+        "Nodo_D": 4,
+        "max_Lat": 213,
+        "min_T": 2,
         "funcao": {
-            "Nome": "Deep Packet Inspection",
+            "Nome": "Firewall",
             "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
+                "nome": "FW1",
+                "CLBs": 10671,
+                "BRAM": 1,
                 "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
+                "Lat": 23,
+                "Throughput": 2
             }
         },
-        "valor": 47
+        "valor": 233
     },
     "4": {
         "Id": 4,
-        "Nodo_S": 18,
-        "Nodo_D": 3,
-        "max_Lat": 865,
-        "min_T": 119.3,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES4",
-                "CLBs": 11951,
-                "BRAM": 450,
-                "DSPs": 0,
-                "Lat": 16,
-                "Throughput": 119.3
-            }
-        },
-        "valor": 348
-    },
-    "5": {
-        "Id": 5,
-        "Nodo_S": 21,
-        "Nodo_D": 8,
-        "max_Lat": 514,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 305
-    },
-    "6": {
-        "Id": 6,
-        "Nodo_S": 5,
-        "Nodo_D": 20,
-        "max_Lat": 119,
-        "min_T": 14.4,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
-                "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
-            }
-        },
-        "valor": 421
-    },
-    "7": {
-        "Id": 7,
-        "Nodo_S": 2,
-        "Nodo_D": 30,
-        "max_Lat": 123,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 293
-    },
-    "8": {
-        "Id": 8,
-        "Nodo_S": 3,
-        "Nodo_D": 9,
-        "max_Lat": 534,
-        "min_T": 0.8,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI0",
-                "CLBs": 10471,
-                "BRAM": 37,
-                "DSPs": 0,
-                "Lat": 278,
-                "Throughput": 0.8
-            }
-        },
-        "valor": 232
-    },
-    "9": {
-        "Id": 9,
-        "Nodo_S": 27,
-        "Nodo_D": 9,
-        "max_Lat": 458,
-        "min_T": 102.6,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI5",
-                "CLBs": 7560,
-                "BRAM": 399,
-                "DSPs": 0,
-                "Lat": 2708,
-                "Throughput": 102.6
-            }
-        },
-        "valor": 242
-    },
-    "10": {
-        "Id": 10,
-        "Nodo_S": 1,
-        "Nodo_D": 22,
-        "max_Lat": 856,
-        "min_T": 14.4,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
-                "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
-            }
-        },
-        "valor": 394
-    },
-    "11": {
-        "Id": 11,
-        "Nodo_S": 14,
-        "Nodo_D": 27,
-        "max_Lat": 120,
-        "min_T": 102.6,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI5",
-                "CLBs": 7560,
-                "BRAM": 399,
-                "DSPs": 0,
-                "Lat": 2708,
-                "Throughput": 102.6
-            }
-        },
-        "valor": 220
-    },
-    "12": {
-        "Id": 12,
-        "Nodo_S": 11,
-        "Nodo_D": 2,
-        "max_Lat": 513,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 272
-    },
-    "13": {
-        "Id": 13,
-        "Nodo_S": 29,
-        "Nodo_D": 13,
-        "max_Lat": 851,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 48
-    },
-    "14": {
-        "Id": 14,
-        "Nodo_S": 8,
-        "Nodo_D": 26,
-        "max_Lat": 1556,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 304
-    },
-    "15": {
-        "Id": 15,
-        "Nodo_S": 8,
-        "Nodo_D": 16,
-        "max_Lat": 1300,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 44
-    },
-    "16": {
-        "Id": 16,
-        "Nodo_S": 16,
-        "Nodo_D": 13,
-        "max_Lat": 257,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 45
-    },
-    "17": {
-        "Id": 17,
-        "Nodo_S": 28,
-        "Nodo_D": 13,
-        "max_Lat": 685,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 49
-    },
-    "18": {
-        "Id": 18,
-        "Nodo_S": 21,
-        "Nodo_D": 33,
-        "max_Lat": 937,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 49
-    },
-    "19": {
-        "Id": 19,
-        "Nodo_S": 38,
-        "Nodo_D": 12,
-        "max_Lat": 830,
-        "min_T": 102.6,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI5",
-                "CLBs": 7560,
-                "BRAM": 399,
-                "DSPs": 0,
-                "Lat": 2708,
-                "Throughput": 102.6
-            }
-        },
-        "valor": 230
-    },
-    "20": {
-        "Id": 20,
-        "Nodo_S": 20,
-        "Nodo_D": 35,
-        "max_Lat": 269,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 47
-    },
-    "21": {
-        "Id": 21,
-        "Nodo_S": 28,
-        "Nodo_D": 35,
-        "max_Lat": 460,
-        "min_T": 14.4,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
-                "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
-            }
-        },
-        "valor": 373
-    },
-    "22": {
-        "Id": 22,
-        "Nodo_S": 19,
-        "Nodo_D": 11,
-        "max_Lat": 798,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 305
-    },
-    "23": {
-        "Id": 23,
-        "Nodo_S": 39,
-        "Nodo_D": 5,
-        "max_Lat": 683,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 48
-    },
-    "24": {
-        "Id": 24,
-        "Nodo_S": 9,
-        "Nodo_D": 30,
-        "max_Lat": 465,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 300
-    },
-    "25": {
-        "Id": 25,
-        "Nodo_S": 28,
-        "Nodo_D": 19,
-        "max_Lat": 881,
-        "min_T": 14.4,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
-                "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
-            }
-        },
-        "valor": 392
-    },
-    "26": {
-        "Id": 26,
-        "Nodo_S": 3,
-        "Nodo_D": 4,
-        "max_Lat": 488,
-        "min_T": 119.3,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES4",
-                "CLBs": 11951,
-                "BRAM": 450,
-                "DSPs": 0,
-                "Lat": 16,
-                "Throughput": 119.3
-            }
-        },
-        "valor": 301
-    },
-    "27": {
-        "Id": 27,
-        "Nodo_S": 30,
-        "Nodo_D": 6,
-        "max_Lat": 599,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 313
-    },
-    "28": {
-        "Id": 28,
-        "Nodo_S": 31,
-        "Nodo_D": 8,
-        "max_Lat": 633,
-        "min_T": 0.8,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI0",
-                "CLBs": 10471,
-                "BRAM": 37,
-                "DSPs": 0,
-                "Lat": 278,
-                "Throughput": 0.8
-            }
-        },
-        "valor": 222
-    },
-    "29": {
-        "Id": 29,
-        "Nodo_S": 7,
-        "Nodo_D": 30,
-        "max_Lat": 652,
-        "min_T": 119.3,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES4",
-                "CLBs": 11951,
-                "BRAM": 450,
-                "DSPs": 0,
-                "Lat": 16,
-                "Throughput": 119.3
-            }
-        },
-        "valor": 352
-    },
-    "30": {
-        "Id": 30,
-        "Nodo_S": 19,
-        "Nodo_D": 0,
-        "max_Lat": 960,
-        "min_T": 0.8,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI0",
-                "CLBs": 10471,
-                "BRAM": 37,
-                "DSPs": 0,
-                "Lat": 278,
-                "Throughput": 0.8
-            }
-        },
-        "valor": 206
-    },
-    "31": {
-        "Id": 31,
-        "Nodo_S": 29,
-        "Nodo_D": 38,
-        "max_Lat": 592,
-        "min_T": 14.4,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
-                "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
-            }
-        },
-        "valor": 393
-    },
-    "32": {
-        "Id": 32,
-        "Nodo_S": 22,
-        "Nodo_D": 14,
-        "max_Lat": 767,
-        "min_T": 14.4,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
-                "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
-            }
-        },
-        "valor": 425
-    },
-    "33": {
-        "Id": 33,
-        "Nodo_S": 14,
-        "Nodo_D": 22,
-        "max_Lat": 790,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 43
-    },
-    "34": {
-        "Id": 34,
-        "Nodo_S": 22,
-        "Nodo_D": 15,
-        "max_Lat": 804,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 303
-    },
-    "35": {
-        "Id": 35,
-        "Nodo_S": 15,
-        "Nodo_D": 22,
-        "max_Lat": 1098,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 50
-    },
-    "36": {
-        "Id": 36,
-        "Nodo_S": 37,
-        "Nodo_D": 25,
-        "max_Lat": 795,
-        "min_T": 14.4,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
-                "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
-            }
-        },
-        "valor": 422
-    },
-    "37": {
-        "Id": 37,
-        "Nodo_S": 39,
-        "Nodo_D": 24,
-        "max_Lat": 575,
-        "min_T": 119.3,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES4",
-                "CLBs": 11951,
-                "BRAM": 450,
-                "DSPs": 0,
-                "Lat": 16,
-                "Throughput": 119.3
-            }
-        },
-        "valor": 336
-    },
-    "38": {
-        "Id": 38,
-        "Nodo_S": 39,
-        "Nodo_D": 30,
-        "max_Lat": 858,
-        "min_T": 14.4,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
-                "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
-            }
-        },
-        "valor": 394
-    },
-    "39": {
-        "Id": 39,
-        "Nodo_S": 19,
-        "Nodo_D": 3,
-        "max_Lat": 754,
-        "min_T": 49.38,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES0",
-                "CLBs": 3165,
-                "BRAM": 1,
-                "DSPs": 0,
-                "Lat": 15,
-                "Throughput": 49.38
-            }
-        },
-        "valor": 57
-    },
-    "40": {
-        "Id": 40,
-        "Nodo_S": 3,
-        "Nodo_D": 20,
-        "max_Lat": 547,
-        "min_T": 102.6,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI5",
-                "CLBs": 7560,
-                "BRAM": 399,
-                "DSPs": 0,
-                "Lat": 2708,
-                "Throughput": 102.6
-            }
-        },
-        "valor": 243
-    },
-    "41": {
-        "Id": 41,
-        "Nodo_S": 4,
-        "Nodo_D": 18,
-        "max_Lat": 1132,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 331
-    },
-    "42": {
-        "Id": 42,
-        "Nodo_S": 39,
-        "Nodo_D": 38,
-        "max_Lat": 1066,
-        "min_T": 102.6,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI5",
-                "CLBs": 7560,
-                "BRAM": 399,
-                "DSPs": 0,
-                "Lat": 2708,
-                "Throughput": 102.6
-            }
-        },
-        "valor": 229
-    },
-    "43": {
-        "Id": 43,
-        "Nodo_S": 38,
-        "Nodo_D": 21,
-        "max_Lat": 568,
-        "min_T": 119.3,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES4",
-                "CLBs": 11951,
-                "BRAM": 450,
-                "DSPs": 0,
-                "Lat": 16,
-                "Throughput": 119.3
-            }
-        },
-        "valor": 353
-    },
-    "44": {
-        "Id": 44,
-        "Nodo_S": 10,
-        "Nodo_D": 25,
-        "max_Lat": 583,
-        "min_T": 49.38,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES0",
-                "CLBs": 3165,
-                "BRAM": 1,
-                "DSPs": 0,
-                "Lat": 15,
-                "Throughput": 49.38
-            }
-        },
-        "valor": 58
-    },
-    "45": {
-        "Id": 45,
-        "Nodo_S": 24,
-        "Nodo_D": 14,
-        "max_Lat": 930,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 49
-    },
-    "46": {
-        "Id": 46,
-        "Nodo_S": 5,
-        "Nodo_D": 25,
-        "max_Lat": 679,
-        "min_T": 49.38,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES0",
-                "CLBs": 3165,
-                "BRAM": 1,
-                "DSPs": 0,
-                "Lat": 15,
-                "Throughput": 49.38
-            }
-        },
-        "valor": 58
-    },
-    "47": {
-        "Id": 47,
-        "Nodo_S": 3,
-        "Nodo_D": 16,
-        "max_Lat": 1099,
-        "min_T": 0.8,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI0",
-                "CLBs": 10471,
-                "BRAM": 37,
-                "DSPs": 0,
-                "Lat": 278,
-                "Throughput": 0.8
-            }
-        },
-        "valor": 230
-    },
-    "48": {
-        "Id": 48,
-        "Nodo_S": 28,
-        "Nodo_D": 6,
-        "max_Lat": 669,
-        "min_T": 49.38,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES0",
-                "CLBs": 3165,
-                "BRAM": 1,
-                "DSPs": 0,
-                "Lat": 15,
-                "Throughput": 49.38
-            }
-        },
-        "valor": 62
-    },
-    "49": {
-        "Id": 49,
-        "Nodo_S": 38,
-        "Nodo_D": 16,
-        "max_Lat": 1361,
-        "min_T": 119.3,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES4",
-                "CLBs": 11951,
-                "BRAM": 450,
-                "DSPs": 0,
-                "Lat": 16,
-                "Throughput": 119.3
-            }
-        },
-        "valor": 346
-    },
-    "50": {
-        "Id": 50,
-        "Nodo_S": 33,
-        "Nodo_D": 27,
-        "max_Lat": 874,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 50
-    },
-    "51": {
-        "Id": 51,
-        "Nodo_S": 1,
-        "Nodo_D": 0,
-        "max_Lat": 803,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 288
-    },
-    "52": {
-        "Id": 52,
-        "Nodo_S": 9,
-        "Nodo_D": 3,
-        "max_Lat": 505,
-        "min_T": 49.38,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES0",
-                "CLBs": 3165,
-                "BRAM": 1,
-                "DSPs": 0,
-                "Lat": 15,
-                "Throughput": 49.38
-            }
-        },
-        "valor": 69
-    },
-    "53": {
-        "Id": 53,
-        "Nodo_S": 28,
-        "Nodo_D": 16,
-        "max_Lat": 1032,
-        "min_T": 49.38,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES0",
-                "CLBs": 3165,
-                "BRAM": 1,
-                "DSPs": 0,
-                "Lat": 15,
-                "Throughput": 49.38
-            }
-        },
-        "valor": 67
-    },
-    "54": {
-        "Id": 54,
         "Nodo_S": 0,
-        "Nodo_D": 21,
-        "max_Lat": 318,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 283
-    },
-    "55": {
-        "Id": 55,
-        "Nodo_S": 13,
-        "Nodo_D": 24,
-        "max_Lat": 542,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 309
-    },
-    "56": {
-        "Id": 56,
-        "Nodo_S": 37,
-        "Nodo_D": 12,
-        "max_Lat": 1014,
-        "min_T": 14.4,
+        "Nodo_D": 4,
+        "max_Lat": 289,
+        "min_T": 0.8,
         "funcao": {
             "Nome": "Deep Packet Inspection",
             "implementacao": {
-                "nome": "DPI2",
-                "CLBs": 19007,
-                "BRAM": 36,
+                "nome": "DPI0",
+                "CLBs": 13088,
+                "BRAM": 37,
                 "DSPs": 0,
-                "Lat": 1853,
-                "Throughput": 14.4
-            }
-        },
-        "valor": 393
-    },
-    "57": {
-        "Id": 57,
-        "Nodo_S": 15,
-        "Nodo_D": 16,
-        "max_Lat": 1319,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 46
-    },
-    "58": {
-        "Id": 58,
-        "Nodo_S": 6,
-        "Nodo_D": 30,
-        "max_Lat": 527,
-        "min_T": 49.38,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES0",
-                "CLBs": 3165,
-                "BRAM": 1,
-                "DSPs": 0,
-                "Lat": 15,
-                "Throughput": 49.38
-            }
-        },
-        "valor": 61
-    },
-    "59": {
-        "Id": 59,
-        "Nodo_S": 13,
-        "Nodo_D": 2,
-        "max_Lat": 859,
-        "min_T": 40,
-        "funcao": {
-            "Nome": "Deep Packet Inspection",
-            "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
-                "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
-            }
-        },
-        "valor": 47
-    },
-    "60": {
-        "Id": 60,
-        "Nodo_S": 20,
-        "Nodo_D": 26,
-        "max_Lat": 1227,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
+                "Lat": 278,
+                "Throughput": 0.8
             }
         },
         "valor": 279
     },
-    "61": {
-        "Id": 61,
-        "Nodo_S": 6,
+    "5": {
+        "Id": 5,
+        "Nodo_S": 2,
         "Nodo_D": 3,
-        "max_Lat": 657,
-        "min_T": 40,
+        "max_Lat": 65,
+        "min_T": 0.8,
         "funcao": {
             "Nome": "Deep Packet Inspection",
             "implementacao": {
-                "nome": "DPI4",
-                "CLBs": 1391,
-                "BRAM": 96,
+                "nome": "DPI1",
+                "CLBs": 13456,
+                "BRAM": 438,
                 "DSPs": 0,
-                "Lat": 2145,
-                "Throughput": 40
+                "Lat": 2778,
+                "Throughput": 0.8
             }
         },
-        "valor": 49
+        "valor": 350
     },
-    "62": {
-        "Id": 62,
-        "Nodo_S": 34,
-        "Nodo_D": 7,
-        "max_Lat": 231,
-        "min_T": 49.38,
-        "funcao": {
-            "Nome": "Advanced Encryption Standard",
-            "implementacao": {
-                "nome": "AES0",
-                "CLBs": 3165,
-                "BRAM": 1,
-                "DSPs": 0,
-                "Lat": 15,
-                "Throughput": 49.38
-            }
-        },
-        "valor": 69
-    },
-    "63": {
-        "Id": 63,
-        "Nodo_S": 3,
-        "Nodo_D": 9,
-        "max_Lat": 534,
+    "6": {
+        "Id": 6,
+        "Nodo_S": 1,
+        "Nodo_D": 3,
+        "max_Lat": 139,
         "min_T": 14.4,
         "funcao": {
             "Nome": "Deep Packet Inspection",
@@ -1209,48 +126,67 @@
                 "CLBs": 19007,
                 "BRAM": 36,
                 "DSPs": 0,
-                "Lat": 1853,
+                "Lat": 2259,
                 "Throughput": 14.4
             }
         },
-        "valor": 360
+        "valor": 349
     },
-    "64": {
-        "Id": 64,
-        "Nodo_S": 9,
-        "Nodo_D": 17,
-        "max_Lat": 223,
+    "7": {
+        "Id": 7,
+        "Nodo_S": 4,
+        "Nodo_D": 3,
+        "max_Lat": 180,
+        "min_T": 0.8,
+        "funcao": {
+            "Nome": "Deep Packet Inspection",
+            "implementacao": {
+                "nome": "DPI1",
+                "CLBs": 13456,
+                "BRAM": 438,
+                "DSPs": 0,
+                "Lat": 2778,
+                "Throughput": 0.8
+            }
+        },
+        "valor": 326
+    },
+    "8": {
+        "Id": 8,
+        "Nodo_S": 3,
+        "Nodo_D": 0,
+        "max_Lat": 263,
+        "min_T": 0.8,
+        "funcao": {
+            "Nome": "Deep Packet Inspection",
+            "implementacao": {
+                "nome": "DPI1",
+                "CLBs": 13456,
+                "BRAM": 438,
+                "DSPs": 0,
+                "Lat": 2778,
+                "Throughput": 0.8
+            }
+        },
+        "valor": 337
+    },
+    "9": {
+        "Id": 9,
+        "Nodo_S": 3,
+        "Nodo_D": 2,
+        "max_Lat": 176,
         "min_T": 0.8,
         "funcao": {
             "Nome": "Deep Packet Inspection",
             "implementacao": {
                 "nome": "DPI0",
-                "CLBs": 10471,
+                "CLBs": 13088,
                 "BRAM": 37,
                 "DSPs": 0,
                 "Lat": 278,
                 "Throughput": 0.8
             }
         },
-        "valor": 221
-    },
-    "65": {
-        "Id": 65,
-        "Nodo_S": 18,
-        "Nodo_D": 13,
-        "max_Lat": 154,
-        "min_T": 92.16,
-        "funcao": {
-            "Nome": "Firewall",
-            "implementacao": {
-                "nome": "FW2",
-                "CLBs": 12691,
-                "BRAM": 241,
-                "DSPs": 0,
-                "Lat": 73,
-                "Throughput": 92.16
-            }
-        },
-        "valor": 287
+        "valor": 288
     }
 }

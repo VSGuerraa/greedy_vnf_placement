@@ -1,112 +1,101 @@
 {
     "0": {
-        "Nome": "Firewall",
+        "Nome": "Deep Packet Inspection",
         "implementacao": {
-            "nome": "FW2",
-            "CLBs": 12691,
-            "BRAM": 241,
+            "nome": "DPI4",
+            "CLBs": 891,
+            "BRAM": 96,
             "DSPs": 0,
-            "Lat": 73,
-            "Throughput": 92.16
+            "Lat": 1383,
+            "Throughput": 40
         }
     },
     "1": {
         "Nome": "Deep Packet Inspection",
         "implementacao": {
-            "nome": "DPI4",
-            "CLBs": 1391,
-            "BRAM": 96,
+            "nome": "DPI1",
+            "CLBs": 13456,
+            "BRAM": 438,
             "DSPs": 0,
-            "Lat": 2145,
-            "Throughput": 40
+            "Lat": 2778,
+            "Throughput": 0.8
         }
     },
     "2": {
-        "Nome": "Deep Packet Inspection",
-        "implementacao": {
-            "nome": "DPI2",
-            "CLBs": 19007,
-            "BRAM": 36,
-            "DSPs": 0,
-            "Lat": 1853,
-            "Throughput": 14.4
-        }
-    },
-    "3": {
-        "Nome": "Firewall",
-        "implementacao": {
-            "nome": "FW2",
-            "CLBs": 12691,
-            "BRAM": 241,
-            "DSPs": 0,
-            "Lat": 73,
-            "Throughput": 92.16
-        }
-    },
-    "4": {
-        "Nome": "Deep Packet Inspection",
-        "implementacao": {
-            "nome": "DPI5",
-            "CLBs": 7560,
-            "BRAM": 399,
-            "DSPs": 0,
-            "Lat": 2708,
-            "Throughput": 102.6
-        }
-    },
-    "5": {
-        "Nome": "Deep Packet Inspection",
-        "implementacao": {
-            "nome": "DPI4",
-            "CLBs": 1391,
-            "BRAM": 96,
-            "DSPs": 0,
-            "Lat": 2145,
-            "Throughput": 40
-        }
-    },
-    "6": {
         "Nome": "Advanced Encryption Standard",
         "implementacao": {
             "nome": "AES4",
             "CLBs": 11951,
             "BRAM": 450,
             "DSPs": 0,
-            "Lat": 16,
+            "Lat": 8,
             "Throughput": 119.3
         }
     },
-    "7": {
-        "Nome": "Advanced Encryption Standard",
+    "3": {
+        "Nome": "Firewall",
         "implementacao": {
-            "nome": "AES0",
-            "CLBs": 3165,
+            "nome": "FW1",
+            "CLBs": 10671,
             "BRAM": 1,
             "DSPs": 0,
-            "Lat": 15,
-            "Throughput": 49.38
+            "Lat": 23,
+            "Throughput": 2
         }
     },
-    "8": {
+    "4": {
+        "Nome": "Deep Packet Inspection",
+        "implementacao": {
+            "nome": "DPI2",
+            "CLBs": 19007,
+            "BRAM": 36,
+            "DSPs": 0,
+            "Lat": 2259,
+            "Throughput": 14.4
+        }
+    },
+    "5": {
+        "Nome": "Deep Packet Inspection",
+        "implementacao": {
+            "nome": "DPI1",
+            "CLBs": 13456,
+            "BRAM": 438,
+            "DSPs": 0,
+            "Lat": 2778,
+            "Throughput": 0.8
+        }
+    },
+    "6": {
         "Nome": "Deep Packet Inspection",
         "implementacao": {
             "nome": "DPI0",
-            "CLBs": 10471,
+            "CLBs": 13088,
             "BRAM": 37,
             "DSPs": 0,
             "Lat": 278,
             "Throughput": 0.8
         }
     },
-    "9": {
+    "7": {
         "Nome": "Deep Packet Inspection",
         "implementacao": {
-            "nome": "DPI4",
-            "CLBs": 1391,
-            "BRAM": 96,
+            "nome": "DPI0",
+            "CLBs": 13088,
+            "BRAM": 37,
             "DSPs": 0,
-            "Lat": 2145,
-            "Throughput": 40
+            "Lat": 278,
+            "Throughput": 0.8
+        }
+    },
+    "8": {
+        "Nome": "Firewall",
+        "implementacao": {
+            "nome": "FW2",
+            "CLBs": 10153,
+            "BRAM": 241,
+            "DSPs": 0,
+            "Lat": 73,
+            "Throughput": 92.16
         }
     }
 }

@@ -885,9 +885,9 @@ def plot_Func(aloc_Desv,valor_Desv,dataset_index,dataset_req_Aloc,dataset_wrongr
     
     fig = plt.figure() 
     ax = fig.add_subplot(111) 
-    ax.plot(dataset_index, dataset_req_Aloc,color='tab:green',label='Abordagem Conciente de Partições') 
+    ax.plot(dataset_index, dataset_req_Aloc,color='tab:green',label='Abordagem Consciente de Partições') 
     ax.errorbar(dataset_index, dataset_req_Aloc, yerr=aloc_Desv, fmt="go")
-    ax.plot(dataset_index, dataset_wrongrun, color = 'tab:red', label='Abordagem Inconciente de Partições') 
+    ax.plot(dataset_index, dataset_wrongrun, color = 'tab:red', label='Abordagem Não Consciente de Partições') 
     ax.errorbar(dataset_index, dataset_wrongrun, yerr=valor_Desv,fmt='ro')
     #plt.title('Numero de funcoes alocadas', fontweight="bold") 
     ax.grid() 
@@ -981,8 +981,9 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all, nr_Simul,lista_Wrong_ru
         KU040=0
         KU095=0
         VU190=0
-        lista_ids=[]
+        
         for inst in step:
+            lista_ids=[]
             for req in inst:
                 if req==0:
                     continue

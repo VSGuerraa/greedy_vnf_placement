@@ -17,7 +17,7 @@
     },
     {
         "nome": "FW2",
-        "CLBs": 8123,
+        "CLBs": 12691,
         "BRAM": 241,
         "DSPs": 0,
         "Lat": 73,
@@ -25,7 +25,7 @@
     },
     {
         "nome": "DPI0",
-        "CLBs": 8377,
+        "CLBs": 10471,
         "BRAM": 37,
         "DSPs": 0,
         "Lat": 278,
@@ -33,7 +33,7 @@
     },
     {
         "nome": "DPI1",
-        "CLBs": 10765,
+        "CLBs": 8612,
         "BRAM": 438,
         "DSPs": 0,
         "Lat": 2778,
@@ -41,47 +41,47 @@
     },
     {
         "nome": "DPI2",
-        "CLBs": 37121,
+        "CLBs": 19007,
         "BRAM": 36,
         "DSPs": 0,
-        "Lat": 1750,
+        "Lat": 1853,
         "Throughput": 14.4
     },
     {
         "nome": "DPI3",
-        "CLBs": 6442,
+        "CLBs": 5154,
         "BRAM": 407,
         "DSPs": 0,
-        "Lat": 2015,
+        "Lat": 2188,
         "Throughput": 40
     },
     {
         "nome": "DPI4",
-        "CLBs": 891,
+        "CLBs": 1391,
         "BRAM": 96,
         "DSPs": 0,
-        "Lat": 1983,
+        "Lat": 2145,
         "Throughput": 40
     },
     {
         "nome": "DPI5",
-        "CLBs": 6048,
+        "CLBs": 7560,
         "BRAM": 399,
         "DSPs": 0,
-        "Lat": 566,
+        "Lat": 2708,
         "Throughput": 102.6
     },
     {
         "nome": "AES0",
         "CLBs": 3165,
-        "BRAM": 3,
+        "BRAM": 1,
         "DSPs": 0,
         "Lat": 15,
         "Throughput": 49.38
     },
     {
         "nome": "AES1",
-        "CLBs": 3583,
+        "CLBs": 2700,
         "BRAM": 2,
         "DSPs": 0,
         "Lat": 21,
@@ -89,7 +89,7 @@
     },
     {
         "nome": "AES2",
-        "CLBs": 5118,
+        "CLBs": 4095,
         "BRAM": 2,
         "DSPs": 0,
         "Lat": 2,
@@ -97,18 +97,18 @@
     },
     {
         "nome": "AES3",
-        "CLBs": 2542,
-        "BRAM": 2,
+        "CLBs": 2034,
+        "BRAM": 4,
         "DSPs": 0,
-        "Lat": 3,
+        "Lat": 4,
         "Throughput": 45
     },
     {
         "nome": "AES4",
-        "CLBs": 9561,
+        "CLBs": 11951,
         "BRAM": 450,
         "DSPs": 0,
-        "Lat": 3,
+        "Lat": 16,
         "Throughput": 119.3
     }
 ]

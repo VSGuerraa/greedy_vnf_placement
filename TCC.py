@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import copy
 import numpy as np
-import re
 
 
 
@@ -186,45 +185,7 @@ def gerador_Topologia(nro_Nodos, nro_Links):
                 lista_Part.append(random.choice(size_Fgpa[sort_Fpga]))
                 
             lista_Fpga.append(lista_Part)
-            '''
-                lista_Part=[]
-                sort_Fpga=random.choice(fpga)
-                size_CLB = sort_Fpga[0]
-                size_BRAM= sort_Fpga[1]
-                size_DSP= sort_Fpga[2]
-
-                part_p=[2640,96,192]
-                part_m=[8640,144,576]
-                part_g=[27120,480,1824]
-                part_tipos=[part_p,part_m,part_g]
-        
-                part=0
-                while size_CLB!=0 and size_BRAM!=0 and size_DSP!=0:
-                    
-                    sort_part=random.choice(part_tipos)
-                    
-                    if size_CLB-sort_part[0]<part_p[0]or size_BRAM-sort_part[1]<part_p[1] or size_DSP-sort_part[2]<part_p[2]:
-                        clb=size_CLB
-                        bram=size_BRAM
-                        dsp=size_DSP
-                        lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
-                        size_DSP=0
-                        size_BRAM=0
-                        size_DSP=0
-                                
-                    else:
-                        clb=sort_part[0]
-                        bram=sort_part[1]
-                        dsp=sort_part[2]
-                        size_CLB=size_CLB-sort_part[0]
-                        size_BRAM=size_BRAM-sort_part[1]
-                        size_DSP=size_DSP-sort_part[2]
-                        lista_Part.append({"Part"+str(part): {"CLBs": clb, "BRAM":bram, "DSP": dsp }})
-                    
-                    part+=1
-
-                lista_Fpga.append(lista_Part)
-                '''  
+           
         topologia_rede.append({"Nodo"+str(a): {"FPGA": lista_Fpga, "Links": lista_Links}})
         
     with open ("topologia.json","w") as outfile:
@@ -689,7 +650,6 @@ def check_Parts(devices, requisition):
     min_value = min(pesos, key=lambda sublist: sublist[0])
     
     return(min_value) 
-
 #Checa por partição que aloca melhor a req     
 
 def check_Wrong(aloc_Req,lista_Paths):
@@ -927,18 +887,17 @@ def plot_Invalidos_fpga(lista_Invalidos,lista_Nodos_all, nr_Simul,lista_Wrong_ru
     
     
     
-    for step in lista_Req:
-        for inst in step:
-            for req in inst:
-                
-                for passo in result:
-                    for instancia in passo:
-                        for requisition in instancia:
-                            if instancia == [0,0,0]:
+    for i in range(len(lista_Req)):
+        for j in range(len(lista_Req[i])):
+            for req in lista_Req[i][j]:
+                for requisition in result[i][j]:
+               
+                        
+                            if result[i][j] == [0,0,0]:
                                 continue
                             
                             if req==requisition[0]:
-                                inst.remove(req)
+                                lista_Req[i][j].remove(req)
     
     
     
@@ -1066,32 +1025,7 @@ def plot_Solutions_inv(nr_Simul,lista_Invalidos):
     
     total_Inv=[]
     result = [lista_Invalidos[i:i+nr_Simul] for i in range(0, len(lista_Invalidos), nr_Simul)]
-    '''
     
-    lista_Nodos= [lista_Nodos_all[i:i+nr_Simul] for i in range(0, len(lista_Nodos_all), nr_Simul)]
-    
-    KU040_Total=[]
-    KU095_Total=[]
-    VU190_Total=[]
-    
-    
-    for step in lista_Nodos:
-        KU040=0
-        KU095=0
-        VU190=0
-        for inst in step:
-            for nodo in inst:
-                for fpga in nodo.fpga:
-                    if len(fpga)==9:
-                        VU190+=1
-                    elif len(fpga)==6:
-                        KU095+=1
-                    elif len(fpga)==3 or len(fpga)==1:
-                        KU040+=1
-        KU040_Total.append(KU040)
-        KU095_Total.append(KU095)
-        VU190_Total.append(VU190)
-                   ''' 
     for step in result:
         cont_Inv=0
         for inst in step:
@@ -1151,7 +1085,7 @@ def main():
         elif modo=='2':
             
             
-            nr_Repeat=1000
+            nr_Repeat=500
 
             print('Executando...')
             lista_Results_g=[]
